@@ -1,6 +1,7 @@
 import React from 'react'
 import Main from "./Main"
 import Participate from './Participate'
+import HiddenTreasures from './HiddenTreasures'
 
 
 function Home() {
@@ -9,6 +10,7 @@ function Home() {
       {/* <div>Home</div> */}
       <Main/>
       <Participate/>
+      <HiddenTreasures/>
     </React.Fragment>
   )
 }

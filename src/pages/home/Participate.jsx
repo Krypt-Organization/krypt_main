@@ -11,9 +11,9 @@ const list_participations = [
 function Participate() {
   return (
     <React.Fragment>
-        <div className=' rounded-tr-2xl rounded-tl-2xl mb-4 flex flex-col gap-8 py-8 px-1  bg-white'>
+        <div className=' rounded-tr-2xl rounded-tl-2xl flex flex-col gap-8 py-8 px-1  bg-white'>
             <header>
-                <h1 className=' text-center font-black text-orange-600 text-2xl uppercase font-[arial]'>How to participate</h1>
+                <h1 className=' text-center font-black text-orange-600 text-xl uppercase font-[arial]'>How to participate</h1>
             </header>
             <ul className=' flex flex-col gap-3'>
                 {

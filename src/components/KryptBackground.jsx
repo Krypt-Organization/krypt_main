@@ -40,7 +40,7 @@ function KryptBackground() {
                 variants={variant_animation_reveal}
                 initial="initial" animate="animate"
             className=' rounded-md px-3 clip-path mx-5 my-8 py-9 bg-gradient-to-br from-[#f6efef] to-[#daba7e] '>
-                <h1 className=' uppercase text-xl font-black font-[helvetica] text-center text-[#ff9500]'>Background</h1>
+                <h1 className=' uppercase text-xl font-black font-[helvetica] text-center text-orange-600'>Background</h1>
                 <motion.article
                     variants={article_variant}
                     initial="initial" animate="animate"
