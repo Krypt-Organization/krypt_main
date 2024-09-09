@@ -2,6 +2,7 @@ import React from 'react'
 import Main from "./Main"
 import Participate from './Participate'
 import HiddenTreasures from './HiddenTreasures'
+import ProductList from '../products/ProductList'
 
 
 function Home() {
@@ -11,6 +12,7 @@ function Home() {
       <Main/>
       <Participate/>
       <HiddenTreasures/>
+      <ProductList/>
     </React.Fragment>
   )
 }
