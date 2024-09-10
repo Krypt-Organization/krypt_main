@@ -8,7 +8,6 @@ import ProductList from '../products/ProductList'
 function Home() {
   return (
     <React.Fragment>
-      {/* <div>Home</div> */}
       <Main/>
       <Participate/>
       <HiddenTreasures/>

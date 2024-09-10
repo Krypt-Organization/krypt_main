@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import {useInView, motion} from "framer-motion"
 import solana from "../../assets/solana_img.png"
 
@@ -84,21 +84,10 @@ function HiddenTreasures() {
             }
     }
 
-    // EFFECTS
-    useEffect(()=>{
-        console.log("In view", first_view)
-    },[first_view])
-
-
-    useEffect(()=>{
-        console.log("In view", second_view)
-    },[second_view])
-
-
     const list_hidden_treasures = [
         "Users will access the Krypt Brand website.",
         "They will connect their Solana wallet.",
-        "Users can mint one of the 100 collectibles.",
+        "Users can mint one of the 150 collectibles.",
         "Once minted, it'll reveal if your collectibles contains a hidden treasure."
     ]
 
@@ -112,9 +101,9 @@ function HiddenTreasures() {
                 </div>
                 <div className=' overflow-hidden  flex flex-col items-center justify-center'>
                     <motion.p variants={hidden_treasure_writeup}
-                    animate={first_view?"animate":"initial"} className=' font-semibold text-slate-900 text-center text-base'>Out of the 100 collectibles, several will contain hidden treasures such as: </motion.p>
+                    animate={first_view?"animate":"initial"} className=' font-semibold text-slate-900 text-center text-base'>Out of the 150 collectibles, several will contain hidden treasures such as: </motion.p>
                 </div>
-                <ul className=" flex flex-col gap-3 font-semibold  px-5">
+                <ul className=" flex flex-col gap-3 px-8">
                     {
                         list_hidden_treasures.map((item,index)=>{
                             return(
@@ -133,11 +122,11 @@ function HiddenTreasures() {
 
                 </section>
 
-                <section className='overflow-hidden '>
+                <section className='overflow-hidden pb-4'>
                     <motion.article 
                     variants={solana_variant_writeup}
                     animate={second_view?"animate":"initial"}
-                    className='  text-center font-medium text-white '>Solana is chosen for its high performance, low transaction costs, and fast processing speeds, making it ideal for a smooth and seamless user experience</motion.article>
+                    className='  text-center font-medium text-sm text-white '>Solana is chosen for its high performance, low transaction costs, and fast processing speeds, making it ideal for a smooth and seamless user experience</motion.article>
 
                 </section>
                 <section className='overflow-hidden '>
@@ -147,17 +136,7 @@ function HiddenTreasures() {
                     src={solana} alt="solana_img" className='  w-56' />
 
                 </section>
-                {/* <div>
-                    <section className=' absolute top-0 left-0 bg-white size-14 -translate-y-4 rounded-full text-transparent '>
-                        .
-                    </section>
-                    <section className=' absolute top-0 left-[25%] bg-white size-28  rounded-full text-transparent '>
-                        .
-                    </section>
-                    <section className=' absolute top-0 right-0 bg-white w-16 h-10 translate-x-5 -translate-y-4 rounded-full text-transparent '>
-                        .
-                    </section>
-                </div> */}
+                
             </section>
         </div>
     </React.Fragment>

@@ -17,7 +17,7 @@ function ProductList() {
                     fakeData.slice(0,10).map((eachImg,index)=>{
                         return(
                             <div key={eachImg.unique_id+index+"#"} className=' bg-gray-700 border-[1px] border-white rounded-md px-1 py-2 gap-3 flex flex-col '>
-                                <img src={eachImg.img} alt={eachImg.name} className=' rounded-md ' />
+                                <img src={eachImg.img} alt={eachImg.name} className=' rounded-md ' loading="lazy"/>
                                 <section className=' grid grid-cols-2 items-center justify-center gap-2'>
                                     <span className=' font-semibold italic font-[monospace] text-xl'>{String(eachImg.id).length<3?'0'+eachImg.id:eachImg.id}</span>
                                     <span className=' font-semibold  text-right'>${eachImg.price}</span>

@@ -9,7 +9,7 @@ function Footer() {
 
   return (
     <React.Fragment>
-      <div className=' bg-primary px-4 flex flex-col gap-5'>
+      <div className=' bg-primary px-4 py-5 flex flex-col gap-5'>
         <aside className=' flex flex-col -space-y-2'>
           <img src={logo} alt="Logo" loading='lazy' className=' w-14'/>
           <span className=' font-medium text-[12px] text-gray-800'>Powered By Solana</span>
