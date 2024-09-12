@@ -1,25 +1,42 @@
 import React from 'react'
+import img from "../../assets/sample_img.png"
+import { motion} from "framer-motion"
 
-
-const list_participations = [
-    "Users will access the Krypt Brand website.",
-    "They will connect their Solana wallet.",
-    "Users can mint one of the 150 collectibles.",
-    "Once minted, it'll reveal if your collectibles contains a hidden treasure."
-]
+const list_participations = [img,img,img,img]
 
 function Participate() {
-  return (
+    const staggeredVariant ={
+        initial:{
+            opacity:0,
+            y:100
+        },
+        animate:(index)=>({
+            opacity:1,
+            y:0,
+            transition:{
+                delay: 0.5 *index
+            }
+        })
+    }
+
+
+    return (
     <React.Fragment>
         <div className=' rounded-tr-2xl rounded-tl-2xl flex flex-col gap-8 py-8 px-4  bg-white'>
             <header>
                 <h1 className=' text-center font-black text-orange-600 text-xl uppercase font-[arial]'>How to participate</h1>
             </header>
-            <ul className=' flex flex-col gap-3'>
+            <ul className=' flex flex-col gap-5 justify-center items-center'>
                 {
                     list_participations.map((each,index)=>{
                        return(
-                        <span className=' font-medium grid grid-cols-[1fr_4fr] ' key={index}>Step {index+1}. &nbsp;<li className=' text-sm font-medium'>{each}</li></span>
+                        <motion.img
+                        variants={staggeredVariant}
+                        initial="initial"
+                        whileInView={"animate"}
+                        viewport={{once:true}}
+                        custom={index}
+                        key={index+"#**#"} className=' w-screen rounded-md' src={each} alt="how to participate" />
                        )
                     })
                 }
