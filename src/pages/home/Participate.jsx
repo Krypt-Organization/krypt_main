@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import img from "../../assets/sample_img.png"
-import { motion} from "framer-motion"
+import {useInView, motion,useAnimate, stagger} from "framer-motion"
 
 const list_participations = [img,img,img,img]
 
@@ -14,11 +14,17 @@ function Participate() {
             opacity:1,
             y:0,
             transition:{
-                delay: 0.5 *index
+                delay: 1.2 *index,
+                duration:0.3
             }
         })
     }
+    const ref = useRef()
+    const inView = useInView(ref, {once:true})
 
+    useEffect(()=>{
+        console.log("CURRENTLY IN VIEW", inView)
+    },[inView])
 
     return (
     <React.Fragment>
@@ -26,15 +32,14 @@ function Participate() {
             <header>
                 <h1 className=' text-center font-black text-orange-600 text-xl uppercase font-[arial]'>How to participate</h1>
             </header>
-            <ul className=' flex flex-col gap-5 justify-center items-center'>
+            <ul className=' flex flex-col gap-5 justify-center items-center' ref={ref}>
                 {
                     list_participations.map((each,index)=>{
                        return(
                         <motion.img
                         variants={staggeredVariant}
                         initial="initial"
-                        whileInView={"animate"}
-                        viewport={{once:true}}
+                        animate={inView && "animate"}
                         custom={index}
                         key={index+"#**#"} className=' w-screen rounded-md' src={each} alt="how to participate" />
                        )
