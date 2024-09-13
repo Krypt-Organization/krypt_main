@@ -3,6 +3,7 @@ import {BrowserRouter, Routes,Route} from "react-router-dom"
 import Layout from './pages/layout/Layout'
 import Home from './pages/home/Home'
 import Contact from './pages/contact/Contact'
+import Product from './pages/products/Product'
 
 function Krypt() {
   return (
@@ -12,6 +13,7 @@ function Krypt() {
                 <Route element={<Layout/>}>
                     <Route path="/" element={<Home />} />
                     <Route path="/contact" element={<Contact/>}/>
+                    <Route path='/:id' element={<Product/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -65,7 +65,7 @@ function NavMobile() {
         variants={blur_variant}
         initial="initial" animate={navigation?"animate":"exit"}
       className=' flex flex-col overflow-hidden   bg-[#050505d9] fixed w-full h-screen z-10' onClick={handleCloseNavigation}>
-        <section className=' bottom-0 absolute w-full py-5 px-5 rounded-xl flex flex-col gap-3 font-semibold  bg-white'> 
+        <section className=' bottom-0 absolute w-full pt-5 pb-10 px-5 rounded-xl flex flex-col gap-3 font-semibold  bg-white'> 
           {
             nav.map((item, index) => {
               return (

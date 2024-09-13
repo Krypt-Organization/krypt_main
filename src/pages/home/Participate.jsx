@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import img from "../../assets/sample_img.png"
-import {useInView, motion,useAnimate, stagger} from "framer-motion"
+import {useInView, motion} from "framer-motion"
 
-const list_participations = [img,img,img,img]
+const list_participations = [{text:"Users will access the Krypt Brand Website",img},{text:"They will connect their Solana Wallet",img},{text:"Users can mint one of the 100 collectilbles",img},{text:"Once minted, they will reveal contains a hidden treasure",img}]
 
 function Participate() {
     const staggeredVariant ={
@@ -22,9 +22,6 @@ function Participate() {
     const ref = useRef()
     const inView = useInView(ref, {once:true})
 
-    useEffect(()=>{
-        console.log("CURRENTLY IN VIEW", inView)
-    },[inView])
 
     return (
     <React.Fragment>
@@ -32,16 +29,19 @@ function Participate() {
             <header>
                 <h1 className=' text-center font-black text-orange-600 text-xl uppercase font-[arial]'>How to participate</h1>
             </header>
-            <ul className=' flex flex-col gap-5 justify-center items-center' ref={ref}>
+            <ul className=' flex flex-col gap-10 justify-center items-center' ref={ref}>
                 {
                     list_participations.map((each,index)=>{
                        return(
-                        <motion.img
-                        variants={staggeredVariant}
+                        <motion.div variants={staggeredVariant}
                         initial="initial"
                         animate={inView && "animate"}
                         custom={index}
-                        key={index+"#**#"} className=' w-screen rounded-md' src={each} alt="how to participate" />
+                        key={index+"#**#"} className=' flex flex-col gap-3'>
+                            <p className=' text-medium font-semibold '>{each.text}</p>
+                            <img className=' w-[400px] rounded-md' src={each.img} alt="How To Participate" />
+
+                        </motion.div>
                        )
                     })
                 }

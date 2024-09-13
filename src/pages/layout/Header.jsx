@@ -21,7 +21,7 @@ function Header() {
       </section>
       <main className=" bg-primary flex py-2 items-center justify-between px-5">
         <Link to={"/"}>
-          <img src={logo} className=' w-14' alt="Logo" loading="lazy"/>
+          <img src={logo} className='  w-14' alt="Logo" loading="lazy"/>
         </Link>
         <aside onClick={handleCloseNavigation} className=" z-10 text-2xl">
           <IoMenu/>

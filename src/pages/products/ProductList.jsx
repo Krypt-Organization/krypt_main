@@ -1,8 +1,9 @@
 import React from 'react'
 import { fakeData } from '../../extras/fakeData'
-
+import PreviewBtn from '../../components/PreviewBtn'
 
 function ProductList() {
+
   return (
     <React.Fragment>
         <div className=' flex flex-col gap-10 py-5'>
@@ -17,16 +18,14 @@ function ProductList() {
                     fakeData.slice(0,10).map((eachImg,index)=>{
                         return(
                             <div key={eachImg.unique_id+index+"#"} className=' bg-gray-700 border-[1px] border-white rounded-md px-1 py-2 gap-3 flex flex-col '>
-                                <img src={eachImg.img} alt={eachImg.name} className=' rounded-md ' loading="lazy"/>
+                                <img src={eachImg.img} alt={eachImg.name} className=' size-32 rounded-md ' loading="lazy"/>
                                 <section className=' grid grid-cols-2 items-center justify-center gap-2'>
                                     <span className=' font-semibold italic font-[monospace] text-xl'>{String(eachImg.id).length<3?'0'+eachImg.id:eachImg.id}</span>
                                     <span className=' font-semibold  text-right'>${eachImg.price}</span>
                                     <p className=' text-center  col-span-2 text-white font-medium text-lg'>{eachImg.name}</p>
                                 </section>
                                 <section className=' gap-2 flex flex-col'>
-                                    <button className=' bg-white font-semibold rounded-sm'>Purchase</button>
-                                    <button className=' border-[1px] text-white 
-                                    hover:bg-white hover:text-black border-white font-semibold rounded-sm'>Preview</button>
+                                    <PreviewBtn id={eachImg.unique_id}/>
                                 </section>
                             </div>
                         )
