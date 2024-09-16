@@ -3,7 +3,7 @@ import React, {useContext} from 'react'
 import {useNavigate} from "react-router-dom"
 import {Context} from "../context/Context"
 function PreviewBtn({id}) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const {navigation} = useContext(Context)
 
     const handlePreview = ()=>{

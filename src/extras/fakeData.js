@@ -1,7 +1,7 @@
 import img from "../assets/nft_product.jpeg"
 import img2 from "../assets/nft_product2.jpg"
 
-export const fakeData = Array(10).fill(0).map((_,index)=>{
+export const fakeData = Array(150).fill(0).map((_,index)=>{
     return(
         {
             id: index+1,

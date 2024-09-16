@@ -3,7 +3,7 @@ import logo from "../../assets/logo.svg"
 import {FaFacebook, FaTwitter, FaInstagram} from "react-icons/fa"
 import {year} from "../../extras/getYear"
 
-const footer_links = ["home", "about" , "contact", "product", "roadmap", "terms_of_service"]
+const footer_links = ["home", "about" , "contact", "product"]
 function Footer() {
   
 
@@ -26,7 +26,9 @@ function Footer() {
             <section className=' text-xl flex gap-4'>
               <FaFacebook/>
               <FaTwitter />
-              <FaInstagram />
+              <a href="https://www.instagram.com/meshvault_?igsh=Z2pnZjZyYWI3YnQ3">
+                <FaInstagram />
+              </a>
             </section>
             <span className=' font-semibold text-sm'>&copy;KRYPT {year.getFullYear()}</span>
           </div>

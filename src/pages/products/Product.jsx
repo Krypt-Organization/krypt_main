@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { fakeData } from '../../extras/fakeData'
 import {AiOutlineHeart} from "react-icons/ai"
 import limited_img from "../../assets/limited.png"
+import {ClipLoader} from "react-spinners"
 
 function Product() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
+    const navigate = useNavigate();
     const date = new Date()
 
     useEffect(()=>{
@@ -15,26 +17,34 @@ function Product() {
         })
         setProduct(filterId);
     },[])
+
+    const handleBack = ()=>{
+        navigate("/products")
+    }
+
+
   return (
     <React.Fragment>
         <div>
+            <button onClick={handleBack} className=' font-black text-3xl px-5 text-white cursor-pointer'>←</button>
             {
-                product.length===0?<p>Loading Data</p>:
+                product.length===0?<ClipLoader/>:
                 product.map((product)=>{
                     return(
                         <div key={product.unique_id} className=' flex flex-col items-center gap-5 bg-white m-1 rounded-md py-10 px-2'>
-                            <section>
-                                <img src={product.img} alt="NFT" className={` size-56 rounded-md`}/>
-                                <section className=' flex  justify-between items-center px-3 py-2'>
-                                    <p className=' text-gray-900 italic text-xs'>Published: <span className=' font-semibold text-sm'>{`${date.toLocaleDateString()}`}</span></p>
-                                    <span className=' flex gap-1 items-center'>
-                                        21
-                                        <AiOutlineHeart className=' text-2xl'/>
+                            <section className=' '>
+                                <img src={product.img} alt="NFT" className={` size-72 rounded-md`}/>
+                            </section>
+                            <section className='  flex flex-col gap-5'>
+                                <section className='  flex justify-between  px-3 py-2'>
+                                    <p className=' text-gray-900 font-light text-lg uppercase'>Published: <span className=' font-semibold text-base'>{`${date.toLocaleDateString()}`}</span></p>
+                                    <span className=' transition-colors hover:bg-gray-200 flex gap-2 ring-[1px] rounded-full py-1 px-5  ring-black items-center'>
+                                            <span className=' font-semibold'>21</span>
+                                        <AiOutlineHeart className=' hover:text-red-600 text-2xl'/>
                                     </span>
                                 </section>
-                            </section>
-                            <section className=' flex flex-col gap-5'>
                                 <h2 className=' font-semibold text-3xl'>{product.name}</h2>
+                                <p className=' text-gray-900 font-semibold text-xl'>${product.price}</p>
                                 <ul className=' border-b-[1px] pb-4 border-gray-600 text-gray-800 flex flex-col gap-1'>
                                     <li className=' flex gap-4 items-center  font-semibold text-[16px] '>Limited Edition <img src={limited_img} className=" size-8" alt="Limited"/></li>
                                     <li className=' text-[14px] font-semibold'>By Frank Diba</li>
@@ -44,7 +54,13 @@ function Product() {
                                 <article className=' bg-gray-100 px-2 pb-2 rounded font-medium text-lg'>
                                     {product.description}
                                 </article>
-                                <button className=' bg-black mb-5 text-white py-1 rounded-full font-medium font-mono'>Purchase</button>
+                                <select name="" id="" className=' bg-gray-200 rounded-full py-1 px-3 border-[1px] border-black'>
+                                    <option value="">SM</option>
+                                    <option value="">MD</option>
+                                    <option value="">LG</option>
+                                    <option value="">X-LG</option>
+                                </select>
+                                <button className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Purchase</button>
                                 {/* <div>
                                 <span className=' font-semibold italic font-[monospace] text-xl'>{String(product.id).length<3?'0'+product.id:product.id}</span>
                                 </div> */}
@@ -63,14 +79,13 @@ function Product() {
                                         Join the KRYPT community and be part of an ever-expanding universe of fashion and art. Mint your NFT shirt now and unlock exclusive experiences, prizes, and more
                                     </article>
                                 </section>
-                                <section>
-                                    DIBA LINKS
-                                </section>
+
                             </section>
                         </div>
                     )
                 })
             }
+            <br />
         </div>
     </React.Fragment>
   )

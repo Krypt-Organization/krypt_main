@@ -11,7 +11,7 @@ function Home() {
       <Main/>
       <Participate/>
       <HiddenTreasures/>
-      <ProductList/>
+      <ProductList writeUp={true}/>
     </React.Fragment>
   )
 }

@@ -4,6 +4,7 @@ import Layout from './pages/layout/Layout'
 import Home from './pages/home/Home'
 import Contact from './pages/contact/Contact'
 import Product from './pages/products/Product'
+import Products from './pages/products/Products'
 
 function Krypt() {
   return (
@@ -13,6 +14,7 @@ function Krypt() {
                 <Route element={<Layout/>}>
                     <Route path="/" element={<Home />} />
                     <Route path="/contact" element={<Contact/>}/>
+                    <Route path="/products" element={<Products/>}/>
                     <Route path='/:id' element={<Product/>}/>
                 </Route>
             </Routes>
