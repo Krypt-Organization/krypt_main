@@ -39,12 +39,12 @@ function KryptBackground() {
             <motion.section
                 variants={variant_animation_reveal}
                 initial="initial" animate="animate"
-            className=' rounded-md px-3 clip-path mx-5 my-8 py-9 bg-gradient-to-br from-[#f6efef] to-[#daba7e] '>
-                <h1 className=' uppercase text-xl font-black font-[helvetica] text-center text-orange-600'>Background</h1>
+            className=' sm:py-16 rounded-md px-3 clip-path mx-5 my-8 py-9 lg:py-32 lg:space-y-6 bg-gradient-to-br from-[#f6efef] to-[#daba7e] '>
+                <h1 className=' uppercase text-xl lg:text-2xl  font-black font-[helvetica] text-center text-orange-600'>Background</h1>
                 <motion.article
                     variants={article_variant}
                     initial="initial" animate="animate"
-                className=' text-center font-medium text-sm space-y-3'>
+                className=' text-center lg:text-base xl:text-lg font-medium text-sm space-y-3'>
                     Krypt Brand has always been at the forefront of streetwear fashion known for its <span className=' uppercase text-base italic'>alte</span>, <span className=' uppercase font-black text-base'>bold</span> designs and <span className=' font-[monospace] text-base uppercase'>innovative</span> approaches. With the rising popularity of NFTs and blockchain technology, we are taking a bold step forward by integrating these technologies into our brand, creating a unique and engagng customer experience
                 </motion.article>
             </motion.section>

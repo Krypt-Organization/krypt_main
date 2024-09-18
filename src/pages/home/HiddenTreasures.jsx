@@ -95,15 +95,15 @@ function HiddenTreasures() {
   return (
     <React.Fragment>
         <div className=' py-8 flex flex-col gap-8 bg-[white]'>
-            <section ref={first_ref} className=' border-b-2 border-gray-300 pb-5 mb-5 space-y-5'>
+            <section ref={first_ref} className=' border-b-2 border-gray-300 pb-5 mb-5 space-y-5 sm:space-y-8 '>
                 <div className='overflow-hidden  flex flex-col items-center justify-center'>
-                    <motion.h1 variants={hidden_treasure_variant} animate={first_view?"animate":"initial"} className=' text-xl  w-fit  uppercase font-black text-orange-600 text-center'>Hidden Treasures</motion.h1>
+                    <motion.h1 variants={hidden_treasure_variant} animate={first_view?"animate":"initial"} className=' text-xl  w-fit  uppercase font-black text-orange-600 text-center sm:text-2xl'>Hidden Treasures</motion.h1>
                 </div>
                 <div className=' overflow-hidden  flex flex-col items-center justify-center'>
                     <motion.p variants={hidden_treasure_writeup}
-                    animate={first_view?"animate":"initial"} className=' font-semibold text-slate-900 text-center text-base'>Out of the 150 collectibles, several will contain hidden treasures such as: </motion.p>
+                    animate={first_view?"animate":"initial"} className=' font-semibold text-slate-900 text-center text-base sm:text-lg sm:px-2'>Out of the 150 collectibles, several will contain hidden treasures such as: </motion.p>
                 </div>
-                <ul className=" flex flex-col gap-3 px-8">
+                <ul className=" flex flex-col sm:gap-5 gap-3 px-10 md:text-base md:font-medium">
                     {
                         list_hidden_treasures.map((item,index)=>{
                             return(
@@ -113,12 +113,12 @@ function HiddenTreasures() {
                     }
                 </ul>
             </section>
-            <section ref={second_ref} className=' relative py-5 px-3 flex flex-col items-center  gap-5 bg-gradient-to-bl via-yellow-500 to-purple-500 from-yellow-400'>
+            <section ref={second_ref} className=' relative py-5 px-3 flex flex-col items-center  gap-5 sm:gap-7 md:gap-10 bg-gradient-to-bl via-yellow-500 to-purple-500 from-yellow-400'>
                 <section className=' overflow-hidden '>
                     <motion.h1
                         variants={solana_variant}
                         animate={second_view?"animate":"initial"}
-                    className='  py-4 px-2  uppercase text-center font-black text-xl text-orange-700'>Why Solana</motion.h1>
+                    className='  py-4 px-2  uppercase text-center font-black text-xl sm:text-2xl md:text-3xl text-orange-700'>Why Solana</motion.h1>
 
                 </section>
 
@@ -126,14 +126,14 @@ function HiddenTreasures() {
                     <motion.article 
                     variants={solana_variant_writeup}
                     animate={second_view?"animate":"initial"}
-                    className='  text-center font-medium text-sm text-white '>Solana is chosen for its high performance, low transaction costs, and fast processing speeds, making it ideal for a smooth and seamless user experience</motion.article>
+                    className='  text-center font-medium text-sm sm:text-lg md:text-xl text-white '>Solana is chosen for its high performance, low transaction costs, and fast processing speeds, making it ideal for a smooth and seamless user experience</motion.article>
 
                 </section>
                 <section className='overflow-hidden '>
                     <motion.img 
                     variants={solana_variant_img}
                     animate={second_view?"animate":"initial"}
-                    src={solana} alt="solana_img" className='  w-56' />
+                    src={solana} alt="solana_img" className=' sm:w-60 md:w-72 w-56' />
 
                 </section>
                 

@@ -29,7 +29,7 @@ function Participate() {
             <header>
                 <h1 className=' text-center font-black text-orange-600 text-xl uppercase font-[arial]'>How to participate</h1>
             </header>
-            <ul className=' flex flex-col gap-10 justify-center items-center' ref={ref}>
+            <ul className=' flex flex-col md:grid md:grid-cols-2  gap-10 justify-center items-center' ref={ref}>
                 {
                     list_participations.map((each,index)=>{
                        return(
@@ -38,8 +38,8 @@ function Participate() {
                         animate={inView && "animate"}
                         custom={index}
                         key={index+"#**#"} className=' flex flex-col gap-3'>
-                            <p className=' text-medium font-semibold '>{each.text}</p>
-                            <img className=' w-[400px] rounded-md' src={each.img} alt="How To Participate" />
+                            <p className=' sm:text-lg md:text-sm md:text-center text-medium font-semibold '>{each.text}</p>
+                            <img className=' sm:self-center sm:w-full md:w-[500px] w-[400px] rounded-md' src={each.img} alt="How To Participate" />
 
                         </motion.div>
                        )

@@ -40,9 +40,9 @@ function TypingAnimation() {
 
   return (
     <React.Fragment>
-        <div className=" pt-8  flex items-center justify-center">
+        <div className=" pt-8  flex items-center lg:pb-5 lg:pl-5 lg:justify-start justify-center">
             <span className="">
-                <motion.span className=' text-2xl font-semibold uppercase font-[Helvetica] text-[#ffe600f5]  text-center'>
+                <motion.span className='  text-2xl font-semibold uppercase font-[Helvetica] text-[#ffe600f5]  text-center'>
                     {displayText}
                 </motion.span>
                 <motion.div variants={cursorVariants} animate="blinking" className="inline-block text-white  h-6 w-[0.5px]  text-center bg-slate-100">

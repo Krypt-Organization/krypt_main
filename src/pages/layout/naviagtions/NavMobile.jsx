@@ -82,7 +82,9 @@ function NavMobile() {
               <section className=' text-xl flex gap-4'>
                 <FaFacebook/>
                 <FaTwitter />
-                <FaInstagram />
+                <a href="https://www.instagram.com/meshvault_?igsh=Z2pnZjZyYWI3YnQ3">
+                  <FaInstagram />
+                </a>
               </section>
               <span className=' font-semibold text-sm'>&copy;KRYPT {year.getFullYear()}</span>
             </motion.div>

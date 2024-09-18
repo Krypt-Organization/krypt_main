@@ -68,15 +68,9 @@ function Product() {
                                     <span className=' font-semibold text-lg'>Mint your KRYPT NFT Collection Now!</span><br />
 
                                     <article>
-                                        The wait is over! You can now mint your limited edition <strong>KRYPT</strong>  NFT shirt collection on the Solana blockchain. With only 150 unique pieces available, don&apos;t miss your chance to own a piece of digital fashion history.
-
-                                        Once you&apos;ve collected your NFT shirt, press the Mint button to receive a unique digital asset with:
-
-                                        - Exclusive digital fashion art
-                                        - Random bespoke special traits that define the nature and status of your NFT
-                                        - Rare and common traits that contribute to the KRYPT Universe&apos;s storytelling and scoring system
-
-                                        Join the KRYPT community and be part of an ever-expanding universe of fashion and art. Mint your NFT shirt now and unlock exclusive experiences, prizes, and more
+                                    The wait is over! You can now mint your limited edition KRYPT NFT shirt collection on the Solana blockchain. With only 150 unique pieces available, don&apos;t miss your chance to own a piece of digital fashion history. Once you select your NFT shirt, press the Mint button to receive a unique digital asset with: - Exclusive digital fashion Art. Randomized Gifts and amazing Treasures will be assigned to your Token&apos;s Address. Our lucky winners will be Notified immediately after Minting an item in our collection.  
+This is our way of saying our customers are priority at the KRYPT brand. 
+Join the KRYPT community and be part of an ever-expanding universe of fashion and art. Mint your NFT shirt now and unlock exclusive experiences, prizes, and more
                                     </article>
                                 </section>
 

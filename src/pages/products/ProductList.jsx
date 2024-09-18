@@ -10,11 +10,11 @@ function ProductList({listEnd=10,writeUp}) {
         <div className=' flex flex-col gap-10 py-5'>
             <header className=' flex flex-col items-center gap-3 px-2 text-white'>
                 <h1 className=" font-[helvetica] text-shadow uppercase text-2xl text-center font-black">products</h1>
-                {writeUp && <article className=' text-center font-medium  text-sm'>
+                {writeUp && <article className=' sm:text-base  text-center font-medium  text-sm'>
                     We have two colors for this collection. You either conquer the day with blue or classic with black. All items are carefully hand tailored by KRYPT. Each variation are uniquely tagged and identifyable by its number and address
                 </article>}
             </header>
-            <main className=' grid grid-cols-2 px-3 gap-x-3 gap-y-5'>
+            <main className=' grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 md:gap-x-8 px-3 gap-x-3 gap-y-5'>
                 {
                     fakeData.slice(0,listEnd).map((eachImg,index)=>{
                         return(
