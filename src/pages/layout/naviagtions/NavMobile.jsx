@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {FaFacebook, FaTwitter, FaInstagram} from "react-icons/fa"
 import {year} from "../../../extras/getYear"
 import {motion} from "framer-motion"
 import {Context} from "../../../context/Context"
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 
 const nav = [
@@ -12,6 +12,7 @@ const nav = [
   {link:"/products",text:"Products"},
   {link:"/contact",text:"Contact"}
 ]
+
 
 const blur_variant = {
   initial:{
@@ -52,7 +53,25 @@ const nav_variant = {
 
 
 function NavMobile() {
+  const currentPage = useLocation()
+  const {setScrollTo} = useContext(Context);
+  
+  useEffect(()=>{
+    const timer = setTimeout(()=>{
+      setScrollTo(false);
+    },1000)
 
+    return (()=>{
+      clearTimeout(timer);
+    })
+  })
+
+  const handleScrollTo = ()=>{
+    if(currentPage.pathname=="/"){
+      setScrollTo(true);
+    }
+  }
+  
   const {navigation, setNavigation} = useContext(Context)
 
   const handleCloseNavigation =()=>{
@@ -68,11 +87,14 @@ function NavMobile() {
         <section className=' bottom-0 absolute w-full pt-5 pb-10 px-5 rounded-xl flex flex-col gap-3 font-semibold  bg-white'> 
           {
             nav.map((item, index) => {
-              return (
-                <div key={index}>
+              if(item.text=="Treasure Hunt" && currentPage.pathname=="/"){
+                return <button onClick={handleScrollTo} className="nav-link w-fit" key={index}>{item.text}</button>
+              }else{
+                return (<div key={index}>
                   <Link to={item.link} href="#" className="nav-link">{item.text}</Link>
-                </div>
-                )})
+                </div>)
+              }
+              })
           }
           <aside>
             <motion.div
