@@ -85,10 +85,11 @@ function HiddenTreasures() {
     }
 
     const list_hidden_treasures = [
-        "Users will access the Krypt Brand website.",
-        "They will connect their Solana wallet.",
-        "Users can mint one of the 150 collectibles.",
-        "Once minted, it'll reveal if your collectibles contains a hidden treasure."
+        "Access to acquire the Merch",
+        "Discount Rate for our Products",
+        "Access to VIP Events",
+        "Access to an exclusive Community",
+        "Access to Gift Box"
     ]
 
 
