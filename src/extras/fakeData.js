@@ -1,11 +1,14 @@
-import img from "../assets/nft_product.jpeg"
+import img from "../assets/nft_product.jpg"
 import img2 from "../assets/nft_product2.jpg"
+import img3 from "../assets/nft_product3.jpg"
 
-export const fakeData = Array(150).fill(0).map((_,index)=>{
+
+const imageList = [img,img2,img3];
+export const fakeData = Array(100).fill(0).map((_,index)=>{
     return(
         {
             id: index+1,
-            img: (index+1)%2===0?img:img2,
+            img: imageList[Math.floor(Math.random()*imageList.length)],
             price:100,
             name:"NFT Product",
             description:"This is a description of the NFT product",

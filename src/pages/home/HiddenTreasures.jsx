@@ -102,7 +102,7 @@ function HiddenTreasures() {
                 </div>
                 <div className=' overflow-hidden  flex flex-col items-center justify-center'>
                     <motion.p variants={hidden_treasure_writeup}
-                    animate={first_view?"animate":"initial"} className=' font-semibold text-slate-900 text-center text-base sm:text-lg  px-3'>Out of the 150 collectibles, several will contain hidden treasures such as: </motion.p>
+                    animate={first_view?"animate":"initial"} className=' font-semibold text-slate-900 text-center text-base sm:text-lg  px-3'>Out of the 100 collectibles, several will contain hidden treasures such as: </motion.p>
                 </div>
                 <ul className=" flex flex-col sm:gap-5 gap-3 px-7 md:text-base md:font-medium">
                     {

@@ -19,19 +19,19 @@ function Products() {
     <React.Fragment>
         <div>
             <section className=' m-1 rounded-md bg-white px-5 py-5'>
-                <p className=' text-center font-semibold uppercase text-2xl font-serif pb-5'>KRYPT MERCH </p>
+                <p className=' text-center font-semibold uppercase text-2xl md:text-3xl font-serif pb-5 sm:pb-10'>KRYPT MERCH </p>
                 {
                     bannerProduct.map((obj)=>{
                         return(
-                            <div key={obj.unique_id} className=' grid grid-cols-2'>
+                            <div key={obj.unique_id} className='  lg:px-40 grid grid-cols-2 lg:justify-center'>
                                 <section>
-                                    <img src={obj.img} className=' size-48' alt="Product" />
+                                    <img src={obj.img} className=' md:size-72 size-48' alt="Product" />
                                 </section>
-                                <section className=' flex flex-col gap-2'>
-                                    <p className='text-2xl font-light'>By Frank Diba</p>
-                                    <p className=' font-semibold text-2xl'>{obj.name}</p>
-                                    <p className=' font-semibold text-2xl'>${obj.price}</p>
-                                    <p className=' font-semibold text-base'>#{obj.id}</p>
+                                <section className=' flex flex-col gap-2 lg:gap-4 justify-center px-5 '>
+                                    <p className='text-2xl font-light lg:font-semibold uppercase '>By Frank Diba</p>
+                                    <p className=' font-semibold text-2xl lg:text-3xl'>{obj.name}</p>
+                                    <p className=' font-semibold text-2xl md:text-3xl'>${obj.price}</p>
+                                    <p className=' font-semibold text-base md:text-lg lg:text-xl'>#{obj.id}</p>
                                     <button className=' bg-black text-white rounded-full px-2 font-semibold py-1' onClick={()=>{
                                         navigate(`/${obj.unique_id}`)
                                     }}>Preview</button>
@@ -42,7 +42,7 @@ function Products() {
                 }
             </section>
             <section>
-                <ProductList listEnd={150}/>
+                <ProductList listEnd={100}/>
             </section>
         </div>
     </React.Fragment>
