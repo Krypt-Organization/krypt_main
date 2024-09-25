@@ -79,7 +79,6 @@ function Product() {
                                 <p className=' text-gray-900 font-semibold text-xl'>${product.price}</p>
                                 <ul className=' border-b-[1px] pb-4 border-gray-600 text-gray-800 flex flex-col gap-1'>
                                     <li className=' flex gap-4 items-center  font-semibold text-[16px] '>Limited Edition <img src={limited_img} className=" size-8" alt="Limited"/></li>
-                                    <li className=' text-[14px] font-semibold'>By Frank Diba</li>
                                     <li className=' text-lg uppercase font-semibold '>Krypt Collection</li>
                                 </ul>
                                 

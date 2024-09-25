@@ -28,7 +28,6 @@ function Products() {
                                     <img src={obj.img} className=' md:size-72 size-48' alt="Product" />
                                 </section>
                                 <section className=' flex flex-col gap-2 lg:gap-4 justify-center px-5 '>
-                                    <p className='text-2xl font-light lg:font-semibold uppercase '>By Frank Diba</p>
                                     <p className=' font-semibold text-2xl lg:text-3xl'>{obj.name}</p>
                                     <p className=' font-semibold text-2xl md:text-3xl'>${obj.price}</p>
                                     <p className=' font-semibold text-base md:text-lg lg:text-xl'>#{obj.id}</p>
