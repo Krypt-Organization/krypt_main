@@ -23,16 +23,16 @@ function Products() {
                 {
                     bannerProduct.map((obj)=>{
                         return(
-                            <div key={obj.unique_id} className='  lg:px-40 grid grid-cols-2 lg:justify-center'>
+                            <div key={obj.unique_id} className=' items-center  lg:px-40 grid grid-cols-2 lg:justify-center'>
                                 <section>
-                                    <img src={obj.img} className=' md:size-72 size-48' alt="Product" />
+                                    <img src={obj?.img} className=' rounded-md md:size-72 min-[500px]:size-44 sm:size-48 size-32 ' alt="Product" />
                                 </section>
                                 <section className=' flex flex-col gap-2 lg:gap-4 justify-center px-5 '>
-                                    <p className=' font-semibold text-2xl lg:text-3xl'>{obj.name}</p>
-                                    <p className=' font-semibold text-2xl md:text-3xl'>${obj.price}</p>
-                                    <p className=' font-semibold text-base md:text-lg lg:text-xl'>#{obj.id}</p>
+                                    <p className=' font-semibold text-2xl lg:text-3xl'>{obj?.name}</p>
+                                    <p className=' font-semibold text-2xl md:text-3xl'>${obj?.price}</p>
+                                    <p className=' font-semibold text-base md:text-lg lg:text-xl'>#{obj?.id}</p>
                                     <button className=' bg-black text-white rounded-full px-2 font-semibold py-1' onClick={()=>{
-                                        navigate(`/${obj.unique_id}`)
+                                        navigate(`/${obj?.unique_id}`)
                                     }}>Preview</button>
                                 </section>
                             </div>
