@@ -5,7 +5,7 @@ import logo from "../../assets/logo.svg"
 import NavMobile from './naviagtions/NavMobile'
 import NavDesktop from './naviagtions/NavDesktop'
 import { Context } from '../../context/Context'
-import { NavLink,Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Header() {
 
@@ -29,15 +29,6 @@ function Header() {
           <section className=' lg:pr-6 max-lg:hidden'>
             <NavDesktop/>
           </section>
-          <section className=' relative py-1 px-2'>
-            {!navigation && <span className=' z-10 absolute right-0 top-0  bg-red-400 px-1 rounded-full text-white text-xs'>{cart.length}</span>}
-            {
-              navigation?<PiShoppingCartSimpleBold className=' z-10'/>:
-              <NavLink to={"/cart"}>
-                <PiShoppingCartSimpleBold className=' z-10'/>
-              </NavLink>
-            }
-          </section>
           <section className=' lg:hidden' onClick={handleCloseNavigation}>
             <IoMenu/>
           </section>
@@ -47,4 +38,13 @@ function Header() {
   )
 }
 
+          // <section className=' relative py-1 px-2'>
+          //   {!navigation && <span className=' z-10 absolute right-0 top-0  bg-red-400 px-1 rounded-full text-white text-xs'>{cart.length}</span>}
+          //   {
+          //     navigation?<PiShoppingCartSimpleBold className=' z-10'/>:
+          //     <NavLink to={"/cart"}>
+          //       <PiShoppingCartSimpleBold className=' z-10'/>
+          //     </NavLink>
+          //   }
+          // </section>
 export default Header
