@@ -23,7 +23,7 @@ function Products() {
                 {
                     bannerProduct.map((obj)=>{
                         return(
-                            <div key={obj.unique_id} className=' items-center  lg:px-40 grid grid-cols-2 lg:justify-center'>
+                            <div key={obj?.unique_id} className=' items-center  lg:px-40 grid grid-cols-2 lg:justify-center'>
                                 <section>
                                     <img src={obj?.img} className=' rounded-md md:size-72 min-[500px]:size-44 sm:size-48 size-32 ' alt="Product" />
                                 </section>

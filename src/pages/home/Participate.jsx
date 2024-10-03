@@ -1,8 +1,11 @@
 import React, { useRef } from 'react'
-import img from "../../assets/sample_img.png"
+import img1 from "../../assets/img1.png"
+import img2 from "../../assets/img2.png"
+import img3 from "../../assets/img3.png"
+import img4 from "../../assets/img4.png"
 import {useInView, motion} from "framer-motion"
 
-const list_participations = [{text:"Users will access the Krypt Brand Website",img},{text:"They will connect their Solana Wallet",img},{text:"Users can mint one of the 100 collectilbles",img},{text:"Once minted, they will reveal contains a hidden treasure",img}]
+const list_participations = [{text:"Users will access the Krypt Brand Website",img:img1},{text:"They will connect their Solana Wallet",img:img2},{text:"Users can mint one of the 100 collectibles",img:img3},{text:"Once minted, they will reveal contains a hidden treasure",img:img4}]
 
 function Participate() {
     const staggeredVariant ={

@@ -8,9 +8,9 @@ import { Context } from '../../context/Context'
 
 function Product() {
     const { id } = useParams()
-    const {setCart} = useContext(Context)
+    const {cart, setCart} = useContext(Context)
     const [product, setProduct] = useState([])
-    const [option,setOption] = useState({size:"SM",quantity:"1"})
+    const [option,setOption] = useState({size:"LG",quantity:"1"})
     const [addedToCart,setAddedToCart] = useState(false)
     const navigate = useNavigate();
     const date = new Date()
@@ -41,12 +41,22 @@ function Product() {
     }
 
     const addToCart = ()=>{
-        const addToCartObject = {...product[0],...option,quantity:Number(option.quantity),total:Number(option.quantity)*product[0].price}
-        console.log(addToCartObject);
-        setCart((prev)=>{
-            return [...prev,addToCartObject]
-        })
-        setAddedToCart(true)
+        if(cart.length==0){
+            const addToCartObject = {...product[0],...option,quantity:Number(option.quantity),total:Number(option.quantity)*product[0].price}
+            console.log(addToCartObject);
+            setCart((prev)=>{
+                return [...prev,addToCartObject]
+            })
+            setAddedToCart(true)
+            console.log("empty")
+        }else{
+            let quantity;
+            const findId = cart.filter((eachItem)=>{
+                return eachItem.unique_id == id;
+            });
+            
+            console.log(findId);
+        }
     }
 
 
@@ -87,10 +97,10 @@ function Product() {
                                 </article>
                                 <span className=" font-semibold text-sm">Size</span>
                                 <select onChange={handleOptions} value={option.size} name="size" id="" className=' bg-gray-200 rounded-full py-1 px-3 border-[1px] border-black'>
-                                    <option value="SM">SM</option>
-                                    <option value="MD">MD</option>
                                     <option value="LG">LG</option>
-                                    <option value="X-LG">X-LG</option>
+                                    <option value="XL">XL</option>
+                                    <option value="2XL">2XL</option>
+                                    <option value="3XL">3XL</option>
                                 </select>
                                 <span className=" font-semibold text-sm">Quantity</span>
                                 <select onChange={handleOptions} value={option.quantity} name="quantity" id="" className=' bg-gray-200 rounded-full py-1 px-3 border-[1px] border-black'>
