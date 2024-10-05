@@ -41,7 +41,7 @@ function Participate() {
                         animate={inView && "animate"}
                         custom={index}
                         key={index+"#**#"} className=' flex flex-col gap-3'>
-                            <p className=' sm:text-lg md:text-sm md:text-center text-medium font-semibold '>{each.text}</p>
+                            <p className=' sm:text-lg md:text-sm lg:text-lg  md:text-center text-medium font-semibold '>{each.text}</p>
                             <img className=' sm:self-center sm:w-full md:w-[500px] w-[400px] rounded-md' src={each.img} alt="How To Participate" />
 
                         </motion.div>

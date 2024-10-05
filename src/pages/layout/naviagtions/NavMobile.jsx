@@ -4,6 +4,7 @@ import {year} from "../../../extras/getYear"
 import {motion} from "framer-motion"
 import {Context} from "../../../context/Context"
 import { Link, useLocation } from 'react-router-dom'
+import { FiLogIn } from 'react-icons/fi'
 
 
 const nav = [
@@ -96,6 +97,10 @@ function NavMobile() {
               }
               })
           }
+          <div className=' text-base gap-2 flex items-center'>
+              <FiLogIn/>
+              <span className=' text-base'>Login</span>
+            </div>
           <aside>
             <motion.div
               variants={nav_variant}

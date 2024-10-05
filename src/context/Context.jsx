@@ -10,13 +10,13 @@ export const Context = createContext(null);
 function ContextProvider({children}) {
     const [navigation, setNavigation] = useState(false);
     const [scrollTo,setScrollTo]=useState(false)
-    const [cart, setCart] = useState([])
+    const [order, setOrder] = useState([])
     
 
 
 
     
-    const values = {navigation,setNavigation,cart, setCart,scrollTo,setScrollTo}
+    const values = {navigation,setNavigation,order, setOrder,scrollTo,setScrollTo}
   return (
     <React.Fragment>
         <Context.Provider value={values}>

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import {useInView, motion} from "framer-motion"
 import solana from "../../assets/solana_img.png"
-
+import point from "../../assets/bullet_point.png"
 
 function HiddenTreasures() {
     // REFRENCES
@@ -85,19 +85,19 @@ function HiddenTreasures() {
     }
 
     const list_hidden_treasures = [
-        "Merchandise (Merch):Every collectible is paired with exclusive merchandise for the treasure hunter. Details on how to claim your merch will be provided after the minting process.",
+        {id:"123456",header:"Merchandise (Merch):", text:"Every collectible is paired with exclusive merchandise for the treasure hunter. Details on how to claim your merch will be provided after the minting process."},
         
-        "Additional Limited Perks: Some lucky treasure hunters will also unlock additional rewards along with their collectibles. These perks include",
+        {id:"654321",header:"Additional Limited Perks:", text:"Some lucky treasure hunters will also unlock additional rewards along with their collectibles. These perks include"},
         
-        "Discount Rate for Krypt Products: Gain access to special discounts on all Krypt products, giving you a unique advantage on future purchases.",
+        {id:"543289",header:"Discount Rate for Krypt Products:", text:"Gain access to special discounts on all Krypt products, giving you a unique advantage on future purchases."},
         
-        "Access to VIP Events:Receive invitations to exclusive VIP events where you can meet fellow collectors, engage in unique experiences, and enjoy premium perks.",
+        {id:"985789",header:"Access to VIP Events: ",text:"Receive invitations to exclusive VIP events where you can meet fellow collectors, engage in unique experiences, and enjoy premium perks."},
         
-        "Access to an Exclusive Community: Join a private, treasure hunters-only community where members can share insights, network, and enjoy exclusive content and updates.",
+        {id:"739249",header:"Access to an Exclusive Community:", text:"Join a private, treasure hunters-only community where members can share insights, network, and enjoy exclusive content and updates."},
         
-        "Gift Box Access: Some treasure hunters will receive access to a limited-edition Gift Box packed with special surprises.",
+        {id:"0w29jwd",header:"Gift Box Access:", text:"Some treasure hunters will receive access to a limited-edition Gift Box packed with special surprises and an Exclusive Weekend getaway experience.."},
 
-        "Hidden Treasures: Cash rewards Pool, special Gift items and an international Sponsored Weekend Getaway Experience. "
+        // {id:"d3902je2",header:"Hidden Treasures:",text:"Cash rewards Pool, special Gift items and an Exclusive Weekend getaway experience. "}
     ]
 
 
@@ -110,13 +110,19 @@ function HiddenTreasures() {
                 </div>
                 <div className=' overflow-hidden  flex flex-col items-center justify-center'>
                     <motion.p variants={hidden_treasure_writeup}
-                    animate={first_view?"animate":"initial"} className=' text-slate-900 text-center text-base sm:text-lg  px-5'>Exclusive Perks and Rewards Every treasure hunter who mints one of the 100 collectibles will unlock exclusive rewards. Here&apos;s what you can expect: </motion.p>
+                    animate={first_view?"animate":"initial"} className=' text-slate-900 text-center text-base sm:text-lg md:font-semibold px-5'>Exclusive Perks and Rewards Every treasure hunter who mints one of the 100 collectibles will unlock exclusive rewards. Here&apos;s what you can expect: </motion.p>
                 </div>
-                <ul className=" flex flex-col sm:gap-9 font-normal gap-6 px-7 md:text-base md:font-medium">
+                <ul className=" grid grid-cols-1 sm:grid-cols-2 sm:gap-10 md:gap-14 font-normal gap-6 px-7 md:text-base md:font-medium">
                     {
-                        list_hidden_treasures.map((item,index)=>{
+                        list_hidden_treasures.map(({header,text,id})=>{
                             return(
-                                <span className={` list-disc`} key={index}><li>{item}</li></span>
+                                <div className=' bg-gray-100 rounded-md px-3 py-2' key={id}>
+                                    <section className=' flex gap-2 items-center'>
+                                        <img src={point} alt="bullet" className=' w-5'/>
+                                        <h1 className=' font-semibold'>{header}</h1>
+                                    </section>
+                                    <span className=' text-sm font-normal md:text-base '><li>{text}</li></span>
+                                </div>
                             )
                         })
                     }

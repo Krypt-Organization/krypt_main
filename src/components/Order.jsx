@@ -3,42 +3,35 @@ import { Context } from '../context/Context'
 import emptyCart from "../assets/emptyCart.png"
 
 
-function Cart() {
-    const { cart, setCart } = useContext(Context);
+function Order() {
+    const { order, setOrder } = useContext(Context);
     const [subTotal,setSubTotal] =useState(0);
 
 
     const handleDeleteItem = (id)=>{
-      const testFilter = cart.filter((eachOne)=>{
+      const testFilter = order.filter((eachOne)=>{
         return eachOne.unique_id != id;
       }) 
-      setCart(testFilter)
+      setOrder(testFilter)
     }
 
     useEffect(()=>{
       // const addedDuplicates = [];
-      const subTotalCalc = cart.reduce((acc,eachProduct)=>{
+      const subTotalCalc = order.reduce((acc,eachProduct)=>{
         return acc + eachProduct.total;
       },0)
       setSubTotal(subTotalCalc)
-      console.log(cart)
-      // cart.forEach(element => {
-      //   if(!addedDuplicates.map((eachProduct)=> eachProduct.id).includes(element.id)){
-      //     addedDuplicates.push(element)
-      //   }
-      // });
-      // console.log(addedDuplicates)
-      // setCartArr(addedDuplicates)
+      console.log(order)
     },[])
 
   return (
     <React.Fragment>
         <div>
             {
-            cart.length==0?
+            order.length==0?
             <div className="flex py-5   flex-col items-center  justify-center">
                 <img src={emptyCart} className=" size-56" alt="Cart Is Empty"/>
-                <p className=" text-white font-semibold text-lg">Your Cart is Empty</p>
+                <p className=" text-white font-semibold text-lg">You Have No Orders</p>
             </div>
             :<div className=" my-2 flex flex-col gap-2">
               <table className=" text-white max-md:hidden w-full bg-gray-600  rounded-md ">
@@ -54,7 +47,7 @@ function Cart() {
                   </tr>
                 </thead>
                 {
-                  cart.map((eachProduct)=>{
+                  order.map((eachProduct)=>{
                     return(
                       <tbody key={eachProduct.unique_id} className=' space-x-7'>
                           <tr className=' text-white'>
@@ -77,7 +70,7 @@ function Cart() {
               </table>
                 <br />
               {
-                cart.map((eachProduct)=>{
+                order.map((eachProduct)=>{
                   return(
                     <div key={eachProduct.unique_id}>
                       <section  className='md:hidden rounded-md bg-gray-600 px-2 py-5 flex items-center justify-center gap-10 sm:gap-20'>
@@ -102,12 +95,12 @@ function Cart() {
             </div>
               }
 
-              <div className={`${cart.length==0 && "hidden"} md:w-1/2  md:px-5 bg-gray-200 mx-5 py-5 px-2 rounded-md mb-5`}>
+              <div className={`${order.length==0 && "hidden"} md:w-1/2  md:px-5 bg-gray-200 mx-5 py-5 px-2 rounded-md mb-5`}>
                 <p className=" underline text-center font-semibold text-lg ">Order Details</p>
                 <section className=" flex flex-col gap-3">
                     <aside className=' flex justify-between font-medium '>
                       <p>Item(s)</p>
-                      <span>{cart.length}</span>
+                      <span>{order.length}</span>
                     </aside>
                     <aside className=' flex justify-between font-medium '>
                       <p>Estimated Tax </p>
@@ -129,4 +122,4 @@ function Cart() {
   )
 }
 
-export default Cart
+export default Order

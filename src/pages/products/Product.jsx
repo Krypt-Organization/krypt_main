@@ -8,9 +8,9 @@ import { Context } from '../../context/Context'
 
 function Product() {
     const { id } = useParams()
-    const {cart, setCart} = useContext(Context)
+    const {order, setOrder} = useContext(Context)
     const [product, setProduct] = useState([])
-    const [option,setOption] = useState({size:"LG",quantity:"1"})
+    const [option,setOption] = useState({size:"LG"})
     const [addedToCart,setAddedToCart] = useState(false)
     const navigate = useNavigate();
     const date = new Date()
@@ -41,22 +41,22 @@ function Product() {
     }
 
     const addToCart = ()=>{
-        if(cart.length==0){
-            const addToCartObject = {...product[0],...option,quantity:Number(option.quantity),total:Number(option.quantity)*product[0].price}
-            console.log(addToCartObject);
-            setCart((prev)=>{
-                return [...prev,addToCartObject]
-            })
-            setAddedToCart(true)
-            console.log("empty")
-        }else{
-            let quantity;
-            const findId = cart.filter((eachItem)=>{
-                return eachItem.unique_id == id;
-            });
+        // if(cart.length==0){
+        //     const addToCartObject = {...product[0],...option,total:Number(option.quantity)*product[0].price}
+        //     console.log(addToCartObject);
+        //     setCart((prev)=>{
+        //         return [...prev,addToCartObject]
+        //     })
+        //     setAddedToCart(true)
+        //     console.log("empty")
+        // }else{
+        //     const findId = cart.filter((eachItem)=>{
+        //         return eachItem.unique_id == id;
+        //     });
             
-            console.log(findId);
-        }
+        //     console.log(findId);
+        // }
+        alert("Okay")
     }
 
 
@@ -102,14 +102,7 @@ function Product() {
                                     <option value="2XL">2XL</option>
                                     <option value="3XL">3XL</option>
                                 </select>
-                                <span className=" font-semibold text-sm">Quantity</span>
-                                <select onChange={handleOptions} value={option.quantity} name="quantity" id="" className=' bg-gray-200 rounded-full py-1 px-3 border-[1px] border-black'>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                                <button onClick={addToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Purchase</button>
+                                <button onClick={addToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Mint</button>
                                 {/* <div>
                                 <span className=' font-semibold italic font-[monospace] text-xl'>{String(product.id).length<3?'0'+product.id:product.id}</span>
                                 </div> */}

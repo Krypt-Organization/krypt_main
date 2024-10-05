@@ -31,7 +31,7 @@ function NavDesktop() {
   }
   return (
     <React.Fragment>
-      <div className=' text-base  font-semibold flex gap-5 '>
+      <div className=' text-base lg:text-xl border-black border-[1px] rounded-full lg:px-4 lg:py-2  font-semibold flex gap-5  lg:gap-10'>
       {
             nav.map((item, index) => {
               if(item.text=="Treasure-Hunt" && currentPage.pathname=="/"){

@@ -5,7 +5,7 @@ import Home from './pages/home/Home'
 import Contact from './pages/contact/Contact'
 import Product from './pages/products/Product'
 import Products from './pages/products/Products'
-import Cart from './components/Cart'
+import Order from './components/Order'
 
 function Krypt() {
   return (
@@ -16,7 +16,7 @@ function Krypt() {
                     <Route path="/" element={<Home />} />
                     <Route path="/contact" element={<Contact/>}/>
                     <Route path="/products" element={<Products/>}/>
-                    <Route path='/cart' element={<Cart/>}/>
+                    <Route path='/order' element={<Order/>}/>
                     <Route path='/:id' element={<Product/>}/>
                 </Route>
             </Routes>
