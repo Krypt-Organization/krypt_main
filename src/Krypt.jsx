@@ -6,6 +6,9 @@ import Contact from './pages/contact/Contact'
 import Product from './pages/products/Product'
 import Products from './pages/products/Products'
 import Order from './components/Order'
+import Auth from "./pages/auth/Auth"
+import Login from "./pages/auth/Login"
+import Register from "./pages/auth/Register"
 
 function Krypt() {
   return (
@@ -18,6 +21,10 @@ function Krypt() {
                     <Route path="/products" element={<Products/>}/>
                     <Route path='/order' element={<Order/>}/>
                     <Route path='/:id' element={<Product/>}/>
+                    <Route path='/auth' element={<Auth/>}>
+                      <Route path='login' element={<Login/>}/>
+                      <Route path='register' element={<Register/>}/>
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>

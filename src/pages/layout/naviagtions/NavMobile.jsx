@@ -97,10 +97,10 @@ function NavMobile() {
               }
               })
           }
-          <div className=' text-base gap-2 flex items-center'>
+          <Link to={"/auth/login"} className=' text-base gap-2 flex items-center'>
               <FiLogIn/>
               <span className=' text-base'>Login</span>
-            </div>
+          </Link>
           <aside>
             <motion.div
               variants={nav_variant}

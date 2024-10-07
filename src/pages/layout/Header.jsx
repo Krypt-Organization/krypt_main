@@ -28,10 +28,10 @@ function Header() {
         <aside className=" items-center z-10 lg:text-3xl text-2xl">
           <section className=' items-center flex justify-between lg:pr-6 max-lg:hidden'>
             <NavDesktop/>
-            <div className=' text-base gap-2 flex items-center'>
+            <Link to={"/auth/login"} className=' cursor-default text-base gap-2 flex items-center'>
               <span className=' md:text-lg text-base'>Login</span>
               <FiLogIn/>
-            </div>
+            </Link>
           </section>
           <section className=' lg:hidden' onClick={handleCloseNavigation}>
             <IoMenu/>
