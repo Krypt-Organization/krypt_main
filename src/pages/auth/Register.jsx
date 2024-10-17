@@ -5,8 +5,7 @@ function Register() {
   return (
     <React.Fragment>
         <div className=' px-3 py-3'>
-            <p className=' font-semibold text-xl  text-center'>Register On <span className=' bg-clip-text bg-gradient-to-tr from-green-500 to-purple-600 text-transparent font-semibold'>KRYPT</span></p>
-            <form action="" className=' py-2 gap-3 flex flex-col'>
+            <form action="" className=' py-2 gap-5 flex flex-col'>
                 <label className=' flex flex-col gap-1' htmlFor="">
                     <span className=' font-medium'>Username</span>
                     <input placeholder='Username' type="text" className='  bg-gray-100 p-1 rounded-md outline-none ring-1 ring-gray-300' />
