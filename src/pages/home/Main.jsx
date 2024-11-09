@@ -3,6 +3,7 @@ import KryptBackground from '../../components/KryptBackground'
 import TypingAnimation from "../../components/TypingAnimation"
 import {motion} from "framer-motion"
 // import gsap from 'gsap'
+import gif from "../../assets/krypt_gif.gif"
 import video from '../../assets/krypt_video.mp4'
 
 function Main() {
@@ -24,7 +25,8 @@ function Main() {
     <React.Fragment>
         <div className=' w-full h-[700px] relative bg-red-500 '>
             <section className=' object-cover bg-red-300'>
-                <video src={video} muted autoPlay loop type="video/mp4" className=' object-cover h-[700px] w-full'></video>
+                {/* <video src={video} muted autoPlay loop type="video/mp4" className=' object-cover h-[700px] w-full'></video> */}
+                <img src={gif} alt="Gif video" className=' object-cover h-[700px] w-full'/>
             </section>
             <div className=' h-full bg-black bg-opacity-85 absolute  top-0 flex flex-col gap-5 sm:gap-5 lg:flex-row lg:pb-16 lg:items-center'>
                 <main className=' py-5 flex flex-col gap-14'>
