@@ -2,9 +2,7 @@ import React from 'react'
 import KryptBackground from '../../components/KryptBackground'
 import TypingAnimation from "../../components/TypingAnimation"
 import {motion} from "framer-motion"
-// import gsap from 'gsap'
 import gif from "../../assets/krypt_gif.gif"
-import video from '../../assets/krypt_video.mp4'
 
 function Main() {
     // const ref = useRef()

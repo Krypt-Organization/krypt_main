@@ -1,20 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fakeData } from '../../extras/fakeData'
-import {AiOutlineHeart} from "react-icons/ai"
 import limited_img from "../../assets/limited.png"
 import {ClipLoader} from "react-spinners"
-import { Context } from '../../context/Context'
 
 function Product() {
     const { id } = useParams()
-    const {order, setOrder} = useContext(Context)
     const [product, setProduct] = useState([])
     const [option,setOption] = useState({size:"LG"})
     const [addedToCart,setAddedToCart] = useState(false)
     const navigate = useNavigate();
-    const date = new Date()
-
     useEffect(()=>{
         const filterId = fakeData.filter((eachData)=>{
             return eachData.unique_id === id;
@@ -40,27 +35,6 @@ function Product() {
         });
     }
 
-    const addToCart = ()=>{
-        // if(cart.length==0){
-        //     const addToCartObject = {...product[0],...option,total:Number(option.quantity)*product[0].price}
-        //     console.log(addToCartObject);
-        //     setCart((prev)=>{
-        //         return [...prev,addToCartObject]
-        //     })
-        //     setAddedToCart(true)
-        //     console.log("empty")
-        // }else{
-        //     const findId = cart.filter((eachItem)=>{
-        //         return eachItem.unique_id == id;
-        //     });
-            
-        //     console.log(findId);
-        // }
-        alert("Okay")
-    }
-
-
-
 
   return (
     <React.Fragment>
@@ -78,13 +52,6 @@ function Product() {
                                 <img src={product.img} alt="NFT" className={` size-72 lg:size-96 rounded-md`}/>
                             </section>
                             <section className=' w-full  flex flex-col gap-5'>
-                                <section className='  flex justify-between  px-3 py-2'>
-                                    <p className=' text-gray-900 font-light text-lg uppercase'>Published: <span className=' font-semibold text-base'>{`${date.toLocaleDateString()}`}</span></p>
-                                    <span className=' transition-colors hover:bg-gray-200 flex gap-2 ring-[1px] rounded-full py-1 px-5  ring-black items-center'>
-                                            <span className=' font-semibold'>21</span>
-                                        <AiOutlineHeart className=' hover:text-red-600 text-2xl'/>
-                                    </span>
-                                </section>
                                 <h2 className=' font-semibold text-3xl'>{product.name}</h2>
                                 <p className=' text-gray-900 font-semibold text-xl'>${product.price}</p>
                                 <ul className=' border-b-[1px] pb-4 border-gray-600 text-gray-800 flex flex-col gap-1'>
@@ -100,12 +67,9 @@ function Product() {
                                     <option value="LG">LG</option>
                                     <option value="XL">XL</option>
                                     <option value="2XL">2XL</option>
-                                    <option value="3XL">3XL</option>
+                                    {!product.img.split("/").includes("nft_product.jpg")&&<option value="3XL">3XL</option>}
                                 </select>
-                                <button onClick={addToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Mint</button>
-                                {/* <div>
-                                <span className=' font-semibold italic font-[monospace] text-xl'>{String(product.id).length<3?'0'+product.id:product.id}</span>
-                                </div> */}
+                                <button  className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Mint</button>
                                 <section className=' px-5 flex flex-col'>
                                     <span className=' font-semibold text-lg'>Mint your KRYPT NFT Collection Now!</span><br />
 
