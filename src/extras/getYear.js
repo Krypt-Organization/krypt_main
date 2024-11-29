@@ -1,1 +1,1 @@
-export const year = new Date()
+export const year = new Date();

@@ -67,7 +67,7 @@ function Product() {
                                     <option value="LG">LG</option>
                                     <option value="XL">XL</option>
                                     <option value="2XL">2XL</option>
-                                    {!product.img.split("/").includes("nft_product.jpg")&&<option value="3XL">3XL</option>}
+                                    {!product.img.includes("nft_product.jpg")&&<option value="3XL">3XL</option>}
                                 </select>
                                 <button  className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Mint</button>
                                 <section className=' px-5 flex flex-col'>
