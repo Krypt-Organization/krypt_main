@@ -9,7 +9,7 @@ export const fakeData = Array(100).fill(0).map((_,index)=>{
         {
             id: index+1,
             img: imageList[Math.floor(Math.random()*imageList.length)],
-            price:150,
+            price:100,
             name:"NFT Product",
             description:"This is a description of the NFT product",
             category:"NFT pieces", 
