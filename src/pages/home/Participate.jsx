@@ -5,7 +5,7 @@ import img3 from "../../assets/img3.png"
 import img4 from "../../assets/img4.png"
 import {useInView, motion} from "framer-motion"
 
-const list_participations = [{text:"Users will access the Krypt Brand Website",img:img1},{text:"They will connect their Solana Wallet",img:img2},{text:"Users can mint one of the 100 collectibles",img:img3},{text:"Once minted, they will reveal contains a hidden treasure",img:img4}]
+const list_participations = [{text:"Visit the Krypt Brand website to get started.",img:img1},{text:"Connect your Solana wallet to unlock access.",img:img2},{text:"You'll have the chance to mint one of the exclusive 100 collectibles.",img:img3},{text:"Once you've minted, your collectible will reveal a hidden treasure",img:img4}]
 
 function Participate() {
     const staggeredVariant ={
