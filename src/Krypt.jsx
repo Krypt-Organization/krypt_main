@@ -27,6 +27,7 @@ function Krypt() {
                       <Route path='login' element={<Login/>}/>
                       <Route path='register' element={<Register/>}/>
                     </Route>
+                    
                 </Route>
             </Routes>
         </BrowserRouter>
