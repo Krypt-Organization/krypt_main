@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import banner from "../assets/contact_img.jpg";
+import PaystackPop from '@paystack/inline-js'
+import axios from 'axios';
 
 function Billing() {
-
+    
+    const popup = new PaystackPop()
     const [formData,setFormData] = useState({
         fullName:"",
         email:"",
@@ -12,7 +15,8 @@ function Billing() {
         town:""
     });
     const [emptyField,setEmptyField] = useState(false);
-
+    
+    
     const handleOnChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
     }
@@ -24,6 +28,13 @@ function Billing() {
             setEmptyField(true);
             return;
         }else{
+            const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment",{
+                email:email,
+                amount:100000
+            });
+            console.log(paystackCheckout.data.data.access_code);
+            const access_code = paystackCheckout.data.data.access_code;
+            popup.resumeTransaction(access_code)
             console.log(formData);
         }
     }
