@@ -30,7 +30,8 @@ function Billing() {
         }else{
             const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment",{
                 email:email,
-                amount:100000
+                amount:10000000,
+                phoneNumber
             });
             console.log(paystackCheckout.data.data.access_code);
             const access_code = paystackCheckout.data.data.access_code;
