@@ -3,9 +3,9 @@ import banner from "../assets/contact_img.jpg";
 import PaystackPop from '@paystack/inline-js'
 import axios from 'axios';
 
+const popup = new PaystackPop()
 function Billing() {
     
-    const popup = new PaystackPop()
     const [formData,setFormData] = useState({
         fullName:"",
         email:"",
@@ -28,24 +28,46 @@ function Billing() {
             setEmptyField(true);
             return;
         }else{
-            const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment",{
-                email:email,
-                amount:10000000,
-                phoneNumber
-            });
-            console.log(paystackCheckout.data.data.access_code);
-            const access_code = paystackCheckout.data.data.access_code;
-            popup.resumeTransaction(access_code)
-            console.log(formData);
+            try{
+                const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment",{
+                    email:email,
+                    amount:10000000,
+                    phoneNumber
+                });
+                
+                const dataFromPayStack = paystackCheckout.data.data; 
+                const {reference} = dataFromPayStack;
+                const access_code = dataFromPayStack.access_code;
+                popup.resumeTransaction(access_code);
+    
+                const paymentSuccessful = await axios.get("http://localhost:5000/paystack/verify",{
+                    params:{
+                        reference:reference
+                    }
+                });
+                console.log(paymentSuccessful);
+                console.log(formData);
+                setFormData({
+                    fullName:"",
+                    email:"",
+                    phoneNumber:"",
+                    address:"",
+                    state:"",
+                    town:""
+                });
+            }catch(error){
+                console.log(error);
+                alert("An Unexpected error ocurred")
+            }
         }
     }
-    useEffect(()=>{
-        const timer = setTimeout(()=>{
-            setEmptyField(false);
-        },3000);
-        return ()=>clearTimeout(timer);
-    },[emptyField]);
-  return (
+useEffect(()=>{
+    const timer = setTimeout(()=>{
+        setEmptyField(false);
+    },3000);
+    return ()=>clearTimeout(timer);
+},[emptyField]);
+return (
     <React.Fragment>
         <div className=' md:grid md:grid-cols-2 '>
             <div className=' max-md:hidden relative'>
@@ -70,7 +92,7 @@ function Billing() {
                 </label>
                 <label htmlFor="" className=' flex flex-col gap-1'>
                     <span className=' font-semibold uppercase'>Phone Number</span>
-                    <input onChange={handleOnChange} name="phoneNumber" type="text" className={` border-[1px] ${emptyField&&formData.phoneNumber.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
+                    <input onChange={handleOnChange} name="phoneNumber" type="number" className={` border-[1px] ${emptyField&&formData.phoneNumber.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
                 <label htmlFor="" className=' flex flex-col gap-1'>
                     <span className=' font-semibold uppercase'>address</span>
