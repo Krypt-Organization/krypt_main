@@ -21,44 +21,43 @@ function Billing() {
         setFormData({...formData,[e.target.name]:e.target.value})
     }
 
-    const handleSubmit = async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const {fullName,email,phoneNumber,address,state,town} = formData;
-        if(fullName=="" || email=="" || phoneNumber=="" || address=="" || state=="" || town==""){
+        const { fullName, email, phoneNumber, address, state, town } = formData;
+
+        if (!fullName || !email || !phoneNumber || !address || !state || !town) {
             setEmptyField(true);
             return;
-        }else{
-            try{
-                const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment",{
-                    email:email,
-                    amount:10000000,
-                    phoneNumber
-                });
-                
-                const dataFromPayStack = paystackCheckout.data.data; 
-                const {reference} = dataFromPayStack;
-                const access_code = dataFromPayStack.access_code;
-                popup.resumeTransaction(access_code);
-    
-                const paymentSuccessful = await axios.get("http://localhost:5000/paystack/verify",{
-                    params:{
-                        reference:reference
-                    }
-                });
-                console.log(paymentSuccessful);
-                console.log(formData);
-                setFormData({
-                    fullName:"",
-                    email:"",
-                    phoneNumber:"",
-                    address:"",
-                    state:"",
-                    town:""
-                });
-            }catch(error){
-                console.log(error);
-                alert("An Unexpected error ocurred")
-            }
+        }
+
+        try {
+            const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment", {
+                email,
+                amount: 10000000,
+                phoneNumber
+            });
+
+            const { reference, access_code } = paystackCheckout.data.data;
+            popup.resumeTransaction(access_code);
+
+            const paymentSuccessful = await axios.get("http://localhost:5000/paystack/verify", {
+                params: { reference }
+            });
+
+            console.log(paymentSuccessful);
+            console.log(formData);
+
+            setFormData({
+                fullName: "",
+                email: "",
+                phoneNumber: "",
+                address: "",
+                state: "",
+                town: ""
+            });
+        } catch (error) {
+            console.error(error);
+            alert("An unexpected error occurred");
         }
     }
 useEffect(()=>{
