@@ -10,6 +10,7 @@ import Auth from "./pages/auth/Auth"
 import Login from "./pages/auth/Login"
 import Register from "./pages/auth/Register"
 import Billing from "./components/Billing.jsx"
+import User from "./pages/users/User"
 
 function Krypt() {
   return (
@@ -27,8 +28,8 @@ function Krypt() {
                       <Route path='login' element={<Login/>}/>
                       <Route path='register' element={<Register/>}/>
                     </Route>
-                    
                 </Route>
+                <Route path='/user' element={<User/>}/>
             </Routes>
         </BrowserRouter>
     </React.Fragment>

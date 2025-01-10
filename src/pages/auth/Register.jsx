@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {createUser} from "../../extras/firebase"
+import {createUser,saveUserInFirestore} from "../../extras/firebase"
 
 function Register() {
     const [formData,setFormData] = useState({
@@ -11,6 +11,7 @@ function Register() {
         password:"",
         confirmPassword:""
     });
+    const navigate = useNavigate();
     const [emptyField,setEmptyField] = useState(false);
     const [disableBtn,setDisableBtn]= useState(false);
 
@@ -35,15 +36,48 @@ function Register() {
             setEmptyField(true);
         }else{
             setDisableBtn(true);
-            if(password === confirmPassword){
+            if(password.length<6){
+                toast.warn('Password must be atleast 6 characters', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,    
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+                setDisableBtn(false);
+            }else if(password === confirmPassword){
                 try{
                     const user = await createUser(email,password);
                     console.log(user);
-                    console.log(formData);
+                    const userData = {
+                        username:username,
+                        email:email,
+                        uid:user.uid,
+                        treasure:false,
+                        purchased:[],
+                    }
+                    const userDoc = await saveUserInFirestore(userData);
+                    console.log(userDoc);
+                    navigate('/auth/login');
                     setDisableBtn(false);
                 }catch(error){
                     console.error(error);
-                    alert("An unexpected error occurred");
+                    setDisableBtn(false);
+                    toast.error('Email Already Exist', {
+                        position: "top-left",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,    
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
                 }
             }else{
                 toast.warn('Password Mismatch', {
@@ -86,7 +120,7 @@ return (
             <form action="" onSubmit={handleSubmit} className=' py-2 gap-5 flex flex-col'>
                 <label className=' flex flex-col gap-1' htmlFor="">
                     <span className=' font-medium'>Username</span>
-                    <input onChange={handleInputChange} name="username" placeholder='Username' type="text" className={`bg-gray-100 border-[2px] ${emptyField && formData.username.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md  `} />
+                    <input onChange={handleInputChange} name="username" placeholder='Username' type="text" className={`bg-gray-100 border-[2px] ${emptyField && formData.username.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none `} />
                 </label>
                 <label className=' flex flex-col gap-1' htmlFor="">
                     <span className=' font-medium'>Email</span>

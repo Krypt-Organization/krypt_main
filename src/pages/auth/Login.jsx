@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signInUser } from '../../extras/firebase';
@@ -10,6 +10,7 @@ function Login() {
         email:"",
         password:""
     });
+    const navigate = useNavigate();
     const [emptyField,setEmptyField] = useState(false);
     const [disableBtn,setDisableBtn]= useState(false);
 
@@ -39,6 +40,7 @@ function Login() {
                 if(user){
                     setDisableBtn(false);
                     console.log(user);
+                    navigate('/user');
                 }
                 // console.log(formData)
             }catch(error){
