@@ -25,7 +25,7 @@ function Auth() {
                     </div>
                 </div>
                 <div className='  relative bg-no-repeat bg-cover  max-md:bg-[url(assets/contact_img.jpg)] '>
-                    <div className=" py-10 px-10 text-white md:bg-gray-900 bg-black bg-opacity-85">
+                    <div className=" py-10 px-10 text-white md:bg-gray-900 bg-black bg-opacity-70">
                         <Outlet/>
                     </div>
                 </div>
