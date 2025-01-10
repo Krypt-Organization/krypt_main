@@ -60,8 +60,8 @@ function Register() {
                         treasure:false,
                         purchased:[],
                     }
-                    const userDoc = await saveUserInFirestore(userData);
-                    console.log(userDoc);
+                    localStorage.setItem('user',JSON.stringify(userData));
+                    await saveUserInFirestore(userData)
                     navigate('/auth/login');
                     setDisableBtn(false);
                 }catch(error){

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -51,5 +51,21 @@ export const saveUserInFirestore = async (user) => {
         console.error("Error saving user in firestore:", error);
         throw error;
     }
+}
 
+export const getUserFromFirestore = async (uid) => {
+    try{
+        const userRef = doc(db,"users",uid);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+            console.log("Document data:", userDoc.data());
+            return userDoc.data();
+          } else {
+            // docSnap.data() will be undefined in this case
+            console.log("No such document!");
+          }
+    }catch(error){
+        console.error("Error getting user from firestore:", error);
+        throw error;
+    }
 }
