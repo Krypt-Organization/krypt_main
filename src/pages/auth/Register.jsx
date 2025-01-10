@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Bounce, ToastContainer, toast } from 'react-toastify';
-import {createUser} from "../../extras/firebase"
 import 'react-toastify/dist/ReactToastify.css';
+import {createUser} from "../../extras/firebase"
 
 function Register() {
     const [formData,setFormData] = useState({
@@ -12,6 +12,7 @@ function Register() {
         confirmPassword:""
     });
     const [emptyField,setEmptyField] = useState(false);
+    const [disableBtn,setDisableBtn]= useState(false);
 
     const handleInputChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
@@ -33,23 +34,30 @@ function Register() {
 
             setEmptyField(true);
         }else{
+            setDisableBtn(true);
             if(password === confirmPassword){
-                alert("OKAY");
-                const user = await createUser(email,password);
-                console.log(user);
-                console.log(formData);
+                try{
+                    const user = await createUser(email,password);
+                    console.log(user);
+                    console.log(formData);
+                    setDisableBtn(false);
+                }catch(error){
+                    console.error(error);
+                    alert("An unexpected error occurred");
+                }
             }else{
                 toast.warn('Password Mismatch', {
                     position: "top-left",
                     autoClose: 5000,
                     hideProgressBar: false,
-                    closeOnClick: false,
+                    closeOnClick: false,    
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
                     theme: "light",
                     transition: Bounce,
-                    });
+                });
+                setDisableBtn(false);
             }
         }
     }
@@ -92,7 +100,7 @@ return (
                     <span className=' font-medium'>Confirm Password</span>
                     <input onChange={handleInputChange} name="confirmPassword" placeholder='Confirm Password' type="password" className={`bg-gray-100 text-black border-[2px] ${emptyField && formData.confirmPassword.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none `} />
                 </label>
-                <button className=' bg-black text-white py-1 uppercase font-medium rounded-md'>Sign Up</button>
+                <button className={` ${disableBtn?"bg-gray-500":"bg-black"} text-white py-1 uppercase font-medium rounded-md`}>Sign Up</button>
             </form>
             <p className=' font-light text-sm'>Already have an Account?<Link to={"/auth/login"}> <span className=' font-semibold'>Login</span></Link></p>
         </div>
