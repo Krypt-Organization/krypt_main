@@ -120,19 +120,19 @@ return (
             <form action="" onSubmit={handleSubmit} className=' py-2 gap-5 flex flex-col'>
                 <label className=' flex flex-col gap-1' htmlFor="">
                     <span className=' font-medium'>Username</span>
-                    <input onChange={handleInputChange} name="username" placeholder='Username' type="text" className={`bg-gray-100 border-[2px] ${emptyField && formData.username.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none `} />
+                    <input onChange={handleInputChange} name="username" placeholder='Username' type="text" className={`bg-gray-100 text-black border-[2px] ${emptyField && formData.username.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none `} />
                 </label>
                 <label className=' flex flex-col gap-1' htmlFor="">
                     <span className=' font-medium'>Email</span>
-                    <input onChange={handleInputChange} name="email" placeholder='Email' type={"email"} className={`bg-gray-100 border-[2px] ${emptyField && formData.email.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none `} />
+                    <input onChange={handleInputChange} name="email" placeholder='Email' type={"email"} className={`bg-gray-100  border-[2px] ${emptyField && formData.email.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none text-black `} />
                 </label>
                 <label className=' flex flex-col gap-1' htmlFor="">
                     <span className=' font-medium'>Password</span>
-                    <input onChange={handleInputChange} name="password" placeholder='Password' type="password" className={`bg-gray-100 text-black border-[2px] ${emptyField&& formData.password.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none `} />
+                    <input onChange={handleInputChange} name="password" placeholder='Password' type="password" className={`bg-gray-100 text-black border-[2px] ${emptyField&& formData.password.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none text-black`} />
                 </label>
                 <label className=' flex flex-col gap-1' htmlFor="">
                     <span className=' font-medium'>Confirm Password</span>
-                    <input onChange={handleInputChange} name="confirmPassword" placeholder='Confirm Password' type="password" className={`bg-gray-100 text-black border-[2px] ${emptyField && formData.confirmPassword.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none `} />
+                    <input onChange={handleInputChange} name="confirmPassword" placeholder='Confirm Password' type="password" className={`bg-gray-100 text-black border-[2px] ${emptyField && formData.confirmPassword.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none text-black `} />
                 </label>
                 <button className={` ${disableBtn?"bg-gray-500":"bg-black"} text-white py-1 uppercase font-medium rounded-md`}>Sign Up</button>
             </form>
