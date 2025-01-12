@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import {  FaEdit, FaSave, FaCrown } from 'react-icons/fa'
 import {getUserFromFirestore, signOutUser} from "../../extras/firebase"
+import userImg from "../../assets/user.png";
 
 export default function UserPage() {
   const [user, setUser] = useState({
     uid: 'user123',
     username: 'John Doe',
     email: 'john@example.com',
-  })
+  });
 
-//   const [purchasedNFTs, setPurchasedNFTs] = useState([
-//     { id: 'nft1', name: 'Pixel Hoodie', description: 'A trendy digital hoodie', price: 0.5, image: '/placeholder.svg?height=100&width=100', purchaseDate: '2023-06-01' },
-//     { id: 'nft2', name: 'Neon Sneakers', description: 'Glowing digital sneakers', price: 0.3, image: '/placeholder.svg?height=100&width=100', purchaseDate: '2023-06-15' },
-//   ])
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedUser, setEditedUser] = useState(user);
@@ -66,17 +63,23 @@ export default function UserPage() {
   }
   return (
     <React.Fragment>
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen text-white bg-gray-900 p-8">
         <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl md:text-3xl font-bold mb-8">Welcome {user.username}</h1>
-            <div className="bg-white shadow rounded-lg p-6 mb-8">
-            <div className="flex items-center  justify-between mb-4">
+            <header className=' mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3'>
+                <section className='  flex items-center gap-2'>
+                    <img src={userImg} className=' w-5' alt="User Display IUmage" />
+                    <h1 className="  sm:text-2xl md:text-3xl font-bold">Welcome {user.username}</h1>
+                </section>
+                <button className=' border-[1px] hover:scale-110 hover:transition-all border-green-400 rounded-md font-semibold py-1 px-3'>Go Back</button>
+            </header>
+            <div className="bg-gray-200 text-black shadow rounded-lg p-6 mb-8">
+            <div className="flex sm:items-center gap-5 flex-col sm:flex-row  justify-between mb-4">
                 <div className="flex ">
                 {/* <img src={user.avatar} alt={user.name} className="w-24 h-24 rounded-full mr-4" /> */}
-                <div className=' flex flex-col gap-1'>
+                <div className=' flex flex-col gap-2'>
                     <h2 className="text-2xl font-semibold">{user.username}</h2>
                     <p className="text-gray-600">{user.email}</p>
-                    <p className="text-sm text-gray-500">User ID: {user.uid}</p>
+                    <p className="text-sm  text-gray-500"><span className='font-semibold'>User ID:</span> {user.uid}</p>
                 </div>
                 </div>
                 {!isEditing ? (
@@ -84,20 +87,22 @@ export default function UserPage() {
                     <FaEdit className="mr-2" /> Edit Profile
                 </button>
                 ) : (
-                <button onClick={handleSave} className="bg-green-500 text-white p-2 rounded">
-                    <FaSave className="mr-2" /> Save Changes
+                <button onClick={handleSave} className="bg-green-500 text-white p-2 rounded flex gap-3 items-center justify-center">
+                    <FaSave /> <span>Save Changes</span>
                 </button>
                 )}
             </div>
             
             {!isEditing ? (
                 <div>
-                <p className="text-gray-700 font-semibold mb-4">Fashion NFT enthusiast</p>
+                <div className=" flex gap-2 font-semibold  bg-yellow-400 rounded-md py-1 px-2 text-black mb-4">
+                    <p className="font-bold flex items-center">
+                        <FaCrown />
+                    </p>
+                    <p>Fashion NFT enthusiast</p>    
+                </div>
                 {user.treasureHuntPrize && (
                     <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4">
-                    <p className="font-bold flex items-center">
-                        <FaCrown className="mr-2" /> Treasure Hunt Prize Won!
-                    </p>
                     <p>{user.treasureHuntPrize}</p>
                     </div>
                 )}
@@ -126,26 +131,15 @@ export default function UserPage() {
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     />
                 </div>
-                <div>
-                    <label htmlFor="bio" className="block text-sm font-medium text-gray-700">Bio</label>
-                    <textarea
-                    id="bio"
-                    name="bio"
-                    value={editedUser.bio}
-                    onChange={handleChange}
-                    rows={3}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                    />
-                </div>
                 </div>
             )}
             </div>
 
             <h2 className="text-2xl font-semibold mb-4">Your Recent NFT Purchases</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid text-black grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {user.purchased?.length==0?
             <div>
-                <p className=' bg-white py-3 rounded-sm px-5 text-lg'>No Previous Products purchased😢</p>           
+                <p className=' bg-white py-3 rounded-lg px-5 text-lg'>No Previous Products purchased😢</p>           
             </div>:user.purchased?.map(nft => (
                 <div key={nft.id} className="bg-white shadow rounded-lg overflow-hidden">
                     <img src={nft.image} alt={nft.name} className="w-full h-48 object-cover" />
@@ -157,7 +151,9 @@ export default function UserPage() {
                     </div>
                 </div>
             ))}
-            <button onClick={handleLogOut} className=' py-1 rounded-sm text-white font-semibold uppercase bg-red-500'>Logout </button>
+            </div>
+            <div className=' grid md:grid-cols-2 mt-5 items-center'>
+                <button onClick={handleLogOut} className=' py-1 rounded-md text-white font-semibold uppercase bg-red-500'>Logout </button>
             </div>
         </div>
     </div>
