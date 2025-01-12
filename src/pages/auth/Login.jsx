@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { signInUser } from '../../extras/firebase';
+import { getUserFromFirestore, signInUser } from '../../extras/firebase';
 
 
 function Login() {
@@ -39,6 +39,9 @@ function Login() {
                 const user = await signInUser(email,password);
                 if(user){
                     setDisableBtn(false);
+                    const loggedInUser = await getUserFromFirestore(user.uid);
+                    localStorage.setItem('user',JSON.stringify(loggedInUser));
+                    console.log(loggedInUser);                    
                     console.log(user);
                     navigate('/user');
                 }

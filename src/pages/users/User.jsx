@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {  FaEdit, FaSave, FaCrown } from 'react-icons/fa'
-import {getUserFromFirestore} from "../../extras/firebase"
+import {getUserFromFirestore, signOutUser} from "../../extras/firebase"
 
 export default function UserPage() {
   const [user, setUser] = useState({
@@ -17,7 +17,15 @@ export default function UserPage() {
   const [isEditing, setIsEditing] = useState(false)
   const [editedUser, setEditedUser] = useState(user);
   const [isLoading,setisLoading] = useState(false);
-
+  const handleLogOut = async()=>{
+    try{
+        await signOutUser()
+        localStorage.removeItem("user");
+        window.location.href = "/"
+    }catch(error){
+        console.log(error);
+    }
+  }
   const handleEdit = () => {
     setIsEditing(true)
     setEditedUser(user)
@@ -140,15 +148,16 @@ export default function UserPage() {
                 <p className=' bg-white py-3 rounded-sm px-5 text-lg'>No Previous Products purchased😢</p>           
             </div>:user.purchased?.map(nft => (
                 <div key={nft.id} className="bg-white shadow rounded-lg overflow-hidden">
-                <img src={nft.image} alt={nft.name} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                    <h3 className="font-semibold text-lg mb-2">{nft.name}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{nft.description}</p>
-                    <p className="font-semibold">{nft.price} ETH</p>
-                    <p className="text-sm text-gray-500">Purchased on: {nft.purchaseDate}</p>
-                </div>
+                    <img src={nft.image} alt={nft.name} className="w-full h-48 object-cover" />
+                    <div className="p-4">
+                        <h3 className="font-semibold text-lg mb-2">{nft.name}</h3>
+                        <p className="text-gray-600 text-sm mb-2">{nft.description}</p>
+                        <p className="font-semibold">{nft.price} ETH</p>
+                        <p className="text-sm text-gray-500">Purchased on: {nft.purchaseDate}</p>
+                    </div>
                 </div>
             ))}
+            <button onClick={handleLogOut} className=' py-1 rounded-sm text-white font-semibold uppercase bg-red-500'>Logout </button>
             </div>
         </div>
     </div>
