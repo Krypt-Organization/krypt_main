@@ -6,12 +6,11 @@ import NavDesktop from './naviagtions/NavDesktop'
 import { Context } from '../../context/Context'
 import {FiLogIn} from "react-icons/fi"
 import { Link } from 'react-router-dom'
+import { FaRegUserCircle } from 'react-icons/fa'
 
 function Header() {
-
-
   const {navigation, setNavigation} = useContext(Context)
-
+  const user = localStorage.getItem("user");
   const handleCloseNavigation =()=>{
     setNavigation(!navigation)
   }
@@ -28,10 +27,18 @@ function Header() {
         <aside className=" items-center z-10 lg:text-3xl text-2xl">
           <section className=' items-center flex justify-between lg:pr-6 max-lg:hidden'>
             <NavDesktop/>
-            <Link to={"/auth/login"} className=' cursor-default text-base gap-2 flex items-center'>
-              <span className=' md:text-lg text-base'>Login</span>
-              <FiLogIn/>
-            </Link>
+            {user?
+              <Link to={"/user"}>
+                <div className=' md:text-lg md:font-semibold text-base gap-1 flex items-center'>
+                  <FaRegUserCircle/>
+                  <span>User</span>
+                </div>
+              </Link>:
+              <Link to={"/auth/login"} className=' cursor-default text-base gap-2 flex items-center'>
+                <span className=' md:text-lg text-base'>Login</span>
+                <FiLogIn/>
+              </Link>
+            }
           </section>
           <section className=' lg:hidden' onClick={handleCloseNavigation}>
             <IoMenu/>

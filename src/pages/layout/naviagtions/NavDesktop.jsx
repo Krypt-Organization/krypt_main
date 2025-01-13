@@ -12,7 +12,7 @@ const nav = [
 
 function NavDesktop() {
   const {setScrollTo} = useContext(Context);
-  const currentPage = useLocation()
+  const currentPage = useLocation();
   
   useEffect(()=>{
     const timer = setTimeout(()=>{

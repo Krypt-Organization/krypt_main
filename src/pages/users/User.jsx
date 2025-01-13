@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {  FaEdit, FaSave, FaCrown } from 'react-icons/fa'
 import {getUserFromFirestore, signOutUser} from "../../extras/firebase"
 import userImg from "../../assets/user.png";
+import { useNavigate } from 'react-router-dom';
 
 export default function UserPage() {
   const [user, setUser] = useState({
@@ -10,7 +11,7 @@ export default function UserPage() {
     email: 'john@example.com',
   });
 
-
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false)
   const [editedUser, setEditedUser] = useState(user);
   const [isLoading,setisLoading] = useState(false);
@@ -70,7 +71,9 @@ export default function UserPage() {
                     <img src={userImg} className=' w-5' alt="User Display IUmage" />
                     <h1 className="  sm:text-2xl md:text-3xl font-bold">Welcome {user.username}</h1>
                 </section>
-                <button className=' border-[1px] hover:scale-110 hover:transition-all border-green-400 rounded-md font-semibold py-1 px-3'>Go Back</button>
+                <button className=' border-[1px] hover:scale-110 hover:transition-all border-green-400 rounded-md font-semibold py-1 px-3' onClick={()=>{
+                    navigate("/")
+                }}>Go Back</button>
             </header>
             <div className="bg-gray-200 text-black shadow rounded-lg p-6 mb-8">
             <div className="flex sm:items-center gap-5 flex-col sm:flex-row  justify-between mb-4">
@@ -87,7 +90,7 @@ export default function UserPage() {
                     <FaEdit className="mr-2" /> Edit Profile
                 </button>
                 ) : (
-                <button onClick={handleSave} className="bg-green-500 text-white p-2 rounded flex gap-3 items-center justify-center">
+                <button onClick={handleSave} className="bg-green-500 text-white p-2 rounded flex gap-3 items-center ">
                     <FaSave /> <span>Save Changes</span>
                 </button>
                 )}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import {FaFacebook, FaTwitter, FaInstagram} from "react-icons/fa"
+import {FaFacebook, FaTwitter, FaInstagram, FaRegUserCircle} from "react-icons/fa"
 import {year} from "../../../extras/getYear"
 import {motion} from "framer-motion"
 import {Context} from "../../../context/Context"
@@ -56,6 +56,7 @@ const nav_variant = {
 function NavMobile() {
   const currentPage = useLocation()
   const {setScrollTo} = useContext(Context);
+  const user = localStorage.getItem("user");
   
   useEffect(()=>{
     const timer = setTimeout(()=>{
@@ -97,10 +98,22 @@ function NavMobile() {
               }
               })
           }
-          <Link to={"/auth/login"} className=' text-base gap-2 flex items-center'>
-              <FiLogIn/>
-              <span className=' text-base'>Login</span>
-          </Link>
+          {
+            user?
+            <Link to={"/user"}>
+              <div className=' text-base gap-1 flex items-center'>
+                <FaRegUserCircle/>
+                <span>User</span>
+              </div>
+            </Link>
+            :
+            <Link to={"/auth/login"}>
+              <div className=' text-base gap-1 flex items-center'>
+                <FiLogIn/>
+                <span className=' text-base'>Login</span>
+              </div>
+            </Link>
+          }
           <aside>
             <motion.div
               variants={nav_variant}
