@@ -7,6 +7,7 @@ import { Context } from '../../context/Context'
 import {FiLogIn} from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
+import CartComponent from '../../components/CartComponent'
 
 function Header() {
   const {navigation, setNavigation} = useContext(Context)
@@ -27,20 +28,24 @@ function Header() {
         <aside className=" items-center z-10 lg:text-3xl text-2xl">
           <section className=' items-center flex justify-between lg:pr-6 max-lg:hidden'>
             <NavDesktop/>
-            {user?
-              <Link to={"/user"}>
-                <div className=' md:text-lg md:font-semibold text-base gap-1 flex items-center'>
-                  <FaRegUserCircle/>
-                  <span>User</span>
-                </div>
-              </Link>:
-              <Link to={"/auth/login"} className=' cursor-default text-base gap-2 flex items-center'>
-                <span className=' md:text-lg text-base'>Login</span>
-                <FiLogIn/>
-              </Link>
-            }
+            <div className='flex gap-5 items-center'>
+              {user?
+                <Link to={"/user"}>
+                  <div className=' md:text-2xl md:font-semibold text-base gap-1 flex items-center'>
+                    <FaRegUserCircle/>
+                    <span>User</span>
+                  </div>
+                </Link>:
+                <Link to={"/auth/login"} className=' cursor-default text-base gap-2 flex items-center'>
+                  <span className=' md:text-lg text-base'>Login</span>
+                  <FiLogIn/>
+                </Link>
+              }
+              <CartComponent/>
+            </div>
           </section>
-          <section className=' lg:hidden' onClick={handleCloseNavigation}>
+          <section className=' flex gap-4 items-center lg:hidden' onClick={handleCloseNavigation}>
+            <CartComponent/>
             <IoMenu/>
           </section>
         </aside>

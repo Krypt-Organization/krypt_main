@@ -12,9 +12,6 @@ function ContextProvider({children}) {
     const [scrollTo,setScrollTo]=useState(false)
     const [order, setOrder] = useState([])
     
-
-
-
     
     const values = {navigation,setNavigation,order, setOrder,scrollTo,setScrollTo}
   return (

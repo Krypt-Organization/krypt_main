@@ -5,7 +5,7 @@ import img3 from "../../assets/img3.png"
 import img4 from "../../assets/img4.png"
 import {useInView, motion} from "framer-motion"
 
-const list_participations = [{text:"Visit the Krypt Brand website to get started.",img:img1},{text:"Connect your Solana wallet to unlock access.",img:img2},{text:"You'll have the chance to mint one of the exclusive 100 collectibles.",img:img3},{text:"Once you've minted, your collectible will reveal a hidden treasure",img:img4}]
+const list_participations = [{text:"Visit the Krypt Brand website to get started.",img:img1},{text:"Connect your Solana wallet to unlock access.",img:img2},{text:"You'll have the chance to mint one of the exclusive 100 collectibles.",img:img3},{text:"Once  minted, your collectible will reveal a hidden treasure",img:img4}]
 
 function Participate() {
     const staggeredVariant ={
@@ -40,8 +40,8 @@ function Participate() {
                         initial="initial"
                         animate={inView && "animate"}
                         custom={index}
-                        key={index+"#**#"} className=' flex flex-col gap-3'>
-                            <p className=' sm:text-lg md:text-sm lg:text-lg  md:text-center text-medium font-semibold '>{each.text}</p>
+                        key={index+"#**#"} className=' items-center flex flex-col gap-3'>
+                            <p className={`${index==2&&"text-center"} sm:text-lg md:text-sm lg:text-lg  md:text-center text-medium font-semibold `}>{each.text}</p>
                             <img className=' sm:self-center sm:w-full md:w-[500px] w-[400px] rounded-md' src={each.img} alt="How To Participate" />
 
                         </motion.div>
