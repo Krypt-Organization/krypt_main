@@ -28,10 +28,11 @@ function Header() {
         <aside className=" items-center z-10 lg:text-3xl text-2xl">
           <section className=' items-center flex justify-between lg:pr-6 max-lg:hidden'>
             <NavDesktop/>
-            <div className='flex gap-5 items-center'>
+            <div className='flex gap-10 items-center'>
+              <CartComponent/>
               {user?
                 <Link to={"/user"}>
-                  <div className=' md:text-2xl md:font-semibold text-base gap-1 flex items-center'>
+                  <div className=' md:text-xl md:font-semibold text-base gap-1 flex items-center'>
                     <FaRegUserCircle/>
                     <span>User</span>
                   </div>
@@ -41,12 +42,13 @@ function Header() {
                   <FiLogIn/>
                 </Link>
               }
-              <CartComponent/>
             </div>
           </section>
-          <section className=' flex gap-4 items-center lg:hidden' onClick={handleCloseNavigation}>
-            <CartComponent/>
-            <IoMenu/>
+          <section className=' flex gap-4 items-center lg:hidden'>
+              <CartComponent/>
+            <button  onClick={handleCloseNavigation}>
+              <IoMenu/>
+            </button>
           </section>
         </aside>
       </main>

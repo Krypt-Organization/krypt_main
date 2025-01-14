@@ -1,14 +1,16 @@
-import React, {useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fakeData } from '../../extras/fakeData'
 import limited_img from "../../assets/limited.png"
-import {ClipLoader} from "react-spinners"
+import {ClipLoader} from "react-spinners";
+import { Context } from '../../context/Context';
 
 function Product() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
     const [option,setOption] = useState({size:"LG"})
-    const [addedToCart,setAddedToCart] = useState(false)
+    const [addedToCart,setAddedToCart] = useState(false);
+    const {setOrder} = useContext(Context);
     const navigate = useNavigate();
     useEffect(()=>{
         const filterId = fakeData.filter((eachData)=>{
@@ -35,6 +37,21 @@ function Product() {
         });
     }
 
+    const handleAddToCart = async () => {
+        try {
+            setAddedToCart(true);
+            if (product.length === 0) {
+                throw new Error("Product array is empty");
+            }
+    
+            const productDetails = { ...product[0], ...option };
+            console.log(productDetails);
+    
+            setOrder((prev) => [...prev, productDetails]);
+        } catch (error) {
+            console.error("Error adding product to cart:", error);
+        }
+    };
 
   return (
     <React.Fragment>
@@ -69,7 +86,7 @@ function Product() {
                                     <option value="2XL">2XL</option>
                                     {!product.img.includes("nft_product.jpg")&&<option value="3XL">3XL</option>}
                                 </select>
-                                <button  className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Mint</button>
+                                <button onClick={handleAddToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Buy</button>
                                 <section className=' px-5 flex flex-col'>
                                     <span className=' font-semibold text-lg'>Mint your KRYPT NFT Collection Now!</span><br />
 
