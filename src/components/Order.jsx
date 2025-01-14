@@ -24,7 +24,7 @@ function Order() {
       },0)
       setSubTotal(subTotalCalc);
       // This is with Dollar conversion rate to test the stripe api
-      const converted = subTotal*1600;
+      const converted = subTotal*160000;
       setCheckOut(converted);
       console.log(order)
     },[order]);
@@ -119,7 +119,9 @@ function Order() {
                       <p>Sub-Total </p>
                       <span>${subTotal+subTotal*0.02}</span>
                     </aside>
-                    <button className=" bg-black rounded-md text-white font-medium uppercase py-2">Check Out</button>
+                    <button onClick={()=>{
+                      navigate("/billing")
+                    }} className=" bg-black rounded-md text-white font-medium uppercase py-2">Check Out</button>
                 </section>
               </div>
         </div>

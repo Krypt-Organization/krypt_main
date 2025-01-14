@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import banner from "../assets/contact_img.jpg";
 import PaystackPop from '@paystack/inline-js'
 import axios from 'axios';
+import { Context } from '../context/Context';
 
 const popup = new PaystackPop()
 function Billing() {
@@ -15,7 +16,7 @@ function Billing() {
         town:""
     });
     const [emptyField,setEmptyField] = useState(false);
-    
+    const {checkOut} = useContext(Context)
     
     const handleOnChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
@@ -25,6 +26,7 @@ function Billing() {
         e.preventDefault();
         const { fullName, email, phoneNumber, address, state, town } = formData;
 
+        console.log( fullName, email, phoneNumber, address, state, town )
         if (!fullName || !email || !phoneNumber || !address || !state || !town) {
             setEmptyField(true);
             return;
@@ -33,10 +35,10 @@ function Billing() {
         try {
             const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment", {
                 email,
-                amount: 10000000,
+                amount: checkOut,
                 phoneNumber
             });
-
+            
             const { reference, access_code } = paystackCheckout.data.data;
             popup.resumeTransaction(access_code);
 
@@ -46,7 +48,7 @@ function Billing() {
 
             console.log(paymentSuccessful);
             console.log(formData);
-
+            
             setFormData({
                 fullName: "",
                 email: "",
@@ -57,6 +59,7 @@ function Billing() {
             });
         } catch (error) {
             console.error(error);
+            console.log(checkOut);
             alert("An unexpected error occurred");
         }
     }
