@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Order() {
-    const {checkOut,setCheckOut, order, setOrder } = useContext(Context);
+    const {setCheckOut, order, setOrder } = useContext(Context);
     const [subTotal,setSubTotal] =useState(0);
     const navigate = useNavigate();
 
