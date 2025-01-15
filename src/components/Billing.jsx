@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import banner from "../assets/contact_img.jpg";
-import PaystackPop from '@paystack/inline-js'
-import axios from 'axios';
+// import PaystackPop from '@paystack/inline-js'
+// import axios from 'axios';
 import { Context } from '../context/Context';
 
-const popup = new PaystackPop()
+// const popup = new PaystackPop()
 function Billing() {
     
     const [formData,setFormData] = useState({
