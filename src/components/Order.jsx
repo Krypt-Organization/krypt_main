@@ -24,11 +24,30 @@ function Order() {
       },0)
       setSubTotal(subTotalCalc);
       // This is with Dollar conversion rate to test the stripe api
-      const converted = subTotal*160000;
+      const converted = subTotal*100;
       setCheckOut(converted);
       console.log(order)
     },[order]);
 
+    useEffect(() => {
+      const mergedOrders = [];
+      
+      order.forEach((eachOrder) => {
+        const existingOrder = mergedOrders.find((item) => item.size === eachOrder.size);
+        
+        if (existingOrder) {
+          existingOrder.price += eachOrder.price;
+        } else {
+          mergedOrders.push({ ...eachOrder });
+        }
+      });
+    
+      setOrder(mergedOrders);
+      console.log(order);
+    }, []);
+    
+
+  
   return (
     <React.Fragment>
         <div>

@@ -17,11 +17,10 @@ function Billing() {
     });
     const [emptyField,setEmptyField] = useState(false);
     const {checkOut} = useContext(Context)
-    
     const handleOnChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
     }
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { fullName, email, phoneNumber, address, state, town } = formData;
@@ -33,20 +32,20 @@ function Billing() {
         }
 
         try {
-            const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment", {
-                email,
-                amount: checkOut,
-                phoneNumber
-            });
+            // const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment", {
+            //     email,
+            //     amount: checkOut,
+            //     phoneNumber
+            // });
             
-            const { reference, access_code } = paystackCheckout.data.data;
-            popup.resumeTransaction(access_code);
+            // const { reference, access_code } = paystackCheckout.data.data;
+            // popup.resumeTransaction(access_code);
 
-            const paymentSuccessful = await axios.get("http://localhost:5000/paystack/verify", {
-                params: { reference }
-            });
+            // const paymentSuccessful = await axios.get("http://localhost:5000/paystack/verify", {
+            //     params: { reference }
+            // });
 
-            console.log(paymentSuccessful);
+            // console.log(paymentSuccessful);
             console.log(formData);
             
             setFormData({
@@ -55,8 +54,9 @@ function Billing() {
                 phoneNumber: "",
                 address: "",
                 state: "",
-                town: ""
+                town: "",
             });
+            console.log(checkOut);
         } catch (error) {
             console.error(error);
             console.log(checkOut);
