@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/Context'
-import emptyCart from "../assets/emptyCart.png"
-import { IoMdArrowRoundBack } from "react-icons/io";
+import emptyCart from "../assets/emptyCart.png";
 import { useNavigate } from 'react-router-dom';
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 
 function Order() {
@@ -17,13 +17,13 @@ function Order() {
       setOrder(testFilter)
     }
 
-    const handleCheckOut= ()=>{
-      if(user){
-        
-      }else{
-        navigate("/billing")
-      }
-    }
+    // const handleCheckOut= ()=>{
+    //   if(user){
+
+    //   }else{
+    //     navigate("/billing")
+    //   }
+    // }
     useEffect(()=>{
       const subTotalCalc = order.reduce((acc,eachProduct)=>{
         return acc + eachProduct.price;
@@ -37,10 +37,11 @@ function Order() {
       const mergedOrders = [];
       
       order.forEach((eachOrder) => {
-        const existingOrder = mergedOrders.find((item) => item.size === eachOrder.size);
+        const existingOrder = mergedOrders.find((item) => item.size === eachOrder.size && item.unique_id===eachOrder.unique_id);
         
         if (existingOrder) {
           existingOrder.price += eachOrder.price;
+          existingOrder.quantity += eachOrder.quantity;
         } else {
           mergedOrders.push({ ...eachOrder });
         }
@@ -62,9 +63,15 @@ function Order() {
                 <p className=" text-white font-semibold text-lg">You Have No Orders</p>
                 <button onClick={()=>{
                   navigate("/products")
-                }} className=" border-[2px] border-white flex items-center font-semibold gap-2 py-1 px-3 my-2 rounded-md  text-white">Go Back <span><IoMdArrowRoundBack/></span></button>
+                }} className=" border-[2px] border-white flex items-center font-semibold gap-2 py-1 px-3 my-2 rounded-md  text-white">Go Back <span><FaLongArrowAltLeft/></span></button>
             </div>
             :<div className=" my-2 flex flex-col gap-2">
+              <button onClick={()=>{
+                  navigate("/products")
+                }} className=" flex items-center font-semibold gap-2 py-1 px-3 my-2 rounded-md w-fit text-white">
+                <FaLongArrowAltLeft/>
+              </button>
+
               <table className=" text-white max-md:hidden w-full bg-gray-600  rounded-md ">
                 <thead className="">
                   <tr className=' '>
@@ -110,6 +117,7 @@ function Order() {
                           {/* <p className=' flex items-center gap-1 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>Qty:</span>{eachProduct.quantity}</p> */}
                           <p>#{eachProduct.id}</p>
                           {/* <p className=' flex items-center gap-1 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>total:</span>{eachProduct.price*eachProduct.quantity}</p> */}
+                          <p>Qty: {eachProduct.price/100}</p>
                           <button onClick={()=>{
                             handleDeleteItem(eachProduct.unique_id)
                             }} className="bg-red-600 rounded-md my-2 w-fit px-2 ">Remove</button>
