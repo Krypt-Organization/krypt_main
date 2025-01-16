@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Order() {
-    const {setCheckOut, order, setOrder } = useContext(Context);
-    const [subTotal,setSubTotal] =useState(0);
+    const {checkOut,setCheckOut, order, setOrder } = useContext(Context);
+    const user = localStorage.getItem("user");
     const navigate = useNavigate();
 
     const handleDeleteItem = (id)=>{
@@ -17,16 +17,20 @@ function Order() {
       setOrder(testFilter)
     }
 
+    const handleCheckOut= ()=>{
+      if(user){
+        
+      }else{
+        navigate("/billing")
+      }
+    }
     useEffect(()=>{
-      // const addedDuplicates = [];
       const subTotalCalc = order.reduce((acc,eachProduct)=>{
         return acc + eachProduct.price;
       },0)
-      setSubTotal(subTotalCalc);
+      setCheckOut(subTotalCalc)
       // This is with Dollar conversion rate to test the stripe api
-      const converted = subTotal*100;
-      setCheckOut(converted);
-      console.log(order)
+      
     },[order]);
 
     useEffect(() => {
@@ -128,19 +132,17 @@ function Order() {
                     </aside>
                     <aside className=' flex justify-between font-medium '>
                       <p>Estimated Tax </p>
-                      <span>${subTotal*0.02}</span>
+                      <span>${checkOut*0.01}</span>
                     </aside>
                     <aside className=' border-t-[1px] py-2 border-black flex justify-between font-medium '>
                       <p>Total </p>
-                      <span>${subTotal}</span>
+                      <span>${checkOut}</span>
                     </aside>
                     <aside className=' border-t-[1px] py-2 border-black flex justify-between font-medium '>
                       <p>Sub-Total </p>
-                      <span>${subTotal+subTotal*0.02}</span>
+                      <span>${checkOut*0.01+checkOut}</span>
                     </aside>
-                    <button onClick={()=>{
-                      navigate("/billing")
-                    }} className=" bg-black rounded-md text-white font-medium uppercase py-2">Check Out</button>
+                    <button  className=" bg-black rounded-md text-white font-medium uppercase py-2">Check Out</button>
                 </section>
               </div>
         </div>

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut} from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc , arrayUnion,updateDoc} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -78,4 +78,19 @@ export const getUserFromFirestore = async (uid) => {
         console.error("Error getting user from firestore:", error);
         throw error;
     }
+}
+
+export const updatePreviousPurchases = async(uid,arrayValue)=>{
+    const documentRef = doc(db,"user",uid);
+    try {
+        for (const item of arrayValue) {
+          await updateDoc(documentRef, {
+            purchased: arrayUnion(item), // Adds unique items to the array
+          });
+        }
+        console.log("Previous purchases updated successfully");
+      } catch (error) {
+        console.error("Error updating previous purchases:", error);
+        throw error; // Optional: propagate the error
+      }
 }

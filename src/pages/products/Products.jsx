@@ -8,10 +8,9 @@ function Products() {
     const [bannerProduct, setBannerProduct] = useState([])
 
     useEffect(()=>{
-        const randomNumber = Math.floor(Math.random()*149)
-        setBannerProduct(()=>{
-            return [ fakeData[randomNumber]]
-        })
+        const randomNumber = Math.floor(Math.random()*99)
+        setBannerProduct([fakeData[randomNumber]]);
+        
     },[])
 
 
