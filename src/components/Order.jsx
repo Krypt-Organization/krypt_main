@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Context } from '../context/Context'
 import emptyCart from "../assets/emptyCart.png";
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import { updatePreviousPurchases } from '../extras/firebase';
 
 
 function Order() {
@@ -17,13 +18,21 @@ function Order() {
       setOrder(testFilter)
     }
 
-    // const handleCheckOut= ()=>{
-    //   if(user){
+  
+    const handleCheckOut= async ()=>{
+      if(user){
+        try{
+          const jsonUser = JSON.parse(user);
+          await updatePreviousPurchases(jsonUser.uid,order);
+        }catch(error){
+          console.log(error);
+        }
 
-    //   }else{
-    //     navigate("/billing")
-    //   }
-    // }
+        console.log(JSON.parse(user))
+      }else{
+        navigate("/billing")
+      }
+    }
     useEffect(()=>{
       const subTotalCalc = order.reduce((acc,eachProduct)=>{
         return acc + eachProduct.price;
@@ -41,7 +50,6 @@ function Order() {
         
         if (existingOrder) {
           existingOrder.price += eachOrder.price;
-          existingOrder.quantity += eachOrder.quantity;
         } else {
           mergedOrders.push({ ...eachOrder });
         }
@@ -150,7 +158,7 @@ function Order() {
                       <p>Sub-Total </p>
                       <span>${checkOut*0.01+checkOut}</span>
                     </aside>
-                    <button  className=" bg-black rounded-md text-white font-medium uppercase py-2">Check Out</button>
+                    <button onClick={handleCheckOut} className=" bg-black rounded-md text-white font-medium uppercase py-2">Check Out</button>
                 </section>
               </div>
         </div>

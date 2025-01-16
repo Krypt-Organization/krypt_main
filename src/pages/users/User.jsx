@@ -143,21 +143,23 @@ export default function UserPage() {
             {user.purchased?.length==0?
             <div>
                 <p className=' bg-white py-3 rounded-lg px-5 text-lg'>No Previous Products purchased😢</p>           
-            </div>:user.purchased?.map(nft => (
-                <div key={nft.id} className="bg-white shadow rounded-lg overflow-hidden">
+            </div>:user.purchased?.map((nft,index) => (
+                <div key={nft.id+"#"+index} className="bg-white shadow rounded-lg overflow-hidden">
                     <img src={nft.image} alt={nft.name} className="w-full h-48 object-cover" />
                     <div className="p-4">
                         <h3 className="font-semibold text-lg mb-2">{nft.name}</h3>
+                        <p className="font-semibold">Unique ID: {nft.unique_id}</p>
+                        <p className="font-semibold">${nft.price}</p>
+                        <p className="font-semibold">Quantity: {nft.price/100}</p>
                         <p className="text-gray-600 text-sm mb-2">{nft.description}</p>
-                        <p className="font-semibold">{nft.price} ETH</p>
-                        <p className="text-sm text-gray-500">Purchased on: {nft.purchaseDate}</p>
+                        <p className="text-sm text-gray-500">ID: {nft.id}</p>
                     </div>
                 </div>
             ))}
             </div>
-            <div className=' grid md:grid-cols-2 mt-5 items-center'>
-                <button onClick={handleLogOut} className=' py-1 rounded-md text-white font-semibold uppercase bg-red-500'>Logout </button>
-            </div>
+            <button onClick={handleLogOut} className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center bg-red-500'>
+                Logout
+            </button>
         </div>
     </div>
     </React.Fragment>

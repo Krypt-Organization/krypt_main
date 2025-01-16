@@ -81,16 +81,16 @@ export const getUserFromFirestore = async (uid) => {
 }
 
 export const updatePreviousPurchases = async(uid,arrayValue)=>{
-    const documentRef = doc(db,"user",uid);
+    const documentRef = doc(db,"users",uid);
     try {
         for (const item of arrayValue) {
           await updateDoc(documentRef, {
-            purchased: arrayUnion(item), // Adds unique items to the array
+            purchased: arrayUnion(item), 
           });
         }
         console.log("Previous purchases updated successfully");
       } catch (error) {
         console.error("Error updating previous purchases:", error);
-        throw error; // Optional: propagate the error
+        throw error; 
       }
 }
