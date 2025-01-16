@@ -3,12 +3,9 @@ import { Context } from '../context/Context'
 import emptyCart from "../assets/emptyCart.png";
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { updatePreviousPurchases } from '../extras/firebase';
-
 
 function Order() {
     const {checkOut,setCheckOut, order, setOrder } = useContext(Context);
-    const user = localStorage.getItem("user");
     const navigate = useNavigate();
 
     const handleDeleteItem = (id)=>{
@@ -20,18 +17,7 @@ function Order() {
 
   
     const handleCheckOut= async ()=>{
-      if(user){
-        try{
-          const jsonUser = JSON.parse(user);
-          await updatePreviousPurchases(jsonUser.uid,order);
-        }catch(error){
-          console.log(error);
-        }
-
-        console.log(JSON.parse(user))
-      }else{
-        navigate("/billing")
-      }
+      navigate("/billing")
     }
     useEffect(()=>{
       const subTotalCalc = order.reduce((acc,eachProduct)=>{

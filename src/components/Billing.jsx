@@ -3,6 +3,8 @@ import banner from "../assets/contact_img.jpg";
 // import PaystackPop from '@paystack/inline-js'
 // import axios from 'axios';
 import { Context } from '../context/Context';
+import { updatePreviousPurchases } from '../extras/firebase';
+import { useNavigate } from 'react-router-dom';
 
 // const popup = new PaystackPop()
 function Billing() {
@@ -15,8 +17,10 @@ function Billing() {
         state:"",
         town:""
     });
+    const navigate = useNavigate();
+    const user = localStorage.getItem("user");
     const [emptyField,setEmptyField] = useState(false);
-    const {checkOut} = useContext(Context)
+    const {checkOut,order,setOrder} = useContext(Context)
     const handleOnChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
     }
@@ -24,8 +28,6 @@ function Billing() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { fullName, email, phoneNumber, address, state, town } = formData;
-
-        console.log( fullName, email, phoneNumber, address, state, town )
         if (!fullName || !email || !phoneNumber || !address || !state || !town) {
             setEmptyField(true);
             return;
@@ -47,6 +49,17 @@ function Billing() {
 
             // console.log(paymentSuccessful);
             console.log(formData);
+            if(user){
+                try{
+                  const jsonUser = JSON.parse(user);
+                  await updatePreviousPurchases(jsonUser.uid,order);
+                }catch(error){
+                  console.log(error);
+                }
+                console.log(JSON.parse(user))
+            }else{
+                console.log("OKAY");
+            }
             
             setFormData({
                 fullName: "",
@@ -56,7 +69,9 @@ function Billing() {
                 state: "",
                 town: "",
             });
+            navigate("/")
             console.log(checkOut);
+            setOrder([]);
         } catch (error) {
             console.error(error);
             console.log(checkOut);
