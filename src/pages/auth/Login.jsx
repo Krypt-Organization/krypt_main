@@ -94,7 +94,12 @@ function Login() {
                 </label>
                 <button className={` ${disableBtn?"bg-gray-900 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Login</button>
             </form>
-            <p className=' font-light text-sm'>Don&apos;t have an Account?<Link to={"/auth/register"}> <span className=' font-semibold'>Register</span></Link></p>
+            <section className=' md:flex-row flex-col flex justify-between'>
+                <span>Don&apos;t have an account? <Link to="/auth/register" >Register</Link></span>
+                <span>
+                    <Link to="/auth/forgot-password" >Forgot Password?</Link>
+                </span>
+            </section>
         </div>
     </React.Fragment>
   )
