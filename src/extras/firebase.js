@@ -1,12 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut} from "firebase/auth";
+import {getAuth, sendPasswordResetEmail,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc , arrayUnion,updateDoc} from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCx1P59kX-SQC69LW4oATMo0lVSunCYY-g",
   authDomain: "krypt-ca3a4.firebaseapp.com",
@@ -50,6 +46,17 @@ export const signOutUser = async()=>{
             console.error("Error signing out user:", error);
             throw error;
         }
+}
+
+export const passwordReset = async(email)=>{
+    try{
+        await sendPasswordResetEmail(auth,email);
+        console.log("Password reset email sent successfully");
+        return true;
+    }catch(error){
+        console.error("Error sending password reset email:", error);
+        throw error;
+    }
 }
 
 export const saveUserInFirestore = async (user) => {
