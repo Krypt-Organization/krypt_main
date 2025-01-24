@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {  FaEdit, FaSave, FaCrown } from 'react-icons/fa'
+import {FaCrown } from 'react-icons/fa'
 import {getUserFromFirestore, signOutUser} from "../../extras/firebase"
 import userImg from "../../assets/user.png";
 import { useNavigate } from 'react-router-dom';
+import {BarLoader} from "react-spinners";
 
 export default function UserPage() {
   const [user, setUser] = useState({
@@ -12,8 +13,6 @@ export default function UserPage() {
   });
 
   const navigate = useNavigate();
-  const [isEditing, setIsEditing] = useState(false)
-  const [editedUser, setEditedUser] = useState(user);
   const [isLoading,setisLoading] = useState(false);
   const handleLogOut = async()=>{
     try{
@@ -24,20 +23,7 @@ export default function UserPage() {
         console.log(error);
     }
   }
-  const handleEdit = () => {
-    setIsEditing(true)
-    setEditedUser(user)
-  }
 
-  const handleSave = () => {
-    setUser(editedUser)
-    setIsEditing(false)
-  }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setEditedUser(prev => ({ ...prev, [name]: value }))
-  }
 
   const fetchUserFn = async()=>{
     setisLoading(true)
@@ -60,7 +46,11 @@ export default function UserPage() {
   },[]);
 
   if(isLoading){
-    return <div>Fetching User Data Please Wait.....</div>;
+    return <div className=" flex flex-col justify-center h-screen items-center"><BarLoader
+    color="#245cc9"
+    height={6}
+    width={120}
+  /></div>;
   }
   return (
     <React.Fragment>
@@ -68,7 +58,7 @@ export default function UserPage() {
         <div className="max-w-4xl mx-auto">
             <header className=' mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3'>
                 <section className='  flex items-center gap-2'>
-                    <img src={userImg} className=' w-5' alt="User Display IUmage" />
+                    <img src={userImg} className=' w-5' alt="User Display Image" />
                     <h1 className="  sm:text-2xl md:text-3xl font-bold">Welcome {user.username}</h1>
                 </section>
                 <button className=' border-[1px] hover:scale-110 hover:transition-all border-green-400 rounded-md font-semibold py-1 px-3' onClick={()=>{
@@ -85,18 +75,10 @@ export default function UserPage() {
                     <p className="text-sm  text-gray-500"><span className='font-semibold'>User ID:</span> {user.uid}</p>
                 </div>
                 </div>
-                {!isEditing ? (
-                <button onClick={handleEdit} className="bg-blue-500 flex items-center text-white p-2 rounded">
-                    <FaEdit className="mr-2" /> Edit Profile
-                </button>
-                ) : (
-                <button onClick={handleSave} className="bg-green-500 text-white p-2 rounded flex gap-3 items-center ">
-                    <FaSave /> <span>Save Changes</span>
-                </button>
-                )}
+                
             </div>
             
-            {!isEditing ? (
+            
                 <div>
                 <div className=" flex gap-2 font-semibold  bg-yellow-400 rounded-md py-1 px-2 text-black mb-4">
                     <p className="font-bold flex items-center">
@@ -110,32 +92,7 @@ export default function UserPage() {
                     </div>
                 )}
                 </div>
-            ) : (
-                <div className="space-y-4">
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                    <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={editedUser.name}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                    <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={editedUser.email}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                    />
-                </div>
-                </div>
-            )}
+              
             </div>
 
             <h2 className="text-2xl font-semibold mb-4">Your Recent NFT Purchases</h2>
@@ -159,6 +116,9 @@ export default function UserPage() {
             </div>
             <button onClick={handleLogOut} className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center bg-red-500'>
                 Logout
+            </button>
+            <button  className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center border-red-500 border-[1px]'>
+                Delete Account
             </button>
         </div>
     </div>
