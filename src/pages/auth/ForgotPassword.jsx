@@ -20,8 +20,16 @@ function ForgotPassword() {
       return;
     }
     else{
-      const resetPassword = await passwordReset(email);
-      console.log(resetPassword);
+      setDisableBtn(true);
+      
+      try{
+        const resetPassword = await passwordReset(email);
+        console.log(resetPassword);
+        setDisableBtn(false);
+      }catch(error){
+        console.log(error);
+        setDisableBtn(false);
+      }
     }
   }
 
@@ -43,7 +51,7 @@ function ForgotPassword() {
                             <input placeholder='Email' value={email} onChange={handleInputChange}  name='email' type={"email"} className={`${emptyField&&email.trim()===""?"border-red-600":"border-white"} border-[2px] bg-gray-100 text-black p-1 rounded-md outline-none ring-1 ring-gray-300`} />
                         </label>
                         
-                        <button className={` ${disableBtn?"bg-gray-900 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Forget</button>
+                        <button disabled={disableBtn} className={` ${disableBtn?"bg-gray-600 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Forget</button>
                     </form>
                     <section className=' flex justify-between'>
                         <span className=' text-center'>Have an account? <Link to="/auth/login" >Login</Link></span>
