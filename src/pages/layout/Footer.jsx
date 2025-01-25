@@ -2,8 +2,9 @@ import React from 'react'
 import logo from "../../assets/logo.svg"
 import {FaFacebook, FaTwitter, FaInstagram} from "react-icons/fa"
 import {year} from "../../extras/getYear"
+import { Link } from 'react-router-dom'
 
-const footer_links = ["home", "about" , "contact", "product"]
+const footer_links = ["home", "about" , "contact", "products"]
 function Footer() {
   
 
@@ -18,7 +19,9 @@ function Footer() {
           <ul className='grid grid-cols-2 md:grid-cols-1 sm:font-semibold sm:text-lg md:text-2xl md:uppercase gap-1 capitalize md:flex-row justify-between '>
             {footer_links.map((link, index) => (
               <li key={index+"##$$**"}>
-                <a className='text-black text-sm cursor-pointer hover:text-gray-700'>{link.includes("_")?link.split("_").join(" "):link}</a>
+                <Link to={link=="home"&&"/"} className='text-black text-sm cursor-pointer hover:text-gray-700'>
+                  {link}
+                </Link>
               </li>
               ))}
           </ul>
