@@ -14,11 +14,21 @@ export default function UserPage() {
 
   const navigate = useNavigate();
   const [isLoading,setisLoading] = useState(false);
+  
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleDeleteUser = async()=>{
-    const deleteUser = await deleteUserFn();
-    console.log(deleteUser)
-  }
+const handleDeleteUser = async () => {
+    setIsDeleting(true);
+    try {
+        const deleteUser = await deleteUserFn();
+        console.log(deleteUser);
+        await handleLogOut();
+        setIsDeleting(false);
+    } catch (error) {
+        console.error(error);
+        setIsDeleting(false);
+    }
+};
 
   const handleLogOut = async()=>{
     try{
@@ -123,7 +133,7 @@ export default function UserPage() {
             <button onClick={handleLogOut} className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center bg-red-500'>
                 Logout
             </button>
-            <button onClick={handleDeleteUser}  className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center border-red-500 border-[1px]'>
+            <button onClick={handleDeleteUser} disabled={isDeleting}  className={` flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center ${isDeleting?"border-gray-300":"border-red-400"} border-[1px]`}>
                 Delete Account
             </button>
         </div>
