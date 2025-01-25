@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getAuth, sendPasswordResetEmail,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut} from "firebase/auth";
+import {getAuth, sendPasswordResetEmail,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut,deleteUser} from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc , arrayUnion,updateDoc} from "firebase/firestore";
 
 const firebaseConfig = {
@@ -101,3 +101,27 @@ export const updatePreviousPurchases = async(uid,arrayValue)=>{
         throw error; 
       }
 }
+
+export const deleteUserFn = async () => {
+    try {
+      const user = auth.currentUser;
+  
+      if (!user) {
+        throw new Error("No user is currently authenticated.");
+      }
+  
+    //   // Optional: Reauthenticate if needed
+    //   const credential = EmailAuthProvider.credential(user.email, "userPasswordHere"); // Replace with actual password
+    //   await reauthenticateWithCredential(user, credential);
+  
+      // Delete user
+      await deleteUser(user);
+      console.log("User successfully deleted.");
+    } catch (error) {
+      if (error.code === "auth/requires-recent-login") {
+        console.error("Error: User needs to reauthenticate before deletion.");
+      } else {
+        console.error("Error deleting user:", error.message);
+      }
+    }
+  };

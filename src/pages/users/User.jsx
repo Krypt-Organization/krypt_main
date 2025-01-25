@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {FaCrown } from 'react-icons/fa'
-import {getUserFromFirestore, signOutUser} from "../../extras/firebase"
+import {deleteUserFn, getUserFromFirestore, signOutUser} from "../../extras/firebase"
 import userImg from "../../assets/user.png";
 import { useNavigate } from 'react-router-dom';
 import {BarLoader} from "react-spinners";
@@ -14,6 +14,12 @@ export default function UserPage() {
 
   const navigate = useNavigate();
   const [isLoading,setisLoading] = useState(false);
+
+  const handleDeleteUser = async()=>{
+    const deleteUser = await deleteUserFn();
+    console.log(deleteUser)
+  }
+
   const handleLogOut = async()=>{
     try{
         await signOutUser()
@@ -117,7 +123,7 @@ export default function UserPage() {
             <button onClick={handleLogOut} className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center bg-red-500'>
                 Logout
             </button>
-            <button  className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center border-red-500 border-[1px]'>
+            <button onClick={handleDeleteUser}  className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center border-red-500 border-[1px]'>
                 Delete Account
             </button>
         </div>
