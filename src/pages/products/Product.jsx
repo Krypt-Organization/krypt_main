@@ -4,11 +4,12 @@ import { fakeData } from '../../extras/fakeData'
 import limited_img from "../../assets/limited.png"
 import {ClipLoader} from "react-spinners";
 import { Context } from '../../context/Context';
+import { AssetSize } from '@w3b/hooks/common';
 
 function Product() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
-    const [option,setOption] = useState({size:"LG"})
+    const [option,setOption] = useState({size:AssetSize.LARGE})
     const [addedToCart,setAddedToCart] = useState(false);
     const {setOrder} = useContext(Context);
     const navigate = useNavigate();
@@ -81,10 +82,16 @@ function Product() {
                                 </article>
                                 <span className=" font-semibold text-sm">Size</span>
                                 <select onChange={handleOptions} value={option.size} name="size" id="" className=' bg-gray-200 rounded-full py-1 px-3 border-[1px] border-black'>
-                                    <option value="LG">LG</option>
+                                    {/* <option value="LG">LG</option>
                                     <option value="XL">XL</option>
-                                    <option value="2XL">2XL</option>
-                                    {!product.img.includes("nft_product.jpg")&&<option value="3XL">3XL</option>}
+                                    <option value="2XL">2XL</option> */}
+                                    {
+                                        Object.keys(AssetSize).map(key=>
+                                            <option value={AssetSize[key]}>{AssetSize[key]}</option>
+                                        )
+                                        //TODO: ADD MORE LOGICS TO HANDLE ASSET MINT LIMIT
+                                    }
+                                    {/* {!product.img.includes("nft_product.jpg")&&<option value="3XL">3XL</option>} */}
                                 </select>
                                 <button onClick={handleAddToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Buy</button>
                                 <section className=' px-5 flex flex-col'>

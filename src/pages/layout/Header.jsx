@@ -8,6 +8,7 @@ import {FiLogIn} from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
 import CartComponent from '../../components/CartComponent'
+import SolanaWalletButton from '@w3b/SolanaWalletButton'
 
 function Header() {
   const {navigation, setNavigation} = useContext(Context)
@@ -43,12 +44,14 @@ function Header() {
                 </Link>
               }
             </div>
+            <SolanaWalletButton/>
           </section>
           <section className=' flex gap-4 items-center lg:hidden'>
               <CartComponent/>
             <button  onClick={handleCloseNavigation}>
               <IoMenu/>
             </button>
+            <SolanaWalletButton/>
           </section>
         </aside>
       </main>

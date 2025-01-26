@@ -3,6 +3,9 @@ import { Context } from '../context/Context'
 import emptyCart from "../assets/emptyCart.png";
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import { useMemo } from 'react';
+import { toast } from 'react-toastify';
+import MintNftAction from '@w3b/ui/MintNftAction';
 
 function Order() {
     const {checkOut,setCheckOut, order, setOrder } = useContext(Context);
@@ -45,8 +48,9 @@ function Order() {
       console.log(order);
     }, []);
     
+        
+    const assets = useMemo(()=>order.map(ast=>({color:ast.color, size:ast.size})),[order]);
 
-  
   return (
     <React.Fragment>
         <div>
@@ -144,7 +148,30 @@ function Order() {
                       <p>Sub-Total </p>
                       <span>${checkOut*0.01+checkOut}</span>
                     </aside>
-                    <button onClick={handleCheckOut} className=" bg-black rounded-md text-white font-medium uppercase py-2">Check Out</button>
+                    {/* <button 
+                    onClick={handleCheckOut} 
+                    className=" bg-black rounded-md text-white font-medium uppercase py-2">
+                    Check Out
+                    </button> */}
+                    <MintNftAction assets={assets}
+                      onSuccess={(sig)=>{
+                        alert(`Checkout complete ${sig}`)
+                        toast.done(`Checkout complete ${sig}`, {
+                          position: "top-left",
+                          autoClose: 5000,
+                          theme: "light",
+                        });
+                        setOrder([]);
+                      }}
+                      onError={(err)=>{
+                        alert(`Error Occured: ${err.message}`)
+                        toast.warn(`Error Occured: ${err.message}`, {
+                          position: "top-left",
+                          autoClose: 5000,
+                          theme: "light",
+                        });
+                      }}
+                    />
                 </section>
               </div>
         </div>
