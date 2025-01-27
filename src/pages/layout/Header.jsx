@@ -26,7 +26,7 @@ function Header() {
           <img src={logo} className=' sm:w-20 md:w-28  w-14' alt="Logo" loading="lazy"/>
         </Link>
         <aside className=" items-center z-10 lg:text-3xl text-2xl">
-          <section className=' items-center flex justify-between lg:pr-6 max-lg:hidden'>
+          <section className=' items-center flex gap-10 justify-between  max-lg:hidden'>
             <NavDesktop/>
             <div className='flex gap-10 items-center'>
               {user?
@@ -36,9 +36,9 @@ function Header() {
                     <span>User</span>
                   </div>
                 </Link>:
-                <Link to={"/auth/login"} className=' cursor-default text-base gap-2 flex items-center'>
-                  <span className=' md:text-lg text-base'>Login</span>
+                <Link to={"/auth/login"} className=' cursor-default text-base gap-1 flex items-center'>
                   <FiLogIn/>
+                  <span className=' md:text-lg font-semibold text-base'>Login</span>
                 </Link>
               }
             </div>
