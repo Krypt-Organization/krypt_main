@@ -136,7 +136,7 @@ return (
                 </label>
                 <button className={` ${disableBtn?"bg-gray-500":"bg-black"} text-white py-1 uppercase font-medium rounded-md`}>Sign Up</button>
             </form>
-            <p className=' font-light text-sm'>Already have an Account?<Link to={"/auth/login"}> <span className=' font-semibold'>Login</span></Link></p>
+            <p className=' py-5'>Already have an Account?<Link className=' text-blue-500' to={"/auth/login"}> <span className=' font-semibold'>Login</span></Link></p>
         </div>
     </React.Fragment>
   )
