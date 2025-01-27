@@ -5,9 +5,10 @@ import { Context } from '../../../context/Context';
 
 const nav = [
   {link:"/",text:"Home"}, 
-  {link:"/",text:"Treasure-Hunt"}, 
+  {link:"/",text:"Treasure"}, 
   {link:"/products",text:"Products"},
-  {link:"/contact",text:"Contact"}
+  {link:"/contact",text:"Contact"},
+  {link:"/order",text:"Cart"},
 ]
 
 function NavDesktop() {
@@ -31,10 +32,10 @@ function NavDesktop() {
   }
   return (
     <React.Fragment>
-      <div className=' text-base lg:text-xl border-black border-[1px] rounded-full lg:px-4 lg:py-2  font-semibold flex gap-5  lg:gap-10'>
+      <div className=' text-base lg:text-lg border-gray-700 border-[1px] rounded-full lg:px-3 lg:py-1  font-semibold flex gap-5  lg:gap-10'>
       {
             nav.map((item, index) => {
-              if(item.text=="Treasure-Hunt" && currentPage.pathname=="/"){
+              if(item.text=="Treasure" && currentPage.pathname=="/"){
                 return <button onClick={handleScrollTo} className="nav-link w-fit" key={index}>{item.text}</button>
               }else{
                 return (<div key={index}>

@@ -7,7 +7,6 @@ import { Context } from '../../context/Context'
 import {FiLogIn} from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
-import CartComponent from '../../components/CartComponent'
 import SolanaWalletButton from '@w3b/SolanaWalletButton'
 
 function Header() {
@@ -30,7 +29,6 @@ function Header() {
           <section className=' items-center flex justify-between lg:pr-6 max-lg:hidden'>
             <NavDesktop/>
             <div className='flex gap-10 items-center'>
-              <CartComponent/>
               {user?
                 <Link to={"/user"}>
                   <div className=' md:text-xl md:font-semibold text-base gap-1 flex items-center'>
