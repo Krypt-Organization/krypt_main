@@ -47,7 +47,6 @@ function Header() {
             <SolanaWalletButton/>
           </section>
           <section className=' flex gap-4 items-center lg:hidden'>
-              <CartComponent/>
             <button  onClick={handleCloseNavigation}>
               <IoMenu/>
             </button>
