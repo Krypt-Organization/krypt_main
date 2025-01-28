@@ -87,7 +87,7 @@ function Product() {
                                     <option value="2XL">2XL</option> */}
                                     {
                                         Object.keys(AssetSize).map(key=>
-                                            <option value={AssetSize[key]}>{AssetSize[key]}</option>
+                                            <option key={key} value={AssetSize[key]}>{AssetSize[key]}</option>
                                         )
                                         //TODO: ADD MORE LOGICS TO HANDLE ASSET MINT LIMIT
                                     }
