@@ -31,9 +31,9 @@ function Header() {
             <div className='flex gap-10 items-center'>
               {user?
                 <Link to={"/user"}>
-                  <div className=' md:text-xl md:font-semibold text-base gap-1 flex items-center'>
+                  <div className='  border-gray-800 md:text-xl md:font-semibold text-base gap-1 flex items-center'>
                     <FaRegUserCircle/>
-                    <span>User</span>
+                    <span>Account</span>
                   </div>
                 </Link>:
                 <Link to={"/auth/login"} className=' cursor-default text-base gap-1 flex items-center'>

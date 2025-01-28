@@ -104,7 +104,7 @@ function NavMobile() {
             <Link to={"/user"}>
               <div className=' text-base gap-1 flex items-center'>
                 <FaRegUserCircle/>
-                <span>User</span>
+                <span>Account</span>
               </div>
             </Link>
             :
