@@ -8,11 +8,14 @@ import { useMutation } from "@tanstack/react-query"
 
 export default function useCreateCollection() {
     const umi = useUmi();
-
+    
     return useMutation({
         mutationFn:()=>{
             const collectionSigner = createSignerFromKeypair(umi, collectionKeyPair)
             console.log("Collection address ", collectionSigner.publicKey.toString())
+            if(umi.identity.publicKey.toString() !== recordStore.creator){
+                throw Error(`Signer address must be ${recordStore.creator}`)
+            }
             const tx = createCollection(umi, {
                 collection: collectionSigner,
                 name: recordStore.name,
