@@ -12,20 +12,17 @@ export default defineConfig({
   plugins: [
     react(),
     nodePolyfills({
-      exclude: [
-        "fs", // Excludes the polyfill for fs and node:fs
-      ],
+      exclude: ['fs', 'path', 'os'], // Exclude Node.js modules from polyfilling
     }),
   ],
   resolve: {
     alias: {
-      // add alias for nfts logic utils
       "@w3b": path.resolve(__dirname, "./src/w3b"),
     },
   },
   build: {
     rollupOptions: {
-      external: ["fs", "@soceanfi/solana-cli-config"], // Prevent bundling these packages
+      external: ['fs', 'path', '@metaplex-foundation/umi-eddsa-web3js'], // Exclude these from bundling
     },
   },
 });
