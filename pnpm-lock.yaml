@@ -117,6 +117,9 @@ importers:
       postcss:
         specifier: ^8.4.44
         version: 8.5.1
+      rollup-plugin-polyfill-node:
+        specifier: ^0.13.0
+        version: 0.13.0(rollup@4.32.0)
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.17
@@ -5210,6 +5213,11 @@ packages:
     resolution: {integrity: sha512-OQk+Syl2JfxKxV2KuF/kBMtnh012I5tNnziP3G4WDGCGSIAgeqkOgkR59IQ0YDNrs1YW8GbApxrdMSRi/QClcA==}
     engines: {node: '>=10.13.0', yarn: ^1.15.2}
     deprecated: 'ripple-lib is deprecated. Please migrate to xrpl.js using this migration guide: https://xrpl.org/xrpljs2-migration-guide.html'
+
+  rollup-plugin-polyfill-node@0.13.0:
+    resolution: {integrity: sha512-FYEvpCaD5jGtyBuBFcQImEGmTxDTPbiHjJdrYIp+mFIwgXiXabxvKUK7ZT9P31ozu2Tqm9llYQMRWsfvTMTAOw==}
+    peerDependencies:
+      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
 
   rollup@4.32.0:
     resolution: {integrity: sha512-JmrhfQR31Q4AuNBjjAX4s+a/Pu/Q8Q9iwjWBsjRH1q52SPFE2NqRMK6fUZKKnvKO6id+h7JIRf0oYsph53eATg==}
@@ -12870,6 +12878,11 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  rollup-plugin-polyfill-node@0.13.0(rollup@4.32.0):
+    dependencies:
+      '@rollup/plugin-inject': 5.0.5(rollup@4.32.0)
+      rollup: 4.32.0
 
   rollup@4.32.0:
     dependencies:
