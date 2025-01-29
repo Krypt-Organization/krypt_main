@@ -95,9 +95,9 @@ function Login() {
                 <button className={` ${disableBtn?"bg-gray-900 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Login</button>
             </form>
             <section className=' md:flex-row flex-col flex justify-between'>
-                <span>Don&apos;t have an account? <Link to="/auth/register" >Register</Link></span>
+                <span>Don&apos;t have an account? <Link to="/auth/register" className=' text-blue-500'>Register</Link></span>
                 <span>
-                    <Link to="/auth/forgot-password" >Forgot Password?</Link>
+                    <Link to="/auth/forgot-password" className=' text-blue-500' >Forgot Password?</Link>
                 </span>
             </section>
         </div>

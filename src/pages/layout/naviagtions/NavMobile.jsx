@@ -11,7 +11,8 @@ const nav = [
   {link:"/",text:"Home"}, 
   {link:"/",text:"Treasure Hunt"}, 
   {link:"/products",text:"Products"},
-  {link:"/contact",text:"Contact"}
+  {link:"/contact",text:"Contact"},
+  {link:"/order",text:"Cart"}
 ]
 
 
@@ -103,12 +104,12 @@ function NavMobile() {
             <Link to={"/user"}>
               <div className=' text-base gap-1 flex items-center'>
                 <FaRegUserCircle/>
-                <span>User</span>
+                <span>Account</span>
               </div>
             </Link>
             :
             <Link to={"/auth/login"}>
-              <div className=' text-base gap-1 flex items-center'>
+              <div className=' bg-black justify-center rounded-xl text-white py-1 text-base gap-1 flex items-center'>
                 <FiLogIn/>
                 <span className=' text-base'>Login</span>
               </div>
