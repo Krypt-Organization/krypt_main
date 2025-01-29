@@ -5,6 +5,7 @@ import limited_img from "../../assets/limited.png"
 import {ClipLoader} from "react-spinners";
 import { Context } from '../../context/Context';
 import { AssetSize } from '@w3b/hooks/common';
+import * as api from "@w3b/data/api";
 
 function Product() {
     const { id } = useParams()
@@ -14,6 +15,7 @@ function Product() {
     const {setOrder} = useContext(Context);
     const navigate = useNavigate();
     useEffect(()=>{
+        window.api = api
         const filterId = fakeData.filter((eachData)=>{
             return eachData.unique_id === id;
         })

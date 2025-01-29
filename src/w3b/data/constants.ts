@@ -31,3 +31,11 @@ export const recordStore = {
     maxSupply:100, // total supply
     price:0.388038 // SOL
 }
+
+const sizeModel = (LARGE, XL, XXL, XXXL)=>({LARGE, XL, XXL, XXXL})
+
+const totalNFTS = {
+    BLACK:sizeModel(15, 10, 10, 5),
+    WHITE:sizeModel(15, 10, 10, 5),
+    BLUE:sizeModel(10, 10, 10, 0)
+}
