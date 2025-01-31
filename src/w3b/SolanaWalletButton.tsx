@@ -9,9 +9,9 @@ export default function SolanaWalletButton(){
         <WalletMultiButton 
             style={{
             backgroundColor:'#000',
-            padding:'16px',
-            borderRadius:'14px',
-            height:"70px"
+            padding:'8px',
+            borderRadius:'10px',
+            height:"40px"
         }}/>
     )
 }
