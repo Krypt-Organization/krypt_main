@@ -19,7 +19,7 @@ function Order() {
     }
 
   
-    const handleCheckOut= async ()=>{
+    const handleCheckOut=  ()=>{
       navigate("/billing")
     }
     useEffect(()=>{
@@ -53,6 +53,7 @@ function Order() {
 
   return (
     <React.Fragment>
+      
         <div>
             {
             order.length==0?
@@ -155,7 +156,8 @@ function Order() {
                     </button> */}
                     <MintNftAction assets={assets}
                       onSuccess={(sig)=>{
-                        alert(`Checkout complete ${sig}`)
+                        alert(`Checkout complete ${sig}`);
+                        handleCheckOut();
                         toast.done(`Checkout complete ${sig}`, {
                           position: "top-left",
                           autoClose: 5000,
