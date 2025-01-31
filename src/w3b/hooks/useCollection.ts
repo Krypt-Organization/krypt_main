@@ -13,6 +13,7 @@ export default function useCollection({address=collectionPublicKey, options}:Use
 
     return useQuery({
         queryKey:['collection', address],
-        queryFn: ()=>fetchCollection(umi, address, options)
+        queryFn: ()=>fetchCollection(umi, address, options),
+        enabled:Boolean(address)
     })
 }
