@@ -7,7 +7,6 @@ import { Context } from '../../context/Context'
 import {FiLogIn} from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
-import CartComponent from '../../components/CartComponent'
 import SolanaWalletButton from '@w3b/SolanaWalletButton'
 
 function Header() {
@@ -27,27 +26,25 @@ function Header() {
           <img src={logo} className=' sm:w-20 md:w-28  w-14' alt="Logo" loading="lazy"/>
         </Link>
         <aside className=" items-center z-10 lg:text-3xl text-2xl">
-          <section className=' items-center flex justify-between lg:pr-6 max-lg:hidden'>
+          <section className=' items-center flex gap-10 justify-between  max-lg:hidden'>
             <NavDesktop/>
             <div className='flex gap-10 items-center'>
-              <CartComponent/>
               {user?
                 <Link to={"/user"}>
-                  <div className=' md:text-xl md:font-semibold text-base gap-1 flex items-center'>
+                  <div className='  border-gray-800 md:text-xl md:font-semibold text-base gap-1 flex items-center'>
                     <FaRegUserCircle/>
-                    <span>User</span>
+                    <span>Account</span>
                   </div>
                 </Link>:
-                <Link to={"/auth/login"} className=' cursor-default text-base gap-2 flex items-center'>
-                  <span className=' md:text-lg text-base'>Login</span>
+                <Link to={"/auth/login"} className=' cursor-default text-base gap-1 flex items-center'>
                   <FiLogIn/>
+                  <span className=' md:text-lg font-semibold text-base'>Login</span>
                 </Link>
               }
             </div>
             <SolanaWalletButton/>
           </section>
           <section className=' flex gap-4 items-center lg:hidden'>
-              <CartComponent/>
             <button  onClick={handleCloseNavigation}>
               <IoMenu/>
             </button>

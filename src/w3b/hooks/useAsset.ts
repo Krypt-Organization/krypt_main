@@ -11,6 +11,7 @@ export default function useAsset({address, options}:UseAssetParams){
 
     return useQuery({
         queryKey:['asset', address],
-        queryFn: ()=>fetchAsset(umi, address, options)
+        queryFn: ()=>fetchAsset(umi, address, options),
+        enabled:Boolean(address)
     })
 }

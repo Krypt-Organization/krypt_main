@@ -10,7 +10,8 @@ export default function SolanaWalletButton(){
             style={{
             backgroundColor:'#000',
             padding:'16px',
-            borderRadius:'16px'
+            borderRadius:'14px',
+            height:"70px"
         }}/>
     )
 }

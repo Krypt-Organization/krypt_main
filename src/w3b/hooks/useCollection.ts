@@ -5,14 +5,15 @@ import { FetchCoreCollectionParams } from "./common";
 import { collectionPublicKey } from "../data/secret";
 
 
-type UseCollectionParams = FetchCoreCollectionParams
+type UseCollectionParams = Partial<FetchCoreCollectionParams>
 
 
-export default function useCollection({address=collectionPublicKey, options}:UseCollectionParams){
+export default function useCollection({address=collectionPublicKey, options}:UseCollectionParams={}){
     const umi = useUmi();
 
     return useQuery({
         queryKey:['collection', address],
-        queryFn: ()=>fetchCollection(umi, address, options)
+        queryFn: ()=>fetchCollection(umi, address, options),
+        enabled:Boolean(address)
     })
 }

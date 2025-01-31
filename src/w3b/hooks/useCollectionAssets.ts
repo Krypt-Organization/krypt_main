@@ -13,6 +13,7 @@ export default function useCollectionAssets({address=collectionPublicKey, option
 
     return useQuery({
         queryKey:['collection-assets', address],
-        queryFn: ()=>fetchAssetsByCollection(umi, address, options)
+        queryFn: ()=>fetchAssetsByCollection(umi, address, options),
+        enabled:Boolean(address)
     })
 }
