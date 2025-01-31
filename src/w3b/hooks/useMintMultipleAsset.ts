@@ -15,10 +15,10 @@ type Asset = {
 export type MintMultipleAssetParams = Asset[]
 
 export default function useMintMultipleAsset() {
+    const queryClient = useQueryClient()
+
     const umi = useUmi();
 
-    const queryClient = useQueryClient()
-    
     return useMutation({
         mutationFn:async (assets:MintMultipleAssetParams)=>{
             const collection = await fetchCollection(umi, collectionKeyPair.publicKey)
@@ -33,6 +33,7 @@ export default function useMintMultipleAsset() {
         },
         onSuccess(data){
             queryClient.invalidateQueries({queryKey:['collection-assets', collectionKeyPair.publicKey]})
+            queryClient.invalidateQueries({queryKey:['owner-asset', umi.identity.publicKey]})
         }
     })
 }

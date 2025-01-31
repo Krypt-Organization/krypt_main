@@ -7,7 +7,6 @@ import { Context } from '../../context/Context'
 import {FiLogIn} from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
-import SolanaWalletButton from '@w3b/SolanaWalletButton'
 
 function Header() {
   const {navigation, setNavigation} = useContext(Context)
@@ -42,13 +41,13 @@ function Header() {
                 </Link>
               }
             </div>
-            <SolanaWalletButton/>
+            <appkit-button />
           </section>
           <section className=' flex gap-4 items-center lg:hidden'>
             <button  onClick={handleCloseNavigation}>
               <IoMenu/>
             </button>
-            <SolanaWalletButton/>
+            <appkit-button />
           </section>
         </aside>
       </main>

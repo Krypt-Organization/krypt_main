@@ -70,9 +70,9 @@ export const createMintAssetTx = async ({umi, color, size, collection:collection
 }
 
 export default function useMintAsset() {
-    const umi = useUmi();
-
     const queryClient = useQueryClient()
+
+    const umi = useUmi();
     
     return useMutation({
         mutationFn:async ({
@@ -84,6 +84,7 @@ export default function useMintAsset() {
         },
         onSuccess(){
             queryClient.invalidateQueries({queryKey:['collection-assets', collectionKeyPair.publicKey]})
+            queryClient.invalidateQueries({queryKey:['owner-asset', umi.identity.publicKey]})
         }
     })
 }
