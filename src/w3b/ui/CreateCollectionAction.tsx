@@ -2,6 +2,7 @@ import React from "react";
 import useCreateCollection from "../hooks/useCreateCollection"
 import Button from "./Button"
 import { toBase58String } from "../utils";
+import useCollection from "../hooks/useCollection";
 
 type CreateCollectionActionProps = {
     onSuccess?: (sig: string) => void,
@@ -13,7 +14,9 @@ export default function CreateCollectionAction({
     onSuccess
 }: CreateCollectionActionProps){
     const mutation = useCreateCollection()
-    
+    const query = useCollection()
+    const collectionCreated = Boolean(query.data)
+
     const action = () => {
         mutation.mutateAsync(undefined, {
             onSuccess: (data) => onSuccess?.(toBase58String(data.signature)[0]),
@@ -24,7 +27,8 @@ export default function CreateCollectionAction({
 
     return <Button
         onClick={action}
-        disabled={isMinting}>
-        {isMinting ? "Creating Collection" : "Check Out"}
+        disabled={isMinting||collectionCreated}>
+        { collectionCreated?"Collection Created":
+            isMinting ? "Creating Collection" : "Register Collection"}
     </Button>
 }

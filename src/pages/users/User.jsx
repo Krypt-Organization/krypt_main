@@ -4,8 +4,10 @@ import {deleteUserFn, getUserFromFirestore, signOutUser} from "../../extras/fire
 import userImg from "../../assets/user.png";
 import { useNavigate } from 'react-router-dom';
 import {BarLoader} from "react-spinners";
+import UserAssets from './UserAssets'
 
 export default function UserPage() {
+    
   const [user, setUser] = useState({
     uid: 'user123',
     username: 'John Doe',
@@ -110,8 +112,8 @@ const handleDeleteUser = async () => {
                 </div>
               
             </div>
-
-            <h2 className="text-2xl font-semibold mb-4">Your Recent NFT Purchases</h2>
+            <UserAssets/>
+            {/* <h2 className="text-2xl font-semibold mb-4">Your Recent NFT Purchases</h2>
             <div className="grid text-black grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {user.purchased?.length==0?
             <div>
@@ -129,7 +131,7 @@ const handleDeleteUser = async () => {
                     </div>
                 </div>
             ))}
-            </div>
+            </div> */}
             <button onClick={handleLogOut} className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center bg-red-500'>
                 Logout
             </button>
