@@ -8,7 +8,7 @@ function Products() {
     const [bannerProduct, setBannerProduct] = useState([])
 
     useEffect(()=>{
-        const randomNumber = Math.floor(Math.random()*2)
+        const randomNumber = Math.floor(Math.random()*99)
         setBannerProduct([fakeData[randomNumber]]);
         
     },[])
@@ -40,7 +40,7 @@ function Products() {
                 }
             </section>
             <section>
-                <ProductList/>
+                <ProductList listEnd={100}/>
             </section>
         </div>
     </React.Fragment>
