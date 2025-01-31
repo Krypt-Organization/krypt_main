@@ -7,12 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-build": "npm install && npm run build"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@metaplex-foundation/mpl-core": "^1.2.0",
-    "@metaplex-foundation/mpl-toolbox": "^0.9.4",
+    "@metaplex-foundation/mpl-toolbox": "^0.10.0",
     "@metaplex-foundation/umi": "^1.0.0",
     "@metaplex-foundation/umi-bundle-defaults": "^1.0.0",
     "@metaplex-foundation/umi-signer-wallet-adapters": "^1.0.0",
@@ -49,6 +50,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "postcss": "^8.4.44",
+    "rollup-plugin-polyfill-node": "^0.13.0",
     "tailwindcss": "^3.4.10",
     "vite": "^5.4.1"
   }

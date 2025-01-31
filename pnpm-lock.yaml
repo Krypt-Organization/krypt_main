@@ -15,8 +15,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(@metaplex-foundation/umi@1.0.0)(@noble/hashes@1.7.1)
       '@metaplex-foundation/mpl-toolbox':
-        specifier: ^0.9.4
-        version: 0.9.4(@metaplex-foundation/umi@1.0.0)
+        specifier: ^0.10.0
+        version: 0.10.0(@metaplex-foundation/umi@1.0.0)
       '@metaplex-foundation/umi':
         specifier: ^1.0.0
         version: 1.0.0
@@ -120,6 +120,9 @@ importers:
       postcss:
         specifier: ^8.4.44
         version: 8.5.1
+      rollup-plugin-polyfill-node:
+        specifier: ^0.13.0
+        version: 0.13.0(rollup@4.32.0)
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.17
@@ -1434,10 +1437,10 @@ packages:
       '@metaplex-foundation/umi': '>=0.8.2 <= 1.0'
       '@noble/hashes': ^1.3.1
 
-  '@metaplex-foundation/mpl-toolbox@0.9.4':
-    resolution: {integrity: sha512-fd6JxfoLbj/MM8FG2x91KYVy1U6AjBQw4qjt7+Da3trzQaWnSaYHDcYRG/53xqfvZ9qofY1T2t53GXPlD87lnQ==}
+  '@metaplex-foundation/mpl-toolbox@0.10.0':
+    resolution: {integrity: sha512-84KD1L5cFyw5xnntHwL4uPwfcrkKSiwuDeypiVr92qCUFuF3ZENa2zlFVPu+pQcjTlod2LmEX3MhBmNjRMpdKg==}
     peerDependencies:
-      '@metaplex-foundation/umi': '>= 0.8.2 < 1'
+      '@metaplex-foundation/umi': '>= 0.8.2 <= 1'
 
   '@metaplex-foundation/umi-bundle-defaults@1.0.0':
     resolution: {integrity: sha512-Z8Ah4vJNkO5/sDvtG49kULNdGskaGYfJSygA9p061zG8BztML1okBkx0QZG/TM0fB0cMI8w5cwTd1O5gT64+Kg==}
@@ -5240,6 +5243,11 @@ packages:
     engines: {node: '>=10.13.0', yarn: ^1.15.2}
     deprecated: 'ripple-lib is deprecated. Please migrate to xrpl.js using this migration guide: https://xrpl.org/xrpljs2-migration-guide.html'
 
+  rollup-plugin-polyfill-node@0.13.0:
+    resolution: {integrity: sha512-FYEvpCaD5jGtyBuBFcQImEGmTxDTPbiHjJdrYIp+mFIwgXiXabxvKUK7ZT9P31ozu2Tqm9llYQMRWsfvTMTAOw==}
+    peerDependencies:
+      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
+
   rollup@4.32.0:
     resolution: {integrity: sha512-JmrhfQR31Q4AuNBjjAX4s+a/Pu/Q8Q9iwjWBsjRH1q52SPFE2NqRMK6fUZKKnvKO6id+h7JIRf0oYsph53eATg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -7747,7 +7755,7 @@ snapshots:
       '@msgpack/msgpack': 3.0.0-beta3
       '@noble/hashes': 1.7.1
 
-  '@metaplex-foundation/mpl-toolbox@0.9.4(@metaplex-foundation/umi@1.0.0)':
+  '@metaplex-foundation/mpl-toolbox@0.10.0(@metaplex-foundation/umi@1.0.0)':
     dependencies:
       '@metaplex-foundation/umi': 1.0.0
 
@@ -12936,6 +12944,11 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  rollup-plugin-polyfill-node@0.13.0(rollup@4.32.0):
+    dependencies:
+      '@rollup/plugin-inject': 5.0.5(rollup@4.32.0)
+      rollup: 4.32.0
 
   rollup@4.32.0:
     dependencies:

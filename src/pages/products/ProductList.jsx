@@ -3,7 +3,7 @@ import React from 'react'
 import { fakeData } from '../../extras/fakeData'
 import PreviewBtn from '../../components/PreviewBtn'
 
-function ProductList({listEnd=10,writeUp}) {
+function ProductList({writeUp}) {
 
   return (
     <React.Fragment>
@@ -16,7 +16,7 @@ function ProductList({listEnd=10,writeUp}) {
             </header>
             <main className=' grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 md:gap-x-8 px-3 gap-x-3 gap-y-5'>
                 {
-                    fakeData.slice(0,listEnd).map((eachImg,index)=>{
+                    fakeData.map((eachImg,index)=>{
                         return(
                             <div key={eachImg.unique_id+index+"#"} className=' bg-gray-700 border-[1px] border-white rounded-md px-1 py-2 gap-3 flex flex-col '>
                                 <section className=" flex flx-col justify-center">
