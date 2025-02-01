@@ -32,13 +32,12 @@ function Order() {
       
     },[order]);
 
-    const handleCloseNotification = ()=>{
+    // const handleCloseNotification = ()=>{
 
-    }
+    // }
 
     useEffect(() => {
       const mergedOrders = [];
-      
       order.forEach((eachOrder) => {
         const existingOrder = mergedOrders.find((item) => item.size === eachOrder.size && item.unique_id===eachOrder.unique_id);
         
@@ -53,14 +52,12 @@ function Order() {
       console.log(order);
     }, []);
     
-        
     const assets = useMemo(()=>order.map(ast=>({color:ast.color, size:ast.size})),[order]);
 
   return (
     <React.Fragment>
-      <Notification/>
       {/* <ToastContainer/> */}
-      <ToastContainer
+      {/* <ToastContainer
 position="top-left"
 autoClose={5000}
 hideProgressBar={false}
@@ -72,8 +69,10 @@ draggable
 pauseOnHover
 theme="light"
 transition={Bounce}
-/>
-        <div>
+/> */}
+        <div className='  relative'>
+          
+            <Notification/>
             {
             order.length==0?
             <div className="flex py-5   flex-col items-center  justify-center">
@@ -149,25 +148,25 @@ transition={Bounce}
             </div>
               }
 
-              <div className={`${order.length==0 && "hidden"} md:w-1/2  md:px-5 bg-gray-200 mx-5 py-5 px-2 rounded-md mb-5`}>
+              <div className={`${order.length==0 && "hidden"} md:w-1/2  md:px-5 bg-gray-200 mx-5 py-2 px-2 rounded-md `}>
                 <p className=" underline text-center font-semibold text-lg ">Order Details</p>
                 <section className=" flex flex-col gap-3">
                     <aside className=' flex justify-between font-medium '>
                       <p>Item(s)</p>
                       <span>{order.length}</span>
                     </aside>
-                    <aside className=' flex justify-between font-medium '>
+                    {/* <aside className=' flex justify-between font-medium '>
                       <p>Estimated Tax </p>
                       <span>${checkOut*0.01}</span>
-                    </aside>
-                    <aside className=' border-t-[1px] py-2 border-black flex justify-between font-medium '>
+                    </aside> */}
+                    <aside className=' border-t-[1px] py-2  border-black flex justify-between font-medium '>
                       <p>Total </p>
                       <span>${checkOut}</span>
                     </aside>
-                    <aside className=' border-t-[1px] py-2 border-black flex justify-between font-medium '>
+                    {/* <aside className=' border-t-[1px]  border-black flex justify-between font-medium '>
                       <p>Sub-Total </p>
                       <span>${checkOut*0.01+checkOut}</span>
-                    </aside>
+                    </aside> */}
                     {/* <button 
                     onClick={handleCheckOut} 
                     className=" bg-black rounded-md text-white font-medium uppercase py-2">
@@ -175,20 +174,19 @@ transition={Bounce}
                     </button> */}
                     <MintNftAction assets={assets}
                       onSuccess={(sig)=>{
-                        alert(`Checkout complete ${sig}`);
-                        toast.success('🦄 Wow so easy!', {
-                          position: "top-left",
-                          autoClose: 5000,
-                          hideProgressBar: false,
-                          closeOnClick: false,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "light",
-                          transition: Bounce,
-                        });
-                        handleCheckOut();
-                        // setOrder([]);
+                        <Notification sig={sig}/>
+                        // alert(`Checkout complete ${sig}`);
+                        // toast.success('🦄 Wow so easy!', {
+                        //   position: "top-left",
+                        //   autoClose: 5000,
+                        //   hideProgressBar: false,
+                        //   closeOnClick: false,
+                        //   pauseOnHover: true,
+                        //   draggable: true,
+                        //   progress: undefined,
+                        //   theme: "light",
+                        //   transition: Bounce,
+                        // });
                       }}
                       onError={(err)=>{
                         alert(`Error Occured: ${err.message}`)
@@ -201,6 +199,7 @@ transition={Bounce}
                     />
                 </section>
               </div>
+                        <br />
         </div>
     </React.Fragment>
   )
