@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/Context'
 import emptyCart from "../assets/emptyCart.png";
 import { useNavigate } from 'react-router-dom';
@@ -11,10 +11,11 @@ import Notification from './Notification';
 function Order() {
     const {checkOut,setCheckOut, order, setOrder } = useContext(Context);
     const navigate = useNavigate();
+    const [notificationSig, setNotificationSig] = useState(null);
 
     const handleDeleteItem = (id)=>{
       const testFilter = order.filter((eachOne)=>{
-        return eachOne.unique_id != id;
+        return eachOne.unique_id !== id;
       }) 
       setOrder(testFilter);
     }
@@ -56,7 +57,7 @@ function Order() {
 
   return (
     <React.Fragment>
-      {/* <ToastContainer/> */}
+      <ToastContainer/>
       {/* <ToastContainer
 position="top-left"
 autoClose={5000}
@@ -72,9 +73,10 @@ transition={Bounce}
 /> */}
         <div className='  relative'>
           
-            <Notification/>
+            {notificationSig && <Notification signature={notificationSig} />}
+            {/* <Notification/> */}
             {
-            order.length==0?
+            order.length===0?
             <div className="flex py-5   flex-col items-center  justify-center">
                 <img src={emptyCart} className=" size-56" alt="Cart Is Empty"/>
                 <p className=" text-white font-semibold text-lg">You Have No Orders</p>
@@ -172,9 +174,16 @@ transition={Bounce}
                     className=" bg-black rounded-md text-white font-medium uppercase py-2">
                     Check Out
                     </button> */}
+
                     <MintNftAction assets={assets}
                       onSuccess={(sig)=>{
-                        <Notification sig={sig}/>
+                        if (sig) {
+                          setNotificationSig(sig)
+                          toast.success('NFT Minted Successfully!', { position: "top-left", theme: "light" });
+                          setTimeout(() => {
+                           handleCheckOut();
+                          }, 4000);
+                        }
                         // alert(`Checkout complete ${sig}`);
                         // toast.success('🦄 Wow so easy!', {
                         //   position: "top-left",
