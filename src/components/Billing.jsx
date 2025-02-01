@@ -12,7 +12,7 @@ function Billing() {
         phoneNumber:"",
         address:"",
         state:"",
-        town:""
+        city:""
     });
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
@@ -24,8 +24,8 @@ function Billing() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { fullName, email, phoneNumber, address, state, town } = formData;
-        if (!fullName || !email || !phoneNumber || !address || !state || !town) {
+        const { fullName, email, phoneNumber, address, state, city } = formData;
+        if (!fullName || !email || !phoneNumber || !address || !state || !city) {
             setEmptyField(true);
             return;
         }
@@ -52,7 +52,7 @@ function Billing() {
                 phoneNumber: "",
                 address: "",
                 state: "",
-                town: "",
+                city: "",
             });
             navigate("/")
             console.log(checkOut);
@@ -105,8 +105,8 @@ return (
                     <input onChange={handleOnChange} name="state" type="text" className={` border-[1px] ${emptyField&&formData.state.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
                 <label htmlFor="" className=' flex flex-col gap-1'>
-                    <span className=' font-semibold uppercase'>Town</span>
-                    <input onChange={handleOnChange} name="town" type="text" className={` border-[1px] ${emptyField&&formData.town.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
+                    <span className=' font-semibold uppercase'>city</span>
+                    <input onChange={handleOnChange} name="city" type="text" className={` border-[1px] ${emptyField&&formData.city.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
                 <button onClick={handleSubmit} className=' bg-black mt-6 text-white py-1 font-semibold uppercase rounded-md'>Continue</button>
             </form>

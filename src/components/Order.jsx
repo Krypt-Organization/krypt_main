@@ -4,8 +4,9 @@ import emptyCart from "../assets/emptyCart.png";
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useMemo } from 'react';
-import { toast } from 'react-toastify';
+import { Bounce, toast,ToastContainer } from 'react-toastify';
 import MintNftAction from '@w3b/ui/MintNftAction';
+import Notification from './Notification';
 
 function Order() {
     const {checkOut,setCheckOut, order, setOrder } = useContext(Context);
@@ -31,6 +32,10 @@ function Order() {
       
     },[order]);
 
+    const handleCloseNotification = ()=>{
+
+    }
+
     useEffect(() => {
       const mergedOrders = [];
       
@@ -53,7 +58,21 @@ function Order() {
 
   return (
     <React.Fragment>
-      
+      <Notification/>
+      {/* <ToastContainer/> */}
+      <ToastContainer
+position="top-left"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+transition={Bounce}
+/>
         <div>
             {
             order.length==0?
@@ -157,12 +176,18 @@ function Order() {
                     <MintNftAction assets={assets}
                       onSuccess={(sig)=>{
                         alert(`Checkout complete ${sig}`);
-                        handleCheckOut();
-                        toast.done(`Checkout complete ${sig}`, {
+                        toast.success('🦄 Wow so easy!', {
                           position: "top-left",
                           autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: false,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
                           theme: "light",
+                          transition: Bounce,
                         });
+                        handleCheckOut();
                         // setOrder([]);
                       }}
                       onError={(err)=>{
