@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import banner from "../assets/contact_img.jpg";
-// import PaystackPop from '@paystack/inline-js'
-// import axios from 'axios';
 import { Context } from '../context/Context';
 import { updatePreviousPurchases } from '../extras/firebase';
 import { useNavigate } from 'react-router-dom';
 
-// const popup = new PaystackPop()
 function Billing() {
     
     const [formData,setFormData] = useState({
@@ -34,20 +31,6 @@ function Billing() {
         }
 
         try {
-            // const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment", {
-            //     email,
-            //     amount: checkOut,
-            //     phoneNumber
-            // });
-            
-            // const { reference, access_code } = paystackCheckout.data.data;
-            // popup.resumeTransaction(access_code);
-
-            // const paymentSuccessful = await axios.get("http://localhost:5000/paystack/verify", {
-            //     params: { reference }
-            // });
-
-            // console.log(paymentSuccessful);
             console.log(formData);
             if(user){
                 try{
@@ -56,9 +39,11 @@ function Billing() {
                 }catch(error){
                   console.log(error);
                 }
+                console.log(order);
                 console.log(JSON.parse(user))
             }else{
                 console.log("OKAY");
+                console.log(order);
             }
             
             setFormData({

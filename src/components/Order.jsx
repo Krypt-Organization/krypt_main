@@ -15,7 +15,7 @@ function Order() {
       const testFilter = order.filter((eachOne)=>{
         return eachOne.unique_id != id;
       }) 
-      setOrder(testFilter)
+      setOrder(testFilter);
     }
 
   
@@ -163,7 +163,7 @@ function Order() {
                           autoClose: 5000,
                           theme: "light",
                         });
-                        setOrder([]);
+                        // setOrder([]);
                       }}
                       onError={(err)=>{
                         alert(`Error Occured: ${err.message}`)
