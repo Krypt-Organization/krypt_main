@@ -4,7 +4,7 @@ import emptyCart from "../assets/emptyCart.png";
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useMemo } from 'react';
-import { Bounce, toast,ToastContainer } from 'react-toastify';
+import { toast,ToastContainer } from 'react-toastify';
 import MintNftAction from '@w3b/ui/MintNftAction';
 import Notification from './Notification';
 
