@@ -197,9 +197,10 @@ transition={Bounce}
                         //   transition: Bounce,
                         // });
                       }}
-                      onError={(err)=>{
-                        alert(`Error Occured: ${err.message}`)
-                        toast.warn(`Error Occured: ${err.message}`, {
+                      onError={()=>{
+                        alert(`Error Occured Connect Wallet`)
+                        toast.warn(`There was an issue processing your transaction due to an incorrect Wallet setup.`, 
+                        {
                           position: "top-left",
                           autoClose: 5000,
                           theme: "light",

@@ -27,7 +27,6 @@ function Contact() {
                     console.log(result.text);
                     setSent(true);
                     setForm({name:"", email:"", tel:"", message:""});
-                    
                 },
                 (error) => {
                     console.log('FAILED...', error.text);

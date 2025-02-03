@@ -21,7 +21,6 @@ function Billing() {
     const handleOnChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
     }
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { fullName, email, phoneNumber, address, state, city } = formData;
