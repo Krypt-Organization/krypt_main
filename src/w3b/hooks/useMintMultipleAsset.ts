@@ -5,6 +5,7 @@ import { collectionKeyPair } from "../data/secret"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { AssetColor, AssetSize } from "./common"
 import { createMintAssetTx } from "./useMintAsset"
+import useMarketValue from "./useMarketValue"
 
 
 type Asset = {
@@ -16,16 +17,19 @@ export type MintMultipleAssetParams = Asset[]
 
 export default function useMintMultipleAsset() {
     const queryClient = useQueryClient()
-
+    const {data:solUSDBasePrice} = useMarketValue()
     const umi = useUmi();
-
+    
     return useMutation({
         mutationFn:async (assets:MintMultipleAssetParams)=>{
             const collection = await fetchCollection(umi, collectionKeyPair.publicKey)
+            if(!solUSDBasePrice || isNaN(solUSDBasePrice) || solUSDBasePrice <= 0){
+                throw Error(`Asset market price not determined: ${solUSDBasePrice}`, )
+            } 
             const txs = await Promise.all(
                 assets.map((asset, idx)=>
                     //idx ensures that edition number is unique
-                    createMintAssetTx({umi, color:asset.color, size:asset.size, collection, index:idx})
+                    createMintAssetTx({umi, color:asset.color, size:asset.size, usdPrice:solUSDBasePrice, collection, index:idx})
                 )
             )
             const builder = transactionBuilder().add(txs);

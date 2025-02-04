@@ -29,13 +29,8 @@ function Order() {
         return acc + eachProduct.price;
       },0)
       setCheckOut(subTotalCalc)
-      // This is with Dollar conversion rate to test the stripe api
-      
     },[order]);
 
-    // const handleCloseNotification = ()=>{
-
-    // }
 
     useEffect(() => {
       const mergedOrders = [];
@@ -118,9 +113,7 @@ function Order() {
                           <p className='sm:text-xl font-semibold text-lg uppercase'>{eachProduct.name}</p>
                           <p className=' flex items-center gap-3 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>size:</span>{eachProduct.size}</p>
                           <p className=' flex items-center gap-1 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>price:</span>${eachProduct.price}</p>
-                          {/* <p className=' flex items-center gap-1 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>Qty:</span>{eachProduct.quantity}</p> */}
                           <p>#{eachProduct.id}</p>
-                          {/* <p className=' flex items-center gap-1 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>total:</span>{eachProduct.price*eachProduct.quantity}</p> */}
                           <p>Qty: {eachProduct.price/100}</p>
                           <button onClick={()=>{
                             handleDeleteItem(eachProduct.unique_id)
@@ -142,10 +135,6 @@ function Order() {
                       <p>Item(s)</p>
                       <span>{order.length}</span>
                     </aside>
-                    {/* <aside className=' flex justify-between font-medium '>
-                      <p>Estimated Tax </p>
-                      <span>${checkOut*0.01}</span>
-                    </aside> */}
                     <aside className=' border-t-[1px] py-2  border-black flex justify-between font-medium '>
                       <p>Total </p>
                       <span>${checkOut}</span>

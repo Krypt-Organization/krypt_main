@@ -7,6 +7,7 @@ import { AssetColor, AssetSize } from "./common"
 import { transferSol } from "@metaplex-foundation/mpl-toolbox"
 import { assetVariantJson, recordStore } from "../data/constants"
 import { generateAssetName } from "../utils"
+import useMarketValue from "./useMarketValue"
 
 
 
@@ -14,11 +15,14 @@ type CreateMintAssetTxParams = {
     umi:Umi,
     color:AssetColor,
     size:AssetSize,
+    usdPrice:number,
     index?:number,
     collection?:CollectionV1
 }
 
-export const createMintAssetTx = async ({umi, color, size, collection:collection_, index=0 }:CreateMintAssetTxParams)=>{
+export const createMintAssetTx = async ({umi, color, size, usdPrice, collection:collection_, index=0 }:CreateMintAssetTxParams)=>{
+    
+    const assetPrice = recordStore.price/usdPrice;
     const assetName = generateAssetName(color, size)
     const assetUri = assetVariantJson[color]
     const collectionSigner = createSignerFromKeypair(umi, collectionKeyPair)
@@ -62,7 +66,7 @@ export const createMintAssetTx = async ({umi, color, size, collection:collection
     
     const payIX = transferSol(umi, {
         destination: publicKey(recordStore.creator),
-        amount: sol(recordStore.price)
+        amount: sol(assetPrice)
     })
     
     const builder = transactionBuilder().add([payIX, createIX]);
@@ -71,15 +75,18 @@ export const createMintAssetTx = async ({umi, color, size, collection:collection
 
 export default function useMintAsset() {
     const queryClient = useQueryClient()
-
+    const {data:solUSDBasePrice} = useMarketValue()
     const umi = useUmi();
-    
+
     return useMutation({
         mutationFn:async ({
             color,
             size
         }:Pick<CreateMintAssetTxParams, 'color'|'size'>)=>{
-            const builder = await createMintAssetTx({umi, color, size})
+            if(!solUSDBasePrice || isNaN(solUSDBasePrice) || solUSDBasePrice <= 0){
+                throw Error(`Asset market price not determined: ${solUSDBasePrice}`, )
+            } 
+            const builder = await createMintAssetTx({umi, color, size, usdPrice:solUSDBasePrice})
             return await builder.sendAndConfirm(umi)
         },
         onSuccess(){
