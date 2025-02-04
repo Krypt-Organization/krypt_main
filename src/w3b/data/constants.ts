@@ -10,10 +10,10 @@ export const BLUE_IMAGE = `${IPFS_BASE}/bafybeidj7nx6bw6mtuuzbafgtp2pjslpx2dpngs
 export const WHITE_IMAGE = `${IPFS_BASE}/bafybeib4gdsemdmg5yma6ta3z4i27dka3tenyi2ribppmuwzromvlsdd3q`
 
 // JSON
-export const BLACK_JSON = `${IPFS_BASE}/bafkreibudh2762uu7ix2hnxh7jivtn4tivtowxwjlasuuirsbc7zqx3jau`
-export const BLUE_JSON = `${IPFS_BASE}/bafkreidgd35psykhndxkfkynsqksg4ej5tur7rndzgqs7qmk2ipysxi3gy`
+export const BLACK_JSON = `${IPFS_BASE}/bafkreihfoqbnx35qbvbr55pmv3c7zwzipvm65b6gm4qwrtsalcu6psvilu`
+export const BLUE_JSON = `${IPFS_BASE}/bafkreifzipl746ozr4tdizl33fzxmntk6r3wfgcwtowjkrk4z66u2ulqli`
 export const WHITE_JSON = `${IPFS_BASE}/bafkreihvrgh6agcgezb3ncmfgizpubbpajf4vva6wlex5tphx4zdrmbxz4`
-export const COLLECTION_JSON = `${IPFS_BASE}/bafkreifvbd5efcyf2lh66b5amizykwjgsh7noc3dfsh25gfiwezozuuutu`
+export const COLLECTION_JSON = `${IPFS_BASE}/bafkreidc24to5hdk2z7chplsscpe6byii22shf3vbatrmzecbhhtv5hm5a`
 
 
 export const assetVariantJson = {
@@ -27,9 +27,9 @@ export const recordStore = {
     name:NFT_BASE_NAME,
     //TODO: specify original treasurer wallet
     creator:import.meta.env.VITE_CREATOR_ADDRESS,
-    royalty:1, // percent
-    maxSupply:100, // total supply
-    price:0.388038 // SOL
+    royalty:parseFloat(import.meta.env.VITE_ROYALTY_PERCENT), // percent
+    maxSupply:parseInt(import.meta.env.VITE_MAX_SUPPLY), // total supply
+    price:parseFloat(import.meta.env.VITE_DOLLAR_PRICE) // IN DOLLAR
 }
 
 const sizeModel = (LARGE, XL, XXL, XXXL)=>({LARGE, XL, XXL, XXXL})

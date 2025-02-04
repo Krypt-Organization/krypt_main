@@ -57,8 +57,15 @@ type AssetComponentProps = {
     description: string,
 }
 
+
+type Data = {
+    image:string,
+    name:string,
+    symbol?:string
+}
+
 const AssetComponent = (props: AssetComponentProps) => {
-    const { data } = useUri(props.uri)
+    const { data } = useUri<Data>(props.uri)
     
     return (
         <div key={props.address} className="bg-white shadow rounded-lg overflow-hidden">
