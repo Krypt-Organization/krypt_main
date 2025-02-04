@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import banner from "../assets/contact_img.jpg";
-// import PaystackPop from '@paystack/inline-js'
-// import axios from 'axios';
 import { Context } from '../context/Context';
 import { updatePreviousPurchases } from '../extras/firebase';
 import { useNavigate } from 'react-router-dom';
 
-// const popup = new PaystackPop()
 function Billing() {
     
     const [formData,setFormData] = useState({
@@ -15,7 +12,7 @@ function Billing() {
         phoneNumber:"",
         address:"",
         state:"",
-        town:""
+        city:""
     });
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
@@ -27,27 +24,13 @@ function Billing() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { fullName, email, phoneNumber, address, state, town } = formData;
-        if (!fullName || !email || !phoneNumber || !address || !state || !town) {
+        const { fullName, email, phoneNumber, address, state, city } = formData;
+        if (!fullName || !email || !phoneNumber || !address || !state || !city) {
             setEmptyField(true);
             return;
         }
 
         try {
-            // const paystackCheckout = await axios.post("http://localhost:5000/paystack/payment", {
-            //     email,
-            //     amount: checkOut,
-            //     phoneNumber
-            // });
-            
-            // const { reference, access_code } = paystackCheckout.data.data;
-            // popup.resumeTransaction(access_code);
-
-            // const paymentSuccessful = await axios.get("http://localhost:5000/paystack/verify", {
-            //     params: { reference }
-            // });
-
-            // console.log(paymentSuccessful);
             console.log(formData);
             if(user){
                 try{
@@ -56,9 +39,11 @@ function Billing() {
                 }catch(error){
                   console.log(error);
                 }
+                console.log(order);
                 console.log(JSON.parse(user))
             }else{
                 console.log("OKAY");
+                console.log(order);
             }
             
             setFormData({
@@ -67,7 +52,7 @@ function Billing() {
                 phoneNumber: "",
                 address: "",
                 state: "",
-                town: "",
+                city: "",
             });
             navigate("/")
             console.log(checkOut);
@@ -120,8 +105,8 @@ return (
                     <input onChange={handleOnChange} name="state" type="text" className={` border-[1px] ${emptyField&&formData.state.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
                 <label htmlFor="" className=' flex flex-col gap-1'>
-                    <span className=' font-semibold uppercase'>Town</span>
-                    <input onChange={handleOnChange} name="town" type="text" className={` border-[1px] ${emptyField&&formData.town.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
+                    <span className=' font-semibold uppercase'>city</span>
+                    <input onChange={handleOnChange} name="city" type="text" className={` border-[1px] ${emptyField&&formData.city.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
                 <button onClick={handleSubmit} className=' bg-black mt-6 text-white py-1 font-semibold uppercase rounded-md'>Continue</button>
             </form>
