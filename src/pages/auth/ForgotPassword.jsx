@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { passwordReset } from '../../extras/firebase';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 function ForgotPassword() {
@@ -25,6 +26,8 @@ function ForgotPassword() {
       try{
         const resetPassword = await passwordReset(email);
         console.log(resetPassword);
+        toast.success('Password reset email sent successfully', { position: "top-left", theme: "light" });
+        setEmail("");
         setDisableBtn(false);
       }catch(error){
         console.log(error);
@@ -43,6 +46,7 @@ function ForgotPassword() {
 
   return (
     <React.Fragment>
+      <ToastContainer/>
         <div className=' px-3 py-3'>
                     <form action="" onSubmit={handleSubmit} className=' py-2 gap-10 flex flex-col'>
                       <p className=' font-semibold text-center text-2xl uppercase'>Forgot Password ?</p>

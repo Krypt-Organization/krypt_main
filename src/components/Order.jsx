@@ -199,7 +199,7 @@ transition={Bounce}
                       }}
                       onError={()=>{
                         alert(`Error Occured Connect Wallet`)
-                        toast.warn(`There was an issue processing your transaction due to an incorrect Wallet setup.`, 
+                        toast.warn(`Something went wrong. Please Ensure your wallet is set up correctly or you have sufficient sol`, 
                         {
                           position: "top-left",
                           autoClose: 5000,
