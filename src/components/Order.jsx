@@ -58,23 +58,9 @@ function Order() {
   return (
     <React.Fragment>
       <ToastContainer/>
-      {/* <ToastContainer
-position="top-left"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick={false}
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
-transition={Bounce}
-/> */}
         <div className='  relative'>
           
             {notificationSig && <Notification signature={notificationSig} />}
-            {/* <Notification/> */}
             {
             order.length===0?
             <div className="flex py-5   flex-col items-center  justify-center">
@@ -109,7 +95,6 @@ transition={Bounce}
                             <td className='text-center font-semibold'>{eachProduct.name}</td>
                             <td className='text-center font-semibold'>{eachProduct.size}</td>
                             <td className='text-center font-semibold'>{eachProduct.price}</td>
-                            {/* <td className='text-center font-semibold'>{eachProduct.quantity}</td> */}
                             <td className='text-center font-semibold'>{eachProduct.total}</td>
                             <td className=' cursor-default text-center h-fit '>
                               <span onClick={()=>{

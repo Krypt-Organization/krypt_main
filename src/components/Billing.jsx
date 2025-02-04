@@ -59,7 +59,7 @@ function Billing() {
                 city: data.city,
                 orders: Object.values(order)
                     .map((item, index) =>
-                        `Item ${index + 1}: ${item.name}, Color: ${item.color}, Price: $${item.price}, Size: ${item.size}`
+                        `Item ${index + 1}: ${item.name}, Color: ${item.color}, Price: $${item.price}, Size: ${item.size}, Quantity : ${item.price/100}`
                     )
                     .join("\n"),
             };   
