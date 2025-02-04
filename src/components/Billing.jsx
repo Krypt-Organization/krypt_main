@@ -4,6 +4,7 @@ import { Context } from '../context/Context';
 import { updatePreviousPurchases } from '../extras/firebase';
 import { useNavigate } from 'react-router-dom';
 import emailjs from "@emailjs/browser";
+import { toast, ToastContainer } from 'react-toastify';
 
 function Billing() {
     
@@ -62,15 +63,16 @@ function Billing() {
                     )
                     .join("<br>"),
             };   
-            
+            console.log(emailData);
             emailjs.send('service_ye6lwwa', 'template_edfxuqo', emailData, {
-            publicKey: 'mH_bztTitjnB4WMzD',}).then(() => {
-                console.log('SUCCESS!');
-            },(error) => {
-                console.log('FAILED...', error.text);
+                publicKey: 'mH_bztTitjnB4WMzD',}).then(() => {
+                    console.log('SUCCESS!');
+                    toast.success('Order Placed Successfully!', { position: "top-left", theme: "light" });
+                },(error) => {
+                    console.log('FAILED...', error.text);
                 },
             );
-
+            
             setFormData({
                 fullName: "",
                 email: "",
@@ -83,7 +85,7 @@ function Billing() {
             setOrder([]);
             setTimeout(() => {
                 navigate("/");
-            }, 3000);
+            }, 5000);
             
         } catch (error) {
             console.error("Unexpected error:", error);
@@ -99,6 +101,7 @@ useEffect(()=>{
 },[emptyField]);
 return (
     <React.Fragment>
+        <ToastContainer/>
         <div className=' md:grid md:grid-cols-2 '>
             <div className=' max-md:hidden relative'>
                 <img src={banner} alt="" className=' h-full md:object-cover' />
@@ -145,3 +148,5 @@ return (
 }
 
 export default Billing
+// I tested an order that was sent to KRYPT'S Email to confirm if it was working
+//Properly here are the things I sent
