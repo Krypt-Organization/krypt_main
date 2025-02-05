@@ -20,7 +20,8 @@ function Billing() {
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
     const [emptyField,setEmptyField] = useState(false);
-    const {order,setOrder} = useContext(Context)
+    const {order,setOrder} = useContext(Context);
+    const [disableBtn,setDisableBtn] = useState(false);
     const handleOnChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
     }
@@ -40,7 +41,9 @@ function Billing() {
         try {
             const data = ({...order,...formData})
             const jsonUser = user ? JSON.parse(user) : null;
-            
+    
+            setDisableBtn(true);
+
             if (jsonUser) {
                 try {
                     await updatePreviousPurchases(jsonUser.uid, order);
@@ -49,6 +52,8 @@ function Billing() {
                     console.error("Error parsing user data:", error);
                 }
             }
+
+
 
             const emailData = {
                 fullName: data.fullName,
@@ -66,10 +71,12 @@ function Billing() {
             console.log(emailData);
             emailjs.send('service_ye6lwwa', 'template_edfxuqo', emailData, {
                 publicKey: 'mH_bztTitjnB4WMzD',}).then(() => {
+                    setDisableBtn(false);
                     console.log('SUCCESS!');
                     toast.success('Order Placed Successfully!', { position: "top-left", theme: "light" });
                 },(error) => {
                     console.log('FAILED...', error.text);
+                    setDisableBtn(false);
                 },
             );
             
@@ -139,7 +146,7 @@ return (
                     <span className=' font-semibold uppercase'>city</span>
                     <input onChange={handleOnChange} name="city" type="text" className={` border-[1px] ${emptyField&&formData.city.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
-                <button  className=' bg-black mt-6 text-white py-1 font-semibold uppercase rounded-md'>Continue</button>
+                <button disabled={disableBtn}  className={`  ${disableBtn?' bg-gray-600':'bg-black'} mt-6 text-white py-1 font-semibold uppercase rounded-md`}>{disableBtn ? "Processing..." : "Continue"}</button>
             </form>
         </div>
         </div>
