@@ -12,6 +12,7 @@ import Register from "./pages/auth/Register"
 import Billing from "./components/Billing.jsx"
 import User from "./pages/users/User"
 import ForgotPassword from './pages/auth/ForgotPassword.jsx'
+import OrderStatus from './components/OrderStatus.jsx'
 
 function Krypt() {
   return (
@@ -24,6 +25,7 @@ function Krypt() {
                     <Route path="/products" element={<Products/>}/>
                     <Route path='/order' element={<Order/>}/>
                     <Route path="/billing" element={<Billing/>}/>
+                    <Route path="/order-status" element={<OrderStatus/>}/>
                     <Route path='/:id' element={<Product/>}/>
                     <Route path='/auth' element={<Auth/>}>
                       <Route path='login' element={<Login/>}/>
