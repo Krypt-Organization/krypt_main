@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import checkMark from "../assets/check-mark.gif";
+import {Context} from "../context/Context"
 
 function OrderStatus() {
     const navigate = useNavigate();
+    const {nftSignature,setNftSignature} = useContext(Context);
+
+
+    const continueShopping = ()=>{
+        navigate("/products");
+        setNftSignature("");
+    }
 
   return (
     <React.Fragment>
@@ -21,15 +29,14 @@ function OrderStatus() {
         <h2 className="text-2xl font-semibold mt-4">Thank You for Your Order!</h2>
         <p className="text-gray-600 mt-2">Your order has been placed successfully.</p>
 
-        {/* Order Details */}
         <div className="mt-4 border-t pt-4 text-left">
-          <p className="text-sm text-gray-500">NFT Signature <span className="font-semibold">#{ "12345"}</span></p>
+          <p className="  text-sm  text-gray-500">NFT Signature <span className="font-semibold break-words ">#{nftSignature.length!==0?nftSignature: " 12345"}</span></p>
+          <br />
           <p className="text-sm text-gray-500">Estimated Delivery: <span className="font-semibold">{ "3-5 Business Days"}</span></p>
         </div>
 
-        {/* Buttons */}
         <div className="flex flex-col gap-3 mt-6">
-          <button onClick={() => navigate("/products")} className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md">Continue Shopping</button>
+          <button onClick={continueShopping} className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md">Continue Shopping</button>
         </div>
       </motion.div>
     </div>

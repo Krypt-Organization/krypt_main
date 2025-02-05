@@ -9,7 +9,7 @@ import MintNftAction from '@w3b/ui/MintNftAction';
 import Notification from './Notification';
 
 function Order() {
-    const {checkOut,setCheckOut, order, setOrder } = useContext(Context);
+    const {checkOut,setCheckOut, order, setOrder,setNftSignature } = useContext(Context);
     const navigate = useNavigate();
     const [notificationSig, setNotificationSig] = useState(null);
 
@@ -152,7 +152,8 @@ function Order() {
                     <MintNftAction assets={assets}
                       onSuccess={(sig)=>{
                         if (sig) {
-                          setNotificationSig(sig)
+                          setNotificationSig(sig);
+                          setNftSignature(sig);
                           toast.success('NFT Minted Successfully!', { position: "top-left", theme: "light" });
                           setTimeout(() => {
                            handleCheckOut();
@@ -171,7 +172,7 @@ function Order() {
                     />
                 </section>
               </div>
-                        <br />
+            <br />
         </div>
     </React.Fragment>
   )

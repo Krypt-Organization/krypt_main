@@ -66,7 +66,7 @@ function Billing() {
                     .map((item, index) =>
                         `Item ${index + 1}: ${item.name}, Color: ${item.color}, Price: $${item.price}, Size: ${item.size}, Quantity : ${item.price/100}`
                     )
-                    .join("\n"),
+                    .join("  "),
             };   
             console.log(emailData);
             emailjs.send('service_ye6lwwa', 'template_edfxuqo', emailData, {
@@ -91,7 +91,7 @@ function Billing() {
     
             setOrder([]);
             setTimeout(() => {
-                navigate("/");
+                navigate("/order-status");
             }, 5000);
             
         } catch (error) {
