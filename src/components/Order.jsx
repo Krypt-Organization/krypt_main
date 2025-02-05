@@ -156,24 +156,12 @@ function Order() {
                           toast.success('NFT Minted Successfully!', { position: "top-left", theme: "light" });
                           setTimeout(() => {
                            handleCheckOut();
-                          }, 4000);
+                          }, 5000);
                         }
-                        // alert(`Checkout complete ${sig}`);
-                        // toast.success('🦄 Wow so easy!', {
-                        //   position: "top-left",
-                        //   autoClose: 5000,
-                        //   hideProgressBar: false,
-                        //   closeOnClick: false,
-                        //   pauseOnHover: true,
-                        //   draggable: true,
-                        //   progress: undefined,
-                        //   theme: "light",
-                        //   transition: Bounce,
-                        // });
                       }}
                       onError={()=>{
                         alert(`Error Occured Connect Wallet`)
-                        toast.warn(`Something went wrong. Please Ensure your wallet is set up correctly or you have sufficient sol`, 
+                        toast.warn(`Something went wrong. Please Ensure your wallet is set up correctly or you have sufficient SOL`, 
                         {
                           position: "top-left",
                           autoClose: 5000,
