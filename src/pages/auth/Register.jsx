@@ -133,7 +133,7 @@ return (
                     <span className=' font-medium'>Confirm Password</span>
                     <input onChange={handleInputChange} name="confirmPassword" placeholder='Confirm Password' type="password" className={`bg-gray-100 text-black border-[2px] ${emptyField && formData.confirmPassword.trim()==""?"border-red-600":"border-white"} px-1 py-1 rounded-md outline-none text-black `} />
                 </label>
-                <button className={` ${disableBtn?"bg-gray-500":"bg-black"} text-white py-1 uppercase font-medium rounded-md`}>Sign Up</button>
+                <button disabled={disableBtn} className={` ${disableBtn?"bg-gray-500":"bg-black"} text-white py-1 uppercase font-medium rounded-md`}>Sign Up</button>
             </form>
             <p className=' py-5'>Already have an Account?<Link className=' text-blue-500' to={"/auth/login"}> <span className=' font-semibold'>Login</span></Link></p>
         </div>
