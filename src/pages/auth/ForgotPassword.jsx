@@ -11,30 +11,25 @@ function ForgotPassword() {
 
   const handleInputChange = (e)=>{
     setEmail(e.target.value);
-    console.log(e.target.value);
   }
   
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(email.trim()==""){
+    if (email.trim() === "") {
       setEmptyField(true);
       return;
     }
-    else{
-      setDisableBtn(true);
-      
-      try{
-        const resetPassword = await passwordReset(email);
-        console.log(resetPassword);
-        toast.success('Password reset email sent successfully', { position: "top-left", theme: "light" });
-        setEmail("");
-        setDisableBtn(false);
-      }catch(error){
-        console.log(error);
-        setDisableBtn(false);
-      }
+    setDisableBtn(true);
+    try {
+      await passwordReset(email);
+      toast.success('Password reset email sent successfully', { position: "top-left", theme: "light" });
+      setEmail("");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setDisableBtn(false);
     }
-  }
+  };
 
   useEffect(()=>{
     const timer = setTimeout(()=>{

@@ -52,7 +52,6 @@ function Register() {
             }else if(password === confirmPassword){
                 try{
                     const user = await createUser(email,password);
-                    console.log(user);
                     const userData = {
                         username:username,
                         email:email,

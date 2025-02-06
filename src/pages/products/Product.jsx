@@ -41,7 +41,6 @@ function Product() {
             }
     
             const productDetails = { ...product[0], ...option };
-            console.log(productDetails);
     
             setOrder((prev) => [...prev, productDetails]);
         } catch (error) {

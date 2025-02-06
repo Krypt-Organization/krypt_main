@@ -16,25 +16,24 @@ function Contact() {
         })
     }
 
-    const onSubmitForm = (e)=>{
+    const onSubmitForm = (e) => {
         e.preventDefault();
-        if(name.trim() === "" || email.trim() === "" || tel.trim() === "" || message.trim() === ""){
-            setEmptyFields(true)
-        }
-        else {
-            if(email.indexOf("@")==email.lastIndexOf("@")){
-                emailjs.sendForm("service_r71gt9v", "template_qstprld", formRef.current, "V3aSnae8_6KBmf4TB").then((result)=>{
-                    console.log(result.text);
-                    setSent(true);
-                    setForm({name:"", email:"", tel:"", message:""});
-                },
-                (error) => {
-                    console.log('FAILED...', error.text);
-                  })
-            }else{
-                console.log("Not Okay")
+        if (name.trim() === "" || email.trim() === "" || tel.trim() === "" || message.trim() === "") {
+            setEmptyFields(true);
+        } else {
+            if (email.indexOf("@") === email.lastIndexOf("@")) {
+                emailjs.sendForm("service_r71gt9v", "template_qstprld", formRef.current, "V3aSnae8_6KBmf4TB")
+                    .then((result) => {
+                        console.log(result.text);
+                        setSent(true);
+                        setForm({ name: "", email: "", tel: "", message: "" });
+                    }, (error) => {
+                        console.log('FAILED...', error.text);
+                    });
+            } else {
+                console.log("Invalid email format");
             }
-            setEmptyFields(false)
+            setEmptyFields(false);
         }
     }
 

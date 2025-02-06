@@ -45,7 +45,6 @@ function Order() {
       });
     
       setOrder(mergedOrders);
-      console.log(order);
     }, []);
     
     const assets = useMemo(()=>order.map(ast=>({color:ast.color, size:ast.size})),[order]);

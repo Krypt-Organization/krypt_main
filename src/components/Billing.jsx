@@ -47,7 +47,6 @@ function Billing() {
             if (jsonUser) {
                 try {
                     await updatePreviousPurchases(jsonUser.uid, order);
-                    console.log("Updated user purchases:", jsonUser);
                 } catch (error) {
                     console.error("Error parsing user data:", error);
                 }
@@ -68,14 +67,13 @@ function Billing() {
                     )
                     .join("  "),
             };   
-            console.log(emailData);
             emailjs.send('service_ye6lwwa', 'template_edfxuqo', emailData, {
                 publicKey: 'mH_bztTitjnB4WMzD',}).then(() => {
                     setDisableBtn(false);
-                    console.log('SUCCESS!');
+                    ('SUCCESS!');
                     toast.success('Order Placed Successfully!', { position: "top-left", theme: "light" });
                 },(error) => {
-                    console.log('FAILED...', error.text);
+                    console.log(error);
                     setDisableBtn(false);
                 },
             );

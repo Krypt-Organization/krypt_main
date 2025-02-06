@@ -16,11 +16,12 @@ function Login() {
 
     const handleInputChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
-        };
-    const handleSubmit = async(e)=>{
+    };
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const {email,password} = formData;
-        if( email.trim()=="" || password.trim()==""){
+        const { email, password } = formData;
+        if (email.trim() === "" || password.trim() === "") {
             toast.error('Please enter all fields 🚫', {
                 position: "top-left",
                 autoClose: 5000,
@@ -30,23 +31,19 @@ function Login() {
                 progress: undefined,
                 theme: "light",
                 transition: Bounce,
-                });
-
+            });
             setEmptyField(true);
-        }else{
+        } else {
             setDisableBtn(true);
-            try{
-                const user = await signInUser(email,password);
-                if(user){
-                    setDisableBtn(false);
+            try {
+                const user = await signInUser(email, password);
+                if (user) {
                     const loggedInUser = await getUserFromFirestore(user.uid);
-                    localStorage.setItem('user',JSON.stringify(loggedInUser));
-                    console.log(loggedInUser);                    
-                    console.log(user);
+                    localStorage.setItem('user', JSON.stringify(loggedInUser));
                     navigate('/user');
                 }
-                // console.log(formData)
-            }catch(error){
+            } catch (error) {
+                console.error(error);
                 toast.error('Invalid credentials 🚫', {
                     position: "top-left",
                     autoClose: 5000,
@@ -57,8 +54,8 @@ function Login() {
                     theme: "light",
                     transition: Bounce,
                 });
+            } finally {
                 setDisableBtn(false);
-                console.log(error);
             }
         }
     }

@@ -22,12 +22,11 @@ export default function UserPage() {
 const handleDeleteUser = async () => {
     setIsDeleting(true);
     try {
-        const deleteUser = await deleteUserFn();
-        console.log(deleteUser);
+        await deleteUserFn(user.uid);
         await handleLogOut();
-        setIsDeleting(false);
     } catch (error) {
         console.error(error);
+    } finally {
         setIsDeleting(false);
     }
 };
@@ -50,7 +49,6 @@ const handleDeleteUser = async () => {
         try{
             const parsedUser = JSON.parse(userId); // Parse stored JSON string
             const user = await getUserFromFirestore(parsedUser.uid); // Fetch user from Firestore
-            console.log("User Data:", user);
             setUser(user);
             setisLoading(false);
         }catch(error){
