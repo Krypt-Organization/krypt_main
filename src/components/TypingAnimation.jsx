@@ -22,16 +22,12 @@ function TypingAnimation() {
     const displayText = useTransform(rounded, (latest) =>
       baseText.slice(0, latest)
     );
-    // const newValue = useTransform(count, [0, 1], [0, 100])
-    // When `count` goes from `0` to `1`, I want `newValue` to go from `0` to `100`.
-    // const newValue = useTransform(count, (latest) => {latest * 100})
-    // When `count` changes, I want `newValue` to be 100 times that of `count`.
-  
+    
 
 
     useEffect(()=>{
         const controls = animate(count, baseText.length, {
-            type: "tween", // Not really needed because adding a duration will force "tween"
+            type: "tween", 
             duration: 1,
             ease: "easeInOut",
           });

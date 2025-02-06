@@ -4,13 +4,11 @@ import solana from "../../assets/solana_img.png"
 import point from "../../assets/bullet_point.png"
 
 function HiddenTreasures() {
-    // REFRENCES
     const first_ref = useRef(null)
     const second_ref = useRef(null)
     const first_view = useInView(first_ref, {once:true})
     const second_view = useInView(second_ref, {once:true})
     
-    // VARIANTS
     const hidden_treasure_variant = {
         initial:{
             x:-1000,

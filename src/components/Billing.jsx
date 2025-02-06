@@ -31,12 +31,11 @@ function Billing() {
         e.preventDefault();
         const { fullName, email, phoneNumber, address, state, city } = formData;
     
-        // Ensure all required fields are filled
         if (!fullName || !email || !phoneNumber || !address || !state || !city) {
             setEmptyField(true);
             return;
         }
-        setEmptyField(false); // Reset if all fields are filled
+        setEmptyField(false); 
     
         try {
             const data = ({...order,...formData})
@@ -153,5 +152,3 @@ return (
 }
 
 export default Billing
-// I tested an order that was sent to KRYPT'S Email to confirm if it was working
-//Properly here are the things I sent
