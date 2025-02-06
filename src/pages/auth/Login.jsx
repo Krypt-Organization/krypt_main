@@ -89,7 +89,7 @@ function Login() {
                     <span className=' font-medium'>Password</span>
                     <input placeholder='Password' onChange={handleInputChange} name='password' type="password" className={`${emptyField?"border-red-600":"border-white"}  bg-gray-100 text-black p-1 rounded-md outline-none ring-1 ring-gray-300`} />
                 </label>
-                <button className={` ${disableBtn?"bg-gray-900 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Login</button>
+                <button disabled={disableBtn} className={` ${disableBtn?"bg-gray-900 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Login</button>
             </form>
             <section className=' md:flex-row flex-col flex justify-between'>
                 <span>Don&apos;t have an account? <Link to="/auth/register" className=' text-blue-500'>Register</Link></span>
