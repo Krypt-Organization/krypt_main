@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import {FaCrown } from 'react-icons/fa'
-import {deleteUserFn, getUserFromFirestore, signOutUser} from "../../extras/firebase"
-import userImg from "../../assets/user.png";
+import {deleteUserFn, getUserFromFirestore, signOutUser} from "../../extras/firebase";
 import { useNavigate } from 'react-router-dom';
 import {BarLoader} from "react-spinners";
 import UserAssets from './UserAssets'
+import { CgProfile } from "react-icons/cg";
 
 export default function UserPage() {
     
@@ -22,12 +22,11 @@ export default function UserPage() {
 const handleDeleteUser = async () => {
     setIsDeleting(true);
     try {
-        const deleteUser = await deleteUserFn();
-        console.log(deleteUser);
+        await deleteUserFn(user.uid);
         await handleLogOut();
-        setIsDeleting(false);
     } catch (error) {
         console.error(error);
+    } finally {
         setIsDeleting(false);
     }
 };
@@ -50,7 +49,6 @@ const handleDeleteUser = async () => {
         try{
             const parsedUser = JSON.parse(userId); // Parse stored JSON string
             const user = await getUserFromFirestore(parsedUser.uid); // Fetch user from Firestore
-            console.log("User Data:", user);
             setUser(user);
             setisLoading(false);
         }catch(error){
@@ -76,7 +74,7 @@ const handleDeleteUser = async () => {
         <div className="max-w-4xl mx-auto">
             <header className=' mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3'>
                 <section className='  flex items-center gap-2'>
-                    <img src={userImg} className=' w-5' alt="User Display Image" />
+                    <CgProfile className=" text-3xl" />
                     <h1 className="  sm:text-2xl md:text-3xl font-bold">Welcome {user.username}</h1>
                 </section>
                 <button className=' border-[1px] hover:scale-110 hover:transition-all border-green-400 rounded-md font-semibold py-1 px-3' onClick={()=>{
@@ -113,25 +111,6 @@ const handleDeleteUser = async () => {
               
             </div>
             <UserAssets/>
-            {/* <h2 className="text-2xl font-semibold mb-4">Your Recent NFT Purchases</h2>
-            <div className="grid text-black grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {user.purchased?.length==0?
-            <div>
-                <p className=' bg-white py-3 rounded-lg px-5 text-lg'>No Previous Products purchased😢</p>           
-            </div>:user.purchased?.map((nft,index) => (
-                <div key={nft.id+"#"+index} className="bg-white shadow rounded-lg overflow-hidden">
-                    <img src={nft.image} alt={nft.name} className="w-full h-48 object-cover" />
-                    <div className="p-4">
-                        <h3 className="font-semibold text-lg mb-2">{nft.name}</h3>
-                        <p className="font-semibold">Unique ID: {nft.unique_id}</p>
-                        <p className="font-semibold">${nft.price}</p>
-                        <p className="font-semibold">Quantity: {nft.price/100}</p>
-                        <p className="text-gray-600 text-sm mb-2">{nft.description}</p>
-                        <p className="text-sm text-gray-500">ID: {nft.id}</p>
-                    </div>
-                </div>
-            ))}
-            </div> */}
             <button onClick={handleLogOut} className=' flex w-full mt-5 items-center justify-center rounded-md text-white font-semibold uppercase text-center bg-red-500'>
                 Logout
             </button>

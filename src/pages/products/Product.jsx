@@ -6,12 +6,12 @@ import {ClipLoader} from "react-spinners";
 import { Context } from '../../context/Context';
 import { AssetSize } from '@w3b/hooks/common';
 import * as api from "@w3b/data/api";
+import { toast,ToastContainer } from 'react-toastify';
 
 function Product() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
     const [option,setOption] = useState({size:AssetSize.LARGE})
-    const [addedToCart,setAddedToCart] = useState(false);
     const {setOrder} = useContext(Context);
     const navigate = useNavigate();
     useEffect(()=>{
@@ -20,14 +20,7 @@ function Product() {
             return eachData.unique_id === id;
         })
         setProduct(filterId);
-    },[])
-    useEffect(()=>{
-        const timer = setTimeout(()=>{
-            setAddedToCart(false)
-        },2000)
-
-        return ()=> clearTimeout(timer);
-    },[addedToCart])
+    },[]);
 
     const handleBack = ()=>{
         navigate("/products")
@@ -42,13 +35,12 @@ function Product() {
 
     const handleAddToCart = async () => {
         try {
-            setAddedToCart(true);
+            toast.success('Added to Cart Successfully!', { position: "top-left", theme: "light" });
             if (product.length === 0) {
                 throw new Error("Product array is empty");
             }
     
             const productDetails = { ...product[0], ...option };
-            console.log(productDetails);
     
             setOrder((prev) => [...prev, productDetails]);
         } catch (error) {
@@ -59,15 +51,14 @@ function Product() {
   return (
     <React.Fragment>
         <div>
+            <ToastContainer/>
             <button onClick={handleBack} className=' font-black text-3xl px-5 text-white cursor-pointer'>←</button>
             {
                 product.length===0?<ClipLoader/>:
                 product.map((product)=>{
                     return(
                         <div key={product.unique_id} className=' md:grid md:grid-cols-2 relative flex flex-col items-center gap-5 bg-white m-1 rounded-md py-10 px-2 md:px-8'>
-                            <div className={` bg-green-600 font-semibold px-5 py-1 uppercase text-white rounded-md fixed top-2 left-1 ${addedToCart?"translate-x-5":"-translate-x-[700px]"} transition-all`}>
-                                <p>Item Added To Cart</p>
-                            </div>
+                            
                             <section className=' '>
                                 <img src={product.img} alt="NFT" className={` size-72 lg:size-96 rounded-md`}/>
                             </section>

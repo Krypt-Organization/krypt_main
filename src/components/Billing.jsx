@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import banner from "../assets/contact_img.jpg";
 import { Context } from '../context/Context';
 import { updatePreviousPurchases } from '../extras/firebase';
 import { useNavigate } from 'react-router-dom';
+import emailjs from "@emailjs/browser";
+import { toast, ToastContainer } from 'react-toastify';
 
 function Billing() {
     
@@ -14,37 +16,66 @@ function Billing() {
         state:"",
         city:""
     });
+    const form = useRef();
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
     const [emptyField,setEmptyField] = useState(false);
-    const {checkOut,order,setOrder} = useContext(Context)
+    const {order,setOrder} = useContext(Context);
+    const [disableBtn,setDisableBtn] = useState(false);
     const handleOnChange = (e)=>{
         setFormData({...formData,[e.target.name]:e.target.value})
     }
-    
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { fullName, email, phoneNumber, address, state, city } = formData;
+    
         if (!fullName || !email || !phoneNumber || !address || !state || !city) {
             setEmptyField(true);
             return;
         }
-
+        setEmptyField(false); 
+    
         try {
-            console.log(formData);
-            if(user){
-                try{
-                  const jsonUser = JSON.parse(user);
-                  await updatePreviousPurchases(jsonUser.uid,order);
-                }catch(error){
-                  console.log(error);
+            const data = ({...order,...formData})
+            const jsonUser = user ? JSON.parse(user) : null;
+    
+            setDisableBtn(true);
+
+            if (jsonUser) {
+                try {
+                    await updatePreviousPurchases(jsonUser.uid, order);
+                } catch (error) {
+                    console.error("Error parsing user data:", error);
                 }
-                console.log(order);
-                console.log(JSON.parse(user))
-            }else{
-                console.log("OKAY");
-                console.log(order);
             }
+
+
+
+            const emailData = {
+                fullName: data.fullName,
+                email: data.email,
+                phoneNumber: data.phoneNumber,
+                address: data.address,
+                state: data.state,
+                city: data.city,
+                orders: Object.values(order)
+                    .map((item, index) =>
+                        `Item ${index + 1}: ${item.name}, Color: ${item.color}, Price: $${item.price}, Size: ${item.size}, Quantity : ${item.price/100}`
+                    )
+                    .join("  "),
+            };   
+            emailjs.send('service_ye6lwwa', 'template_edfxuqo', emailData, {
+                publicKey: 'mH_bztTitjnB4WMzD',}).then(() => {
+                    setDisableBtn(false);
+                    ('SUCCESS!');
+                    toast.success('Order Placed Successfully!', { position: "top-left", theme: "light" });
+                },(error) => {
+                    console.log(error);
+                    setDisableBtn(false);
+                },
+            );
             
             setFormData({
                 fullName: "",
@@ -54,15 +85,18 @@ function Billing() {
                 state: "",
                 city: "",
             });
-            navigate("/")
-            console.log(checkOut);
+    
             setOrder([]);
+            setTimeout(() => {
+                navigate("/order-status");
+            }, 5000);
+            
         } catch (error) {
-            console.error(error);
-            console.log(checkOut);
-            alert("An unexpected error occurred");
+            console.error("Unexpected error:", error);
+            alert("An unexpected error occurred.");
         }
-    }
+    };
+    
 useEffect(()=>{
     const timer = setTimeout(()=>{
         setEmptyField(false);
@@ -71,6 +105,7 @@ useEffect(()=>{
 },[emptyField]);
 return (
     <React.Fragment>
+        <ToastContainer/>
         <div className=' md:grid md:grid-cols-2 '>
             <div className=' max-md:hidden relative'>
                 <img src={banner} alt="" className=' h-full md:object-cover' />
@@ -83,7 +118,7 @@ return (
                 <h1>Billing Information</h1>
                 <span className=' font-normal text-xs'>Please fill in your details to complete your order </span>
             </header>
-            <form action="" onSubmit={handleSubmit} className=' flex flex-col gap-3'>
+            <form action="" ref={form} onSubmit={handleSubmit} className=' flex flex-col gap-3'>
                 <label htmlFor="" className=' flex flex-col gap-1'>
                     <span className=' font-semibold uppercase'>Full Name</span>
                     <input onChange={handleOnChange} name="fullName" type="text" className={` border-[1px] ${emptyField&&formData.fullName.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
@@ -108,7 +143,7 @@ return (
                     <span className=' font-semibold uppercase'>city</span>
                     <input onChange={handleOnChange} name="city" type="text" className={` border-[1px] ${emptyField&&formData.city.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
-                <button onClick={handleSubmit} className=' bg-black mt-6 text-white py-1 font-semibold uppercase rounded-md'>Continue</button>
+                <button disabled={disableBtn}  className={`  ${disableBtn?' bg-gray-600':'bg-black'} mt-6 text-white py-1 font-semibold uppercase rounded-md`}>{disableBtn ? "Processing..." : "Continue"}</button>
             </form>
         </div>
         </div>

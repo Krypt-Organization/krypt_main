@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getAuth, sendPasswordResetEmail,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut,deleteUser} from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc , arrayUnion,updateDoc} from "firebase/firestore";
@@ -13,7 +12,6 @@ const firebaseConfig = {
   measurementId: "G-8Q3CD35NT9"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -51,7 +49,6 @@ export const signOutUser = async()=>{
 export const passwordReset = async(email)=>{
     try{
         await sendPasswordResetEmail(auth,email);
-        console.log("Password reset email sent successfully");
         return true;
     }catch(error){
         console.error("Error sending password reset email:", error);
@@ -71,20 +68,18 @@ export const saveUserInFirestore = async (user) => {
 }
 
 export const getUserFromFirestore = async (uid) => {
-    try{
-        const userRef = doc(db,"users",uid);
-        const userDoc = await getDoc(userRef);
-        if (userDoc.exists()) {
-            console.log("Document data:", userDoc.data());
-            return userDoc.data();
-          } else {
-            // docSnap.data() will be undefined in this case
-            console.log("No such document!");
-          }
-    }catch(error){
-        console.error("Error getting user from firestore:", error);
-        throw error;
+  try {
+    const userRef = doc(db, "users", uid);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      return userDoc.data();
+    } else {
+      return null;
     }
+  } catch (error) {
+    console.error("Error getting user from firestore:", error);
+    throw error;
+  }
 }
 
 export const updatePreviousPurchases = async(uid,arrayValue)=>{
@@ -95,7 +90,6 @@ export const updatePreviousPurchases = async(uid,arrayValue)=>{
             purchased: arrayUnion(item), 
           });
         }
-        console.log("Previous purchases updated successfully");
       } catch (error) {
         console.error("Error updating previous purchases:", error);
         throw error; 
@@ -109,14 +103,7 @@ export const deleteUserFn = async () => {
       if (!user) {
         throw new Error("No user is currently authenticated.");
       }
-  
-    //   // Optional: Reauthenticate if needed
-    //   const credential = EmailAuthProvider.credential(user.email, "userPasswordHere"); // Replace with actual password
-    //   await reauthenticateWithCredential(user, credential);
-  
-      // Delete user
       await deleteUser(user);
-      console.log("User successfully deleted.");
     } catch (error) {
       if (error.code === "auth/requires-recent-login") {
         console.error("Error: User needs to reauthenticate before deletion.");

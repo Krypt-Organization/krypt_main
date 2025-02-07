@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { passwordReset } from '../../extras/firebase';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 function ForgotPassword() {
@@ -10,28 +11,25 @@ function ForgotPassword() {
 
   const handleInputChange = (e)=>{
     setEmail(e.target.value);
-    console.log(e.target.value);
   }
   
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(email.trim()==""){
+    if (email.trim() === "") {
       setEmptyField(true);
       return;
     }
-    else{
-      setDisableBtn(true);
-      
-      try{
-        const resetPassword = await passwordReset(email);
-        console.log(resetPassword);
-        setDisableBtn(false);
-      }catch(error){
-        console.log(error);
-        setDisableBtn(false);
-      }
+    setDisableBtn(true);
+    try {
+      await passwordReset(email);
+      toast.success('Password reset email sent successfully', { position: "top-left", theme: "light" });
+      setEmail("");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setDisableBtn(false);
     }
-  }
+  };
 
   useEffect(()=>{
     const timer = setTimeout(()=>{
@@ -43,6 +41,7 @@ function ForgotPassword() {
 
   return (
     <React.Fragment>
+      <ToastContainer/>
         <div className=' px-3 py-3'>
                     <form action="" onSubmit={handleSubmit} className=' py-2 gap-10 flex flex-col'>
                       <p className=' font-semibold text-center text-2xl uppercase'>Forgot Password ?</p>
