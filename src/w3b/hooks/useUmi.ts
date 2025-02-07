@@ -18,7 +18,7 @@ export default function useUmi(){
     //const { connection } = useAppKitConnection() 
     
     //TODO: chnage for mainnet mainnet
-    const connection = clusterApiUrl('devnet')
+    const connection = clusterApiUrl('mainnet-beta')
 
     return useMemo(()=>{
         

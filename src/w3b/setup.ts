@@ -1,6 +1,6 @@
 import { createAppKit } from '@reown/appkit/react'
 import { SolanaAdapter } from '@reown/appkit-adapter-solana/react'
-import { /* solana, */ solanaDevnet } from '@reown/appkit/networks'
+import { solana, /* solanaDevnet */ } from '@reown/appkit/networks'
 import { PhantomWalletAdapter, SolflareWalletAdapter, HuobiWalletAdapter, TrustWalletAdapter } from '@solana/wallet-adapter-wallets'
 
 // 0. Set up Solana Adapter
@@ -32,10 +32,9 @@ export default function setupWallet() {
         adapters: [solanaWeb3JsAdapter],
         //TODO: Update to feature to mainnet
         networks: [
-            //solana,
-            solanaDevnet
+            solana,
         ],
-        defaultNetwork:solanaDevnet,
+        defaultNetwork:solana,
         metadata: metadata,
         projectId,
         features: {
