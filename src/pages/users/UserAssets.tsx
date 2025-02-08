@@ -31,17 +31,17 @@ export default function UserAssets() {
             <div className="grid text-black grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {isLoading ? <BounceLoader /> :
 
-                    data?.length === 0 ?
-                        <div>
-                            <p className='bg-white py-3 rounded-lg px-5 text-lg'>No Previous Products purchased😢</p>
-                        </div> :
+                    data?.length > 0 ?
                         data.map(d =>
                             <AssetComponent
                                 price="100"
                                 key={d.address}
                                 {...d}
                             />
-                        )
+                        ):
+                        <div>
+                            <p className='bg-white py-3 rounded-lg px-5 text-lg'>No Previous Products purchased😢</p>
+                        </div>
                 }
             </div>
         </>
