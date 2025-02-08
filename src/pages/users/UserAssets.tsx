@@ -6,7 +6,7 @@ import BounceLoader from "react-spinners/BounceLoader";
 import useUri from "@w3b/hooks/useUri";
 import useOwnerAssets from "@w3b/hooks/useOwnerAssets"
 import CreateCollectionAction from "@w3b/ui/CreateCollectionAction";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function UserAssets() {
     const query = useOwnerAssets();
@@ -15,16 +15,18 @@ export default function UserAssets() {
 
     return (
         <>
+            <ToastContainer/>
             <CreateCollectionAction
                 onSuccess={(sig) => {
                     toast.success('NFT Collection Created!', { position: "top-left", theme: "light" });
                 }}
                 onError={(err) => {
-                    toast.warn(`Error Occured: ${err.message}`, {
-                        position: "top-left",
-                        autoClose: 5000,
-                        theme: "light",
-                    });
+                    toast.warn(`Failed: ${err.message}`, 
+                        {
+                          position: "top-left",
+                          autoClose: 5000,
+                          theme: "light",
+                        });
                 }}
             />
             <h2 className="text-2xl font-semibold mb-4">Your Recent NFT Purchases</h2>

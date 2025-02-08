@@ -159,13 +159,18 @@ function Order() {
                           }, 5000);
                         }
                       }}
-                      onError={()=>{
-                        alert(`Error Occured Connect Wallet`)
+                      onError={(err)=>{
                         toast.warn(`Something went wrong. Please Ensure your wallet is set up correctly or you have sufficient SOL`, 
                         {
                           position: "top-left",
                           autoClose: 5000,
                           theme: "light",
+                        });
+                        toast.warn(`Error: ${err.message}`, 
+                          {
+                            position: "top-left",
+                            autoClose: 5000,
+                            theme: "light",
                         });
                       }}
                     />

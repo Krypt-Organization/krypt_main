@@ -24,7 +24,7 @@ export default function CreateCollectionAction({
         })
     }
     const isMinting = mutation.isPending;
-
+    console.log({isMinting, collectionCreated})
     return <Button
         onClick={action}
         disabled={isMinting||collectionCreated}>
