@@ -21,7 +21,7 @@ export default function UserAssets() {
                     toast.success('NFT Collection Created!', { position: "top-left", theme: "light" });
                 }}
                 onError={(err) => {
-                    toast.warn(`Failed: ${err.message}`, 
+                    toast.warn(`Failed: ${err?.transactionMessage ?? err.message}`, 
                         {
                           position: "top-left",
                           autoClose: 5000,

@@ -1,11 +1,11 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import axios from "axios";
 
+type UseQueryParams = & Parameters<typeof useQuery>[0]
 
 type UriOptionParams = {
     prefix?:string,
-    staleTime?:number,
-}
+} & Omit<UseQueryParams, 'queryFn' | 'queryKey' | 'enabled'>
 
 export default function useUri<D>(uri:string, {prefix='asset', ...option}:UriOptionParams={}){
 
@@ -16,6 +16,6 @@ export default function useUri<D>(uri:string, {prefix='asset', ...option}:UriOpt
             return req.data
         },
         enabled:Boolean(uri),
-        ...option
+        ...(option as object)
     })
 }

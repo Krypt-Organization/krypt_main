@@ -3,16 +3,17 @@ import { createCollection, ruleSet } from '@metaplex-foundation/mpl-core'
 import { createSignerFromKeypair, publicKey, percentAmount } from '@metaplex-foundation/umi'
 import { collectionKeyPair } from "../data/secret"
 import { recordStore } from "../data/constants"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 
 export default function useCreateCollection() {
+    const queryClient = useQueryClient()
     const umi = useUmi();
     
     return useMutation({
         mutationFn:()=>{
             const collectionSigner = createSignerFromKeypair(umi, collectionKeyPair)
-            console.log("Collection address ", collectionSigner.publicKey.toString())
+            //console.log("Collection address ", collectionSigner.publicKey.toString(), recordStore)
             if(umi.identity.publicKey.toString() !== recordStore.creator){
                 throw Error(`Signer address must be ${recordStore.creator}`)
             }
@@ -35,7 +36,7 @@ export default function useCreateCollection() {
                     },
                     {
                         type:"MasterEdition",
-                        maxSupply:100,
+                        maxSupply:recordStore.maxSupply,
                         authority:{
                             type: "None"
                         }
@@ -44,6 +45,9 @@ export default function useCreateCollection() {
             })
             return tx.sendAndConfirm(umi);
         },
+        onSuccess(){
+            queryClient.invalidateQueries({queryKey:['collection', collectionKeyPair.publicKey]})
+        }
     })
 }
 

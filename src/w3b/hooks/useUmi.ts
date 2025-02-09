@@ -5,21 +5,30 @@ import { mplCore } from '@metaplex-foundation/mpl-core'
 import { WalletAdapter, walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters'
 import { createNoopSigner, defaultPublicKey, signerIdentity, } from "@metaplex-foundation/umi";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
-import { Provider, /* useAppKitConnection */ } from "@reown/appkit-adapter-solana/react";
-import { clusterApiUrl, /* Connection */ } from "@solana/web3.js";
+import { Provider } from "@reown/appkit-adapter-solana/react";
+import { Connection } from "@solana/web3.js";
 
 
 const zeroSigner = createNoopSigner(defaultPublicKey())
 
+const publicNodeMainnetHttpRpc = import.meta.env.VITE_SOLANA_HTTP_RPC;
+//"https://solana-rpc.publicnode.com";
+const publicNodeMainnetWssRpc = import.meta.env.VITE_SOLANA_WSS_RPC;
+//"wss://solana-rpc.publicnode.com"
+
 export default function useUmi(){
     const { isConnected } = useAppKitAccount();
     const { walletProvider } = useAppKitProvider<Provider>('solana')
-    //NOTE: Did not use connection from appkit due to walletconnect wss network failure
-    //const { connection } = useAppKitConnection() 
+    //NOTE: Did not use useAppKitConnection from appkit due to walletconnect wss network failure
+    //TODO: change for mainnet mainnet
+    const connection = new Connection(
+        publicNodeMainnetHttpRpc,
+        {
+            wsEndpoint:publicNodeMainnetWssRpc,
+            commitment: 'confirmed'
+        }
+    )
     
-    //TODO: chnage for mainnet mainnet
-    const connection = clusterApiUrl('mainnet-beta')
-
     return useMemo(()=>{
         
         const umi = createUmi(connection)

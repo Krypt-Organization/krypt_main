@@ -3,7 +3,7 @@ import { fetchCollection } from '@metaplex-foundation/mpl-core'
 import { transactionBuilder } from '@metaplex-foundation/umi'
 import { collectionKeyPair } from "../data/secret"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { AssetColor, AssetSize } from "./common"
+import { AssetColor, AssetSize, wrappedCoreFetch } from "./common"
 import { createMintAssetTx } from "./useMintAsset"
 import useMarketValue from "./useMarketValue"
 
@@ -22,7 +22,12 @@ export default function useMintMultipleAsset() {
     
     return useMutation({
         mutationFn:async (assets:MintMultipleAssetParams)=>{
-            const collection = await fetchCollection(umi, collectionKeyPair.publicKey)
+            const collection = await wrappedCoreFetch(fetchCollection)(umi, collectionKeyPair.publicKey)
+
+            if(!collection){
+                throw Error("Collection not available");
+            }
+
             if(!solUSDBasePrice || isNaN(solUSDBasePrice) || solUSDBasePrice <= 0){
                 throw Error(`Asset market price not determined: ${solUSDBasePrice}`, )
             } 

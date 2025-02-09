@@ -3,7 +3,7 @@ import { CollectionV1, create, fetchCollection } from '@metaplex-foundation/mpl-
 import { publicKey, generateSigner, createSignerFromKeypair, sol, transactionBuilder, Umi } from '@metaplex-foundation/umi'
 import { collectionKeyPair } from "../data/secret"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { AssetColor, AssetSize } from "./common"
+import { AssetColor, AssetSize, wrappedCoreFetch } from "./common"
 import { transferSol } from "@metaplex-foundation/mpl-toolbox"
 import { assetVariantJson, recordStore } from "../data/constants"
 import { generateAssetName } from "../utils"
@@ -29,7 +29,10 @@ export const createMintAssetTx = async ({umi, color, size, usdPrice, collection:
     if(collection_ && collection_.publicKey.toString() !== collectionKeyPair.publicKey.toString()){
         throw Error("Provided Invalid Collection")
     }
-    const collection = collection_ ?? await fetchCollection(umi, collectionKeyPair.publicKey)
+    const collection = collection_ ?? await wrappedCoreFetch(fetchCollection)(umi, collectionKeyPair.publicKey)
+    if(!collection){
+        throw Error("Collection not available");
+    }
     const assetSigner = generateSigner(umi)
     const createIX = create(umi, {
         collection:collection,

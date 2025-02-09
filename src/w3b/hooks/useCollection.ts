@@ -1,7 +1,7 @@
 import { fetchCollection } from "@metaplex-foundation/mpl-core";
 import { useQuery } from "@tanstack/react-query";
 import useUmi from "./useUmi";
-import { FetchCoreCollectionParams } from "./common";
+import { FetchCoreCollectionParams, wrappedCoreFetch } from "./common";
 import { collectionPublicKey } from "../data/secret";
 
 
@@ -13,7 +13,7 @@ export default function useCollection({address=collectionPublicKey, options}:Use
 
     return useQuery({
         queryKey:['collection', address],
-        queryFn: ()=>fetchCollection(umi, address, options),
+        queryFn: ()=>wrappedCoreFetch(fetchCollection)(umi, address, options),
         enabled:Boolean(address)
     })
 }

@@ -1,14 +1,8 @@
+import useUri from "./useUri";
 
 
 // BINANCE
-// 
-
-import { useMemo } from "react";
-import useUri from "./useUri";
-
 // COINGECKO
-// 
-
 
 enum Source {
     binance="https://fapi.binance.com/fapi/v2/ticker/price?symbol=SOLUSDT",
@@ -21,17 +15,22 @@ const resolver = {
 }
 
 const DEFAULT_STALE_TIME_MS = 25*60*1000;
-export default function useMarketValue(uri:Source=Source.coingecko, staleTime:number=DEFAULT_STALE_TIME_MS){
+const DEFAULT_RETRY_DELAY_MS = 1*60*1000;
+export default function useMarketValue(uri:Source=Source.coingecko, 
+    staleTime:number=DEFAULT_STALE_TIME_MS,){
 
-    const {data:_data, ...query} = useUri(uri, {staleTime})
+    const {data, ...query} = useUri<number>(uri, {
+        staleTime,
+        retry:3,
+        retryDelay:DEFAULT_RETRY_DELAY_MS,
+        select(_data:any) {
+            let result;
+            if(_data){
+                result = resolver[uri](_data);
+            }
+            return result?result:undefined
+        },
+    })
     
-    const data = useMemo(()=>{
-        let result;
-        if(_data){
-            result = resolver[uri](_data);
-        }
-        return result?result:undefined
-    },[_data])
-
     return {data, ...query}
 }

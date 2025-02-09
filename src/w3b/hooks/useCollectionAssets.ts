@@ -1,7 +1,7 @@
 import { fetchAssetsByCollection } from "@metaplex-foundation/mpl-core";
 import { useQuery } from "@tanstack/react-query";
 import useUmi from "./useUmi";
-import { FetchCoreAssetParams } from "./common";
+import { FetchCoreAssetParams, wrappedCoreFetch } from "./common";
 import { collectionPublicKey } from "../data/secret";
 
 
@@ -13,7 +13,7 @@ export default function useCollectionAssets({address=collectionPublicKey, option
 
     return useQuery({
         queryKey:['collection-assets', address],
-        queryFn: ()=>fetchAssetsByCollection(umi, address, options),
+        queryFn: ()=>wrappedCoreFetch(fetchAssetsByCollection)(umi, address, options),
         enabled:Boolean(address)
     })
 }

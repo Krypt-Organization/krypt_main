@@ -1,7 +1,7 @@
 import { fetchAsset } from "@metaplex-foundation/mpl-core";
 import { useQuery } from "@tanstack/react-query";
 import useUmi from "./useUmi";
-import { FetchCoreAssetParams } from "./common";
+import { FetchCoreAssetParams, wrappedCoreFetch } from "./common";
 
 type UseAssetParams = FetchCoreAssetParams
 
@@ -11,7 +11,7 @@ export default function useAsset({address, options}:UseAssetParams){
 
     return useQuery({
         queryKey:['asset', address],
-        queryFn: ()=>fetchAsset(umi, address, options),
+        queryFn: ()=>wrappedCoreFetch(fetchAsset)(umi, address, options),
         enabled:Boolean(address)
     })
 }

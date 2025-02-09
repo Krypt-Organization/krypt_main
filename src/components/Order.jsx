@@ -166,7 +166,7 @@ function Order() {
                           autoClose: 5000,
                           theme: "light",
                         });
-                        toast.warn(`Error: ${err.message}`, 
+                        toast.error(`Failed: ${err?.transactionMessage ?? err.message}`, 
                           {
                             position: "top-left",
                             autoClose: 5000,
