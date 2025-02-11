@@ -1,6 +1,6 @@
 import useUmi from "./useUmi"
 import { fetchCollection } from '@metaplex-foundation/mpl-core'
-import { publicKey, transactionBuilder } from '@metaplex-foundation/umi'
+import { transactionBuilder } from '@metaplex-foundation/umi'
 import { collectionKeyPair } from "../data/secret"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { AssetColor, AssetSize, confirmAndVerify, wrappedCoreFetch } from "./common"
@@ -46,7 +46,7 @@ export default function useMintMultipleAsset() {
             if(res?.err){
                 throw Error(res.err)
             }
-            return publicKey(sig)
+            return {signature:sig}
         },
         onSuccess(data){
             queryClient.invalidateQueries({queryKey:['collection-assets', collectionKeyPair.publicKey]})

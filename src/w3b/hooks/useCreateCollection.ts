@@ -51,7 +51,7 @@ export default function useCreateCollection() {
             if(res?.err){
                 throw Error(res.err)
             }
-            return publicKey(sig)
+            return {signature:sig}
         },
         onSuccess(){
             queryClient.invalidateQueries({queryKey:['collection', collectionKeyPair.publicKey]})

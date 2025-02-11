@@ -96,7 +96,7 @@ export default function useMintAsset() {
             if(res?.err){
                 throw Error(res.err)
             }
-            return publicKey(sig)
+            return {signature:sig}
         },
         onSuccess(){
             queryClient.invalidateQueries({queryKey:['collection-assets', collectionKeyPair.publicKey]})
