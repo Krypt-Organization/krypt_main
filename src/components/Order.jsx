@@ -132,16 +132,16 @@ function Order() {
                 <section className=" flex flex-col gap-3">
                     <aside className=' flex justify-between font-medium '>
                       <p>Item(s)</p>
-                      <span>{order.length}</span>
+                      <span>{checkOut*0.01}</span>
+                    </aside>
+                    <aside className=' py-2 border-t-[1px]  border-black flex justify-between font-medium '>
+                      <p>Transaction Fee </p>
+                      <span>${checkOut*0.01}</span>
                     </aside>
                     <aside className=' border-t-[1px] py-2  border-black flex justify-between font-medium '>
                       <p>Total </p>
-                      <span>${checkOut}</span>
+                      <span>${checkOut+checkOut*0.01}</span>
                     </aside>
-                    {/* <aside className=' border-t-[1px]  border-black flex justify-between font-medium '>
-                      <p>Sub-Total </p>
-                      <span>${checkOut*0.01+checkOut}</span>
-                    </aside> */}
                     {/* <button 
                     onClick={handleCheckOut} 
                     className=" bg-black rounded-md text-white font-medium uppercase py-2">
