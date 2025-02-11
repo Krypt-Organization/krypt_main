@@ -160,12 +160,12 @@ function Order() {
                         }
                       }}
                       onError={(err)=>{
-                        toast.warn(`Something went wrong. Please Ensure your wallet is set up correctly or you have sufficient SOL`, 
+                        /* toast.warn(`Something went wrong. Please Ensure your wallet is set up correctly or you have sufficient SOL`, 
                         {
                           position: "top-left",
                           autoClose: 5000,
                           theme: "light",
-                        });
+                        }); */
                         toast.error(`Failed: ${err?.transactionMessage ?? err.message}`, 
                           {
                             position: "top-left",
