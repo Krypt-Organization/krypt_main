@@ -4,6 +4,7 @@ import { createSignerFromKeypair, publicKey, percentAmount } from '@metaplex-fou
 import { collectionKeyPair } from "../data/secret"
 import { recordStore } from "../data/constants"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { confirmAndVerify } from "./common"
 
 
 export default function useCreateCollection() {
@@ -11,7 +12,7 @@ export default function useCreateCollection() {
     const umi = useUmi();
     
     return useMutation({
-        mutationFn:()=>{
+        mutationFn:async()=>{
             const collectionSigner = createSignerFromKeypair(umi, collectionKeyPair)
             //console.log("Collection address ", collectionSigner.publicKey.toString(), recordStore)
             if(umi.identity.publicKey.toString() !== recordStore.creator){
@@ -43,7 +44,14 @@ export default function useCreateCollection() {
                     }
                 ]
             })
-            return tx.sendAndConfirm(umi);
+
+            //return tx.sendAndConfirm(umi);
+            const sig = await tx.send(umi)
+            const res = await confirmAndVerify(umi, sig, collectionKeyPair.publicKey)
+            if(res?.err){
+                throw Error(res.err)
+            }
+            return publicKey(sig)
         },
         onSuccess(){
             queryClient.invalidateQueries({queryKey:['collection', collectionKeyPair.publicKey]})

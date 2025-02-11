@@ -1,9 +1,9 @@
 import useUmi from "./useUmi"
 import { fetchCollection } from '@metaplex-foundation/mpl-core'
-import { transactionBuilder } from '@metaplex-foundation/umi'
+import { publicKey, transactionBuilder } from '@metaplex-foundation/umi'
 import { collectionKeyPair } from "../data/secret"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { AssetColor, AssetSize, wrappedCoreFetch } from "./common"
+import { AssetColor, AssetSize, confirmAndVerify, wrappedCoreFetch } from "./common"
 import { createMintAssetTx } from "./useMintAsset"
 import useMarketValue from "./useMarketValue"
 
@@ -31,14 +31,22 @@ export default function useMintMultipleAsset() {
             if(!solUSDBasePrice || isNaN(solUSDBasePrice) || solUSDBasePrice <= 0){
                 throw Error(`Asset market price not determined: ${solUSDBasePrice}`, )
             } 
-            const txs = await Promise.all(
+            const mintOutput = await Promise.all(
                 assets.map((asset, idx)=>
                     //idx ensures that edition number is unique
                     createMintAssetTx({umi, color:asset.color, size:asset.size, usdPrice:solUSDBasePrice, collection, index:idx})
                 )
             )
+            const txs = mintOutput.map(val=>val.builder);
+            const assetSigners = mintOutput.map(val=>val.assetSigner)
             const builder = transactionBuilder().add(txs);
-            return await builder.sendAndConfirm(umi)
+            //return await builder.sendAndConfirm(umi)
+            const sig = await builder.send(umi)
+            const res = await confirmAndVerify(umi, sig, assetSigners[0].publicKey)
+            if(res?.err){
+                throw Error(res.err)
+            }
+            return publicKey(sig)
         },
         onSuccess(data){
             queryClient.invalidateQueries({queryKey:['collection-assets', collectionKeyPair.publicKey]})

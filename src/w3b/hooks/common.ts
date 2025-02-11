@@ -48,3 +48,33 @@ export function wrappedCoreFetch<
         return null
     }
 }
+
+
+export const confirmAndVerify = async (umi:Umi, sig:Uint8Array, addr:PublicKey)=>{
+    const block = await umi.rpc.getLatestBlockhash()
+    try{
+        const result = await umi.rpc.confirmTransaction(sig,{
+            strategy: {
+                type: "blockhash",
+                blockhash: block.blockhash,
+                lastValidBlockHeight: block.lastValidBlockHeight
+            }
+        })
+        if(result && result.value.err){
+            return {
+                err:result.value.err.toString()
+            }
+        }
+    }catch(err){
+        // In case block height is exceed check if account is created
+        if(addr && await umi.rpc.accountExists(addr)){
+            return;
+        }
+        
+        return {
+            err:err.message
+        };
+    }
+    
+    return;
+}
