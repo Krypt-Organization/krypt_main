@@ -66,7 +66,8 @@ export const confirmAndVerify = async (umi:Umi, sig:Uint8Array, addr:PublicKey)=
             }
         }
     }catch(err){
-        // In case block height is exceed check if account is created
+        // In case block height is exceeded check if account is created
+        await new Promise((resolve)=>setTimeout(()=>resolve(0), 1.5*60*1000)) //1.5 mins delay 
         if(addr && await umi.rpc.accountExists(addr)){
             return;
         }
