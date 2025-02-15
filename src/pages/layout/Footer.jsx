@@ -1,10 +1,14 @@
 import React from 'react'
 import logo from "../../assets/logo.svg"
-import {FaFacebook, FaTwitter, FaInstagram} from "react-icons/fa"
+import { FaTwitter, FaInstagram} from "react-icons/fa"
 import {year} from "../../extras/getYear"
 import { Link } from 'react-router-dom'
 
-const footer_links = ["home", "about" , "contact", "products"]
+const footer_links = [
+  {link:"/",text:"Home"},  
+  {link:"/products",text:"Products"},
+  {link:"/contact",text:"Contact"}
+]
 function Footer() {
   
 
@@ -16,20 +20,21 @@ function Footer() {
           <span className=' font-medium text-[12px] md:text-base text-gray-800'>Powered By Solana</span>
         </aside>
         <section className=' flex flex-col gap-8 pb-5'>
-          <ul className='grid grid-cols-2 md:grid-cols-1 sm:font-semibold sm:text-lg md:text-2xl md:uppercase gap-1 capitalize md:flex-row justify-between '>
+          <ul className='grid  sm:font-semibold sm:text-lg md:text-2xl md:uppercase gap-1 capitalize md:flex-row justify-between '>
             {footer_links.map((link, index) => (
               <li key={index+"##$$**"}>
-                <Link to={link=="home"&&"/"} className='text-black text-sm cursor-pointer hover:text-gray-700'>
-                  {link}
+                <Link to={link.link} className='text-black text-sm cursor-pointer hover:text-gray-700'>
+                  {link.text}
                 </Link>
               </li>
               ))}
           </ul>
           <div className=' flex justify-between'>
             <section className=' text-xl md:text-2xl flex gap-4'>
-              <FaFacebook/>
+              <a href="https://x.com/kryptphygital?s=21&t=J7h4LCBhzRDgrXkFeY1oVg">
               <FaTwitter />
-              <a href="https://www.instagram.com/meshvault_?igsh=Z2pnZjZyYWI3YnQ3">
+              </a>
+              <a href="https://www.instagram.com/kryptstore?igsh=bnFwdTRzeWp0Z3cw&utm_source=qr">
                 <FaInstagram />
               </a>
             </section>

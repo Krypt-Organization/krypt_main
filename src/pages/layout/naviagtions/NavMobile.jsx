@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import {FaFacebook, FaTwitter, FaInstagram, FaRegUserCircle} from "react-icons/fa"
+import { FaTwitter, FaInstagram, FaRegUserCircle} from "react-icons/fa"
 import {year} from "../../../extras/getYear"
 import {motion} from "framer-motion"
 import {Context} from "../../../context/Context"
@@ -121,9 +121,10 @@ function NavMobile() {
               initial="initial" animate={navigation?"animate":"exit"}
             className=' border-t-[1px] pt-4 flex justify-between'>
               <section className=' text-xl flex gap-4'>
-                <FaFacebook/>
-                <FaTwitter />
-                <a href="https://www.instagram.com/meshvault_?igsh=Z2pnZjZyYWI3YnQ3">
+                <a href="https://x.com/kryptphygital?s=21&t=J7h4LCBhzRDgrXkFeY1oVg">
+                  <FaTwitter />
+                </a>
+                <a href="https://www.instagram.com/kryptstore?igsh=bnFwdTRzeWp0Z3cw&utm_source=qr">
                   <FaInstagram />
                 </a>
               </section>
