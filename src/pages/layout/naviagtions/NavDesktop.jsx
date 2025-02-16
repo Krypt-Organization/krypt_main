@@ -36,7 +36,7 @@ function NavDesktop() {
       {
             nav.map((item, index) => {
               if(item.text=="Treasure" && currentPage.pathname=="/"){
-                return <button onClick={handleScrollTo} className="nav-link w-fit" key={index}>{item.text}</button>
+                return <button id='name' onClick={handleScrollTo} className="nav-link w-fit" key={index}>{item.text}</button>
               }else{
                 return (<div key={index}>
                   <Link to={item.link} href="#" className="nav-link">{item.text}</Link>

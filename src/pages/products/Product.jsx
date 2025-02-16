@@ -52,7 +52,7 @@ function Product() {
     <React.Fragment>
         <div>
             <ToastContainer/>
-            <button onClick={handleBack} className=' font-black text-3xl px-5 text-white cursor-pointer'>←</button>
+            <button id='name' onClick={handleBack} className=' font-black text-3xl px-5 text-white cursor-pointer'>←</button>
             {
                 product.length===0?<ClipLoader/>:
                 product.map((product)=>{
@@ -85,7 +85,7 @@ function Product() {
                                         //TODO: ADD MORE LOGICS TO HANDLE ASSET MINT LIMIT
                                     }
                                 </select>
-                                <button onClick={handleAddToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Buy</button>
+                                <button id='name' onClick={handleAddToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Buy</button>
                                 <section className=' px-5 flex flex-col'>
                                     <span className=' font-semibold text-lg'>Mint your KRYPT NFT Collection Now!</span><br />
 

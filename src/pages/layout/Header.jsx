@@ -44,7 +44,7 @@ function Header() {
             <appkit-button />
           </section>
           <section className=' flex gap-4 items-center lg:hidden'>
-            <button  onClick={handleCloseNavigation}>
+            <button  id='name' onClick={handleCloseNavigation}>
               <IoMenu/>
             </button>
             <appkit-button />

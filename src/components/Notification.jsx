@@ -9,7 +9,6 @@ function Notification({signature}) {
             <p className=' text-center text-xl font-semibold '>Minting Process Complete</p>
             <p className=' text-center text-base font-medium'>Your NFT signature is</p> <br />
             <p className=' px-2 text-sm text-center'>{signature}</p><br />
-            {/* <button className=' bg-black rounded-md shadow-md text-white font-semibold px-3 py-1 hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform'>Proceed to Checkout</button> */}
           </aside>
         </div>
     </React.Fragment>

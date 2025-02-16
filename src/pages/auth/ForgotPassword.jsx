@@ -50,7 +50,7 @@ function ForgotPassword() {
                             <input placeholder='Enter your Email' value={email} onChange={handleInputChange}  name='email' type={"email"} className={`${emptyField&&email.trim()===""?"border-red-600":"border-white"} border-[2px] bg-gray-100 text-black p-1 rounded-md outline-none ring-1 ring-gray-300`} />
                         </label>
                         
-                        <button disabled={disableBtn} className={` ${disableBtn?"bg-gray-600 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Forget</button>
+                        <button id='name' disabled={disableBtn} className={` ${disableBtn?"bg-gray-600 text-gray-300":"bg-black text-white"} text-white py-1 uppercase font-medium rounded-md`}>Forget</button>
                     </form>
                     <section className=' flex flex-col items-start gap-1'>
                         <span className=' text-center'>Don&apos;t have an account? <Link to="/auth/register" className=' text-blue-500'>Sign Up</Link></span>

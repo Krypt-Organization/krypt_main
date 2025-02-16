@@ -60,12 +60,12 @@ function Order() {
             <div className="flex py-5   flex-col items-center  justify-center">
                 <img loading='lazy' src={emptyCart} className=" size-56" alt="Cart Is Empty"/>
                 <p className=" text-white font-semibold text-lg">You Have No Orders</p>
-                <button onClick={()=>{
+                <button id='name' onClick={()=>{
                   navigate("/products")
                 }} className=" border-[2px] border-white flex items-center font-semibold gap-2 py-1 px-3 my-2 rounded-md  text-white">Go Back <span><FaLongArrowAltLeft/></span></button>
             </div>
             :<div className=" my-2 flex flex-col gap-2">
-              <button onClick={()=>{
+              <button id='name' onClick={()=>{
                   navigate("/products")
                 }} className=" flex items-center font-semibold gap-2 py-1 px-3 my-2 rounded-md w-fit text-white">
                 <FaLongArrowAltLeft/>
@@ -114,7 +114,7 @@ function Order() {
                           <p className=' flex items-center gap-1 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>price:</span>${eachProduct.price}</p>
                           <p>#{eachProduct.id}</p>
                           <p>Qty: {eachProduct.price/100}</p>
-                          <button onClick={()=>{
+                          <button id='name' onClick={()=>{
                             handleDeleteItem(eachProduct.unique_id)
                             }} className="bg-red-600 rounded-md my-2 w-fit px-2 ">Remove</button>
                         </section>
@@ -142,11 +142,6 @@ function Order() {
                       <p>Total </p>
                       <span>${checkOut+checkOut*0.01}</span>
                     </aside>
-                    {/* <button 
-                    onClick={handleCheckOut} 
-                    className=" bg-black rounded-md text-white font-medium uppercase py-2">
-                    Check Out
-                    </button> */}
 
                     <MintNftAction assets={assets}
                       onSuccess={(sig)=>{

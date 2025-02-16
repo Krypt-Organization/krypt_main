@@ -143,7 +143,7 @@ return (
                     <span className=' font-semibold uppercase'>city</span>
                     <input onChange={handleOnChange} name="city" type="text" className={` border-[1px] ${emptyField&&formData.city.trim()===""?"border-red-500":"border-gray-500"} rounded outline-none px-2 py-1`}/>
                 </label>
-                <button disabled={disableBtn}  className={`  ${disableBtn?' bg-gray-600':'bg-black'} mt-6 text-white py-1 font-semibold uppercase rounded-md`}>{disableBtn ? "Processing..." : "Continue"}</button>
+                <button id='text' disabled={disableBtn}  className={`  ${disableBtn?' bg-gray-600':'bg-black'} mt-6 text-white py-1 font-semibold uppercase rounded-md`}>{disableBtn ? "Processing..." : "Continue"}</button>
             </form>
         </div>
         </div>

@@ -80,7 +80,7 @@ function Contact() {
                             <textarea placeholder='Message: Enter your message' name="message" onChange={handleOnChange} value={message} id=""  rows={5} className={`${message.length==0 && emptyFields?" border-[2px]  border-red-600":"border-[2px] "}  outline-none w-full rounded-lg px-2 py-1 `} />
                         </section>
                         <section className=' '>
-                            <button className='w-full rounded-full font-semibold py-1 uppercase bg-white'>Message</button>
+                            <button id='name' className='w-full rounded-full font-semibold py-1 uppercase bg-white'>Message</button>
                         </section>
                     </form>
                 </div>

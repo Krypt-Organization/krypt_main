@@ -14,7 +14,7 @@ function PreviewBtn({id}) {
 
   return (
     <React.Fragment>
-        <button onClick={handlePreview}  className={` ${!navigation&&"z-10"} bg-white font-semibold 
+        <button id='name' onClick={handlePreview}  className={` ${!navigation&&"z-10"} bg-white font-semibold 
         rounded-sm`}>Preview</button>
     </React.Fragment>
   )

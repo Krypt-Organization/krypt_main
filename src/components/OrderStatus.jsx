@@ -36,7 +36,7 @@ function OrderStatus() {
         </div>
 
         <div className="flex flex-col gap-3 mt-6">
-          <button onClick={continueShopping} className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md">Continue Shopping</button>
+          <button id='name' onClick={continueShopping} className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md">Continue Shopping</button>
         </div>
       </motion.div>
     </div>
