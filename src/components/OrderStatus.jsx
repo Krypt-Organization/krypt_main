@@ -24,7 +24,7 @@ function OrderStatus() {
         className="bg-white shadow-lg rounded-2xl p-10 max-w-lg"
       >
         <div className=' flex justify-center items-center'>
-            <img src={checkMark} alt="" className=' w-12 sm:w-14 md:w-16 lg:w-20' />
+            <img src={checkMark} loading="lazy" alt="" className=' w-12 sm:w-14 md:w-16 lg:w-20' />
         </div>
         <h2 className="text-2xl font-semibold mt-4">Thank You for Your Order!</h2>
         <p className="text-gray-600 mt-2">Your order has been placed successfully.</p>

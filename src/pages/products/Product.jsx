@@ -60,13 +60,13 @@ function Product() {
                         <div key={product.unique_id} className=' md:grid md:grid-cols-2 relative flex flex-col items-center gap-5 bg-white m-1 rounded-md py-10 px-2 md:px-8'>
                             
                             <section className=' '>
-                                <img src={product.img} alt="NFT" className={` size-72 lg:size-96 rounded-md`}/>
+                                <img loading="lazy" src={product.img} alt="NFT" className={` size-72 lg:size-96 rounded-md`}/>
                             </section>
                             <section className=' w-full  flex flex-col gap-5'>
                                 <h2 className=' font-semibold text-3xl'>{product.name}</h2>
                                 <p className=' text-gray-900 font-semibold text-xl'>${product.price}</p>
                                 <ul className=' border-b-[1px] pb-4 border-gray-600 text-gray-800 flex flex-col gap-1'>
-                                    <li className=' flex gap-4 items-center  font-semibold text-[16px] '>Limited Edition <img src={limited_img} className=" size-8" alt="Limited"/></li>
+                                    <li className=' flex gap-4 items-center  font-semibold text-[16px] '>Limited Edition <img loading="lazy" src={limited_img} className=" size-8" alt="Limited"/></li>
                                     <li className=' text-lg uppercase font-semibold '>Krypt Collection</li>
                                 </ul>
                                 
@@ -84,7 +84,6 @@ function Product() {
                                         )
                                         //TODO: ADD MORE LOGICS TO HANDLE ASSET MINT LIMIT
                                     }
-                                    {/* {!product.img.includes("nft_product.jpg")&&<option value="3XL">3XL</option>} */}
                                 </select>
                                 <button onClick={handleAddToCart} className=' bg-black  text-white py-1 rounded-full font-medium font-mono'>Buy</button>
                                 <section className=' px-5 flex flex-col'>

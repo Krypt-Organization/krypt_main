@@ -116,7 +116,7 @@ function HiddenTreasures() {
                             return(
                                 <div className=' bg-gray-100 rounded-md px-3 py-2' key={id}>
                                     <section className=' flex gap-2 items-center'>
-                                        <img src={point} alt="bullet" className=' w-5'/>
+                                        <img src={point} loading="lazy" alt="bullet" className=' w-5'/>
                                         <h1 className=' font-semibold'>{header}</h1>
                                     </section>
                                     <span className=' text-sm font-normal md:text-base '><li>{text}</li></span>

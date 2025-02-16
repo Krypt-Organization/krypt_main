@@ -84,7 +84,6 @@ const handleDeleteUser = async () => {
             <div className="bg-gray-200 text-black shadow rounded-lg p-6 mb-8">
             <div className="flex sm:items-center gap-5 flex-col sm:flex-row  justify-between mb-4">
                 <div className="flex ">
-                {/* <img src={user.avatar} alt={user.name} className="w-24 h-24 rounded-full mr-4" /> */}
                 <div className=' flex flex-col gap-2'>
                     <h2 className="text-2xl font-semibold">{user.username}</h2>
                     <p className="text-gray-600">{user.email}</p>

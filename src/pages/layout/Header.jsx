@@ -22,7 +22,7 @@ function Header() {
       </section>
       <main className=" bg-primary flex lg:grid lg:grid-cols-[1.5fr,3fr] items-center justify-between px-5">
         <Link to={"/"}>
-          <img src={logo} className=' sm:w-20 md:w-28  w-14' alt="Logo" loading="lazy"/>
+          <img src={logo}  className=' sm:w-20 md:w-28  w-14' alt="Logo" loading="lazy"/>
         </Link>
         <aside className=" items-center z-10 lg:text-3xl text-2xl">
           <section className=' items-center flex gap-10 justify-between  max-lg:hidden'>

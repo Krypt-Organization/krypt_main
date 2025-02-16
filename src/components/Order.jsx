@@ -58,7 +58,7 @@ function Order() {
             {
             order.length===0?
             <div className="flex py-5   flex-col items-center  justify-center">
-                <img src={emptyCart} className=" size-56" alt="Cart Is Empty"/>
+                <img loading='lazy' src={emptyCart} className=" size-56" alt="Cart Is Empty"/>
                 <p className=" text-white font-semibold text-lg">You Have No Orders</p>
                 <button onClick={()=>{
                   navigate("/products")
@@ -85,7 +85,7 @@ function Order() {
                     return(
                       <tbody key={eachProduct.unique_id} className=' space-x-7'>
                           <tr className=' text-white'>
-                            <td className='flex flex-col items-center'><img src={eachProduct.img} className=' size-20 rounded-sm md:size-24 ' alt={eachProduct.name} /></td>
+                            <td className='flex flex-col items-center'><img loading="lazy" src={eachProduct.img} className=' size-20 rounded-sm md:size-24 ' alt={eachProduct.name} /></td>
                             <td className='text-center font-semibold'>{eachProduct.name}</td>
                             <td className='text-center font-semibold'>{eachProduct.size}</td>
                             <td className='text-center font-semibold'>{eachProduct.price}</td>
@@ -107,7 +107,7 @@ function Order() {
                   return(
                     <div key={eachProduct.unique_id}>
                       <section  className='md:hidden rounded-md bg-gray-600 px-2 py-5 flex items-center justify-center gap-10 sm:gap-20'>
-                        <img src={eachProduct.img} alt={eachProduct.name} className=' rounded-md size-56 sm:size-64' />
+                        <img src={eachProduct.img} loading="lazy" alt={eachProduct.name} className=' rounded-md size-56 sm:size-64' />
                         <section className=' flex flex-col text-white'>
                           <p className='sm:text-xl font-semibold text-lg uppercase'>{eachProduct.name}</p>
                           <p className=' flex items-center gap-3 font-semibold text-xl'><span className=' sm:text-base text-sm capitalize font-semibold'>size:</span>{eachProduct.size}</p>

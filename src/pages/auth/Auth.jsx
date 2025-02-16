@@ -19,7 +19,7 @@ return (
         <div className='h-screen w-screen rounded-md'>
             <div className='h-full w-full md:grid md:grid-cols-2'>
                 <div className='max-md:hidden relative'>
-                    <img src={img} alt="Image" className='h-full w-full md:object-cover lg:object-center' />
+                    <img src={img} alt="Image" loading="lazy" className='h-full w-full md:object-cover lg:object-center' />
                     <div className='top-0 w-full h-full bg-opacity-80 bg-black absolute text-transparent'>
                         .
                     </div>

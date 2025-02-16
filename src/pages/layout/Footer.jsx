@@ -16,7 +16,7 @@ function Footer() {
     <React.Fragment>
       <div className=' bg-primary px-4 py-5 flex flex-col gap-5'>
         <aside className=' flex flex-col -space-y-2'>
-          <img src={logo} alt="Logo" loading='lazy' className=' sm:w-20 md:w-24 w-14'/>
+          <img src={logo} loading="lazy" alt="Logo" className=' sm:w-20 md:w-24 w-14'/>
           <span className=' font-medium text-[12px] md:text-base text-gray-800'>Powered By Solana</span>
         </aside>
         <section className=' flex flex-col gap-8 pb-5'>

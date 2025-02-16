@@ -82,7 +82,7 @@ const AssetComponent = (props: AssetComponentProps) => {
         <div key={props.address} className="bg-white shadow rounded-lg overflow-hidden">
             {
                 data?.image ?
-                    <img src={data?.image} alt={props.name} className="w-full h-48 object-cover" /> :
+                    <img  src={data?.image} alt={props.name} className="w-full h-48 object-cover" /> :
                     <div />
             }
             <div className="p-4">

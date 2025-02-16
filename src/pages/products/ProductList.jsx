@@ -20,7 +20,7 @@ function ProductList({listEnd=10,writeUp}) {
                         return(
                             <div key={eachImg.unique_id+index+"#"} className=' bg-gray-700 border-[1px] border-white rounded-md px-1 py-2 gap-3 flex flex-col '>
                                 <section className=" flex flx-col justify-center">
-                                    <img src={eachImg.img} alt={eachImg.name} className=' size-32 rounded-md ' loading="lazy"/>
+                                    <img  src={eachImg.img} alt={eachImg.name} className=' size-32 rounded-md ' loading="lazy"/>
                                 </section>
                                 <section className=' grid grid-cols-2 items-center justify-center gap-2'>
                                     <span className=' px-3 font-semibold italic font-[monospace] text-xl'>{String(eachImg.id).length<3?'0'+eachImg.id:eachImg.id}</span>

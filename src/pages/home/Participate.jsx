@@ -42,7 +42,7 @@ function Participate() {
                         custom={index}
                         key={index+"#**#"} className=' items-center flex flex-col gap-3'>
                             <p className={`${index==2&&"text-center"} sm:text-lg md:text-sm lg:text-lg  md:text-center text-medium font-semibold `}>{each.text}</p>
-                            <img className=' sm:self-center sm:w-full md:w-[500px] w-[400px] rounded-md' src={each.img} alt="How To Participate" />
+                            <img loading="lazy" className=' sm:self-center sm:w-full md:w-[500px] w-[400px] rounded-md' src={each.img} alt="How To Participate" />
 
                         </motion.div>
                        )

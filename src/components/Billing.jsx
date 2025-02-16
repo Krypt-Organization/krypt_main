@@ -108,7 +108,7 @@ return (
         <ToastContainer/>
         <div className=' md:grid md:grid-cols-2 '>
             <div className=' max-md:hidden relative'>
-                <img src={banner} alt="" className=' h-full md:object-cover' />
+                <img src={banner} loading="lazy" alt="" className=' h-full md:object-cover' />
                 <div className='top-0 w-full h-full bg-opacity-80 bg-black absolute text-transparent'>
                         .
                     </div>
