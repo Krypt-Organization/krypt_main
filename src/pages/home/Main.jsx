@@ -2,7 +2,7 @@ import React from 'react'
 import KryptBackground from '../../components/KryptBackground'
 import TypingAnimation from "../../components/TypingAnimation"
 import {motion} from "framer-motion"
-import gif from "../../assets/krypt_gif_compressed.gif"
+import KryptVideo from "../../assets/krypt_gif.mp4"
 
 function Main() {
     // const ref = useRef()
@@ -23,8 +23,8 @@ function Main() {
     <React.Fragment>
         <div className=' w-full h-[700px] relative bg-red-500 '>
             <section className=' object-cover bg-red-300'>
-                {/* <video src={video} muted autoPlay loop type="video/mp4" className=' object-cover h-[700px] w-full'></video> */}
-                <img src={gif} loading="lazy" alt="Gif video" className=' object-cover h-[700px] w-full'/>
+                <video src={KryptVideo} muted autoPlay loop type="video/mp4" className=' object-cover h-[700px] w-full'></video>
+                {/* <img src={KryptVideo} loading="lazy" alt="Gif video" className=' object-cover h-[700px] w-full'/> */}
             </section>
             <div className=' h-full bg-black bg-opacity-85 absolute  top-0 flex flex-col gap-5 sm:gap-5 lg:flex-row lg:pb-16 lg:items-center'>
                 <main className=' py-5 flex flex-col gap-14'>
