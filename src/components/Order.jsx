@@ -135,6 +135,10 @@ function Order() {
                       <span>{checkOut*0.01}</span>
                     </aside>
                     <aside className=' py-2 border-t-[1px]  border-black flex justify-between font-medium '>
+                      <p>Price </p>
+                      <span>${checkOut}</span>
+                    </aside>
+                    <aside className=' py-2 border-t-[1px]  border-black flex justify-between font-medium '>
                       <p>Transaction Fee </p>
                       <span>${checkOut*0.01}</span>
                     </aside>
@@ -155,12 +159,6 @@ function Order() {
                         }
                       }}
                       onError={(err)=>{
-                        /* toast.warn(`Something went wrong. Please Ensure your wallet is set up correctly or you have sufficient SOL`, 
-                        {
-                          position: "top-left",
-                          autoClose: 5000,
-                          theme: "light",
-                        }); */
                         toast.error(`Failed: ${err?.transactionMessage ?? err.message}`, 
                           {
                             position: "top-left",

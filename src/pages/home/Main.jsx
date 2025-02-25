@@ -5,7 +5,6 @@ import {motion} from "framer-motion"
 import gif from "../../assets/krypt_gif_compressed.gif"
 
 function Main() {
-    // const ref = useRef()
     const variant_animation={
         initial:{
             y:1000
@@ -23,7 +22,6 @@ function Main() {
     <React.Fragment>
         <div className=' w-full h-[700px] relative bg-red-500 '>
             <section className=' object-cover bg-red-300'>
-                {/* <video src={video} muted autoPlay loop type="video/mp4" className=' object-cover h-[700px] w-full'></video> */}
                 <img src={gif} loading="lazy" alt="Gif video" className=' object-cover h-[700px] w-full'/>
             </section>
             <div className=' h-full bg-black bg-opacity-85 absolute  top-0 flex flex-col gap-5 sm:gap-5 lg:flex-row lg:pb-16 lg:items-center'>
