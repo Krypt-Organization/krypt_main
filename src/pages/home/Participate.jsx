@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
-import img1 from "../../assets/img1.png"
-import img2 from "../../assets/img2.png"
-import img3 from "../../assets/img3.png"
-import img4 from "../../assets/img4.png"
+import img1 from "../../assets/img1.webp"
+import img2 from "../../assets/img2.webp"
+import img3 from "../../assets/img3.webp"
+import img4 from "../../assets/img4.webp"
 import {useInView, motion} from "framer-motion"
 
 const list_participations = [{text:"Visit the Krypt Brand website to get started.",img:img1},{text:"Connect your Solana wallet to unlock access.",img:img2},{text:"You'll have the chance to mint one of the exclusive 100 collectibles.",img:img3},{text:"Once  minted, your collectible will reveal a hidden treasure",img:img4}]
