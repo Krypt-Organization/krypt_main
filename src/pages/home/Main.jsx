@@ -22,7 +22,7 @@ function Main() {
     <React.Fragment>
         <div className=' w-full h-[700px] relative bg-red-500 '>
             <section className=' object-cover bg-red-300'>
-                <img src={gif} loading="lazy" alt="Gif video" className=' object-cover h-[700px] w-full'/>
+                <img src={gif} loading="eager" alt="Gif video" className=' object-cover h-[700px] w-full'/>
             </section>
             <div className=' h-full bg-black bg-opacity-85 absolute  top-0 flex flex-col gap-5 sm:gap-5 lg:flex-row lg:pb-16 lg:items-center'>
                 <main className=' py-5 flex flex-col gap-14'>
